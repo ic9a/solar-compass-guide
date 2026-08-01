@@ -24,3 +24,10 @@ Inventarul se completează în fiecare PR cu schimbările de pe rutele fazei res
 - Autentificarea explică motivul, confidențialitatea și continuitatea analizei începute fără cont.
 - Istoricul și setările folosesc aceeași navigare și aceleași denumiri pentru stările ofertelor.
 - Rezultatul gratuit separă informațiile disponibile, contradicțiile și limitele comparației fără presiune artificială de vânzare.
+
+# Faza 4 — administrare
+
+- `Dashboard` devine `Prezentare`, iar titlurile explică direct scopul fiecărei zone.
+- Stările tehnice sunt prezentate consecvent prin etichete compacte, fără a modifica valorile salvate.
+- Încărcarea și listele goale oferă mesaje clare și nu sugerează erori inexistente.
+- Textele pentru plăți, evenimente și audit separă verificarea operațională de acțiunile care pot modifica date.
