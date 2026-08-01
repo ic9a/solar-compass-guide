@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "raportsolar-app",
+  "compatibility_date": "2026-07-25",
+  "compatibility_flags": ["nodejs_compat"],
+  "keep_vars": true,
+  "preview_urls": false,
+  "vars": {
+    "AI_MODEL": "gemini-3.5-flash",
+    "SUPABASE_URL": "https://gyoqznrzidefywuqhpsy.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_OjV358PjZyHm3oKIebwauw_jDClFSpc"
+  },
+  "secrets": {
+    "required": [
+      "SUPABASE_SERVICE_ROLE_KEY",
+      "GOOGLE_GENERATIVE_AI_API_KEY",
+      "STRIPE_SECRET_KEY",
+      "STRIPE_WEBHOOK_SECRET"
+    ]
+  },
+  "main": ".output/server/index.mjs",
+  "assets": {
+    "directory": ".output/public"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

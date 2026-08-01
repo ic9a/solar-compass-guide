@@ -1,0 +1,10 @@
+cluster,intent,query_family,canonical_owner,primary_tool,status,rationale
+calculator,transactional-research,"calculator panouri fotovoltaice; calcul sistem fotovoltaic",/calculator-panouri-fotovoltaice,/recomandare-sistem,published,"Explains inputs and interpretation before the product flow; no volume claim"
+sizing,problem-solving,"cate panouri fotovoltaice imi trebuie; numar panouri casa",/cate-panouri-fotovoltaice-imi-trebuie,/recomandare-sistem,published,"Owns module-count intent; links to technical sizing"
+economics,commercial-research,"amortizare sistem fotovoltaic; recuperare investitie panouri",/amortizare-sistem-fotovoltaic,/recomandare-sistem,published,"Scenario method without promised payback"
+yield-economics,informational,"productie si economii panouri fotovoltaice; productie lunara",/productie-si-economii-panouri-fotovoltaice,/harta-solara-romania,published,"Separates kWh from monetary savings"
+storage,comparison,"sistem fotovoltaic cu baterie sau fara; merita baterie",/sistem-fotovoltaic-cu-baterie-sau-fara,/recomandare-sistem,published,"Comparison owner; existing battery guide remains technical"
+system-size,commercial-research,"sistem fotovoltaic 5 kw; productie sistem 5 kw",/sistem-fotovoltaic-5-kw,/recomandare-sistem,published,"Interprets package size without fixed output claims"
+offers,commercial-research,"comparare oferta fotovoltaica; verificare oferta",/cum-verifici-o-oferta-fotovoltaica,/upload-oferta,existing-owner,"Avoids cannibalization and duplicate landing page"
+programs,fresh-news,"Casa Verde Fotovoltaice 2026; inscrieri AFM",, ,deferred,"Official AFM program page found was for 2024; no evergreen page until current official status is verifiable"
+local,local-intent,"panouri fotovoltaice + judet/oras",, ,rejected,"No county doorway pages or unsupported local claims"

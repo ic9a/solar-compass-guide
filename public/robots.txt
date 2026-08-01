@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /analiza/
+Disallow: /cont/
+Disallow: /corectare/
+Disallow: /raport-complet/
+Disallow: /rezultat-gratuit/
+
+Sitemap: https://raportsolar.ro/sitemap.xml

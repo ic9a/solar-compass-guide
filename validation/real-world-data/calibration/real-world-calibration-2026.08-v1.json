@@ -1,0 +1,46 @@
+{
+  "version": "real-world-calibration-2026.08-v1",
+  "createdAt": "2026-07-30",
+  "productionBaseline": "f9ea315184cea9dc13ebaa9708f668ded44fef57",
+  "enabled": false,
+  "decision": "insufficient-romania-specific-evidence",
+  "split": {
+    "method": "deterministic sha256(source_id + profile_id), buckets 0-69 calibration and 70-99 holdout",
+    "calibrationPercent": 70,
+    "holdoutPercent": 30
+  },
+  "minimumSamples": {
+    "productionCorrectionSystems": 30,
+    "regionalCorrectionSystemsPerRegion": 15,
+    "financialOffers": 30,
+    "publicProcurementAwards": 50
+  },
+  "admitted": {
+    "utrechtMetadataSystems": 175,
+    "utrechtMeasuredTimeSeries": 0,
+    "cyprusMeasuredMonthlyFiles": 24,
+    "energyCommunityProfiles": 250,
+    "energyCommunityPvProfiles": 200,
+    "romaniaMeasuredSystems": 0,
+    "romaniaVerifiedOffers": 0,
+    "romaniaVerifiedAwards": 0
+  },
+  "robustStatistics": {
+    "utrechtAnnualYieldKwhPerKwp": {"median": 1006.0, "q1": 955.0, "q3": 1034.0, "min": 679.0, "max": 1113.0},
+    "cyprusFileEnergyKwh": {"median": 21.2587885, "q1": 14.29081475, "q3": 30.204009, "min": 7.182945, "max": 34.446658},
+    "energyCommunityPvSumPositive": {"count": 200, "median": 36.270644, "q1": 24.59527425, "q3": 70.69260125, "min": 1.59495, "max": 136.859964}
+  },
+  "corrections": {
+    "annualProductionMultiplier": 1.0,
+    "regionalMultipliers": {},
+    "selfConsumptionMultiplier": 1.0,
+    "tariffMultiplier": 1.0,
+    "installedCostMultiplier": 1.0
+  },
+  "holdout": {
+    "status": "unchanged-by-construction",
+    "baselineAnnualProductionMapePercent": 3.37,
+    "candidateAnnualProductionMapePercent": 3.37,
+    "deltaPercentagePoints": 0.0
+  }
+}

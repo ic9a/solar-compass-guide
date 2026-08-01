@@ -1,0 +1,30 @@
+{
+  "source": "Zenodo 10.5281/zenodo.10953360",
+  "source_file_md5": "13896fef43016d4f08cf671f7f37af4b",
+  "selection": {
+    "stratified_candidates": 42,
+    "quality_accepted": 25,
+    "selected": 24,
+    "minimum_complete_months": 12,
+    "maximum_missing_data_ratio": 0.30,
+    "minimum_daytime_completeness": 0.70
+  },
+  "reference": "PVGIS 5.3 PVcalc at Utrecht with recorded capacity, tilt and azimuth; 14% system loss",
+  "split": {
+    "method": "sha256(source_id + physical_system_id), grouped by system",
+    "calibration_count": 17,
+    "holdout_count": 7
+  },
+  "annual": {
+    "all_systems_residual_median_pct": -8.999,
+    "all_systems_residual_q1_pct": -13.617,
+    "all_systems_residual_q3_pct": -6.27725,
+    "candidate_multiplier": 0.9124173888370004,
+    "baseline_holdout_mape_pct": 12.727513351199175,
+    "candidate_holdout_mape_pct": 3.730227643037935
+  },
+  "decision": {
+    "activate_production_multiplier": false,
+    "reason": "Dutch residuals are retained as measured European uncertainty evidence; they are not transferred into Romanian central yield without Romanian measured production and complete orientation-group regression evidence."
+  }
+}

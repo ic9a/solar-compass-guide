@@ -1,0 +1,17 @@
+# Paths excluded from a future clean public snapshot.
+# Entries are repository-relative prefixes.
+.env
+.env.
+.dev.vars
+.wrangler/
+.output/
+dist/
+dist-ssr/
+test-results/
+playwright-report/
+blob-report/
+uploads/
+upload/
+docs/public-repository/private/
+validation/real-world-data/private/
+.public-snapshot/

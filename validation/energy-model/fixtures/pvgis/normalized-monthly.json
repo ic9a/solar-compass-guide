@@ -1,0 +1,1657 @@
+{
+  "schemaVersion": 1,
+  "profiles": {
+    "bucharest|south|15": {
+      "monthlyKwhPerKwp": [
+        45.24,
+        63.79,
+        103.98,
+        125.48,
+        142.9,
+        146.81,
+        158.24,
+        148.91,
+        116.86,
+        87.02,
+        50.68,
+        40.35
+      ],
+      "annualKwhPerKwp": 1230.26,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=15&aspect=0&outputformat=json"
+      ]
+    },
+    "brasov|south-east|15": {
+      "monthlyKwhPerKwp": [
+        42.83,
+        58.56,
+        91.12,
+        107.53,
+        124.85,
+        129.34,
+        139.53,
+        132.05,
+        101.44,
+        79.37,
+        49.43,
+        33.71
+      ],
+      "annualKwhPerKwp": 1089.76,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.6579&lon=25.6012&peakpower=1&loss=14&angle=15&aspect=-45&outputformat=json"
+      ]
+    },
+    "cluj-napoca|east|15": {
+      "monthlyKwhPerKwp": [
+        28.33,
+        44.68,
+        82.86,
+        107.82,
+        129.39,
+        138.41,
+        142.82,
+        128.0,
+        94.52,
+        65.28,
+        34.73,
+        22.0
+      ],
+      "annualKwhPerKwp": 1018.84,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=15&aspect=-90&outputformat=json"
+      ]
+    },
+    "constanta|west|15": {
+      "monthlyKwhPerKwp": [
+        33.34,
+        46.25,
+        82.5,
+        114.3,
+        144.81,
+        149.84,
+        158.85,
+        144.89,
+        102.24,
+        64.31,
+        36.01,
+        26.41
+      ],
+      "annualKwhPerKwp": 1103.75,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=15&aspect=90&outputformat=json"
+      ]
+    },
+    "craiova|east-west|15": {
+      "monthlyKwhPerKwp": [
+        34.335,
+        49.835,
+        89.075,
+        116.155,
+        139.28,
+        146.74,
+        155.005,
+        136.7,
+        100.865,
+        68.77,
+        35.865,
+        28.515
+      ],
+      "annualKwhPerKwp": 1101.14,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=15&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=15&aspect=90&outputformat=json"
+      ]
+    },
+    "iasi|north|30": {
+      "monthlyKwhPerKwp": [
+        14.86,
+        20.81,
+        39.44,
+        71.86,
+        106.16,
+        117.63,
+        119.46,
+        91.89,
+        50.28,
+        22.59,
+        14.49,
+        11.63
+      ],
+      "annualKwhPerKwp": 681.1,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=30&aspect=180&outputformat=json"
+      ]
+    },
+    "timisoara|south|30": {
+      "monthlyKwhPerKwp": [
+        51.08,
+        65.1,
+        108.05,
+        127.08,
+        138.3,
+        141.22,
+        152.19,
+        144.94,
+        115.61,
+        99.22,
+        65.57,
+        43.83
+      ],
+      "annualKwhPerKwp": 1252.19,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=30&aspect=0&outputformat=json"
+      ]
+    },
+    "suceava|south-east|30": {
+      "monthlyKwhPerKwp": [
+        36.08,
+        51.8,
+        91.15,
+        114.52,
+        133.96,
+        132.7,
+        144.24,
+        135.45,
+        108.28,
+        81.14,
+        45.61,
+        34.22
+      ],
+      "annualKwhPerKwp": 1109.15,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.6514&lon=26.2556&peakpower=1&loss=14&angle=30&aspect=-45&outputformat=json"
+      ]
+    },
+    "bucharest|east|30": {
+      "monthlyKwhPerKwp": [
+        32.56,
+        48.41,
+        84.12,
+        108.73,
+        128.83,
+        135.2,
+        144.24,
+        129.85,
+        96.94,
+        66.06,
+        35.42,
+        27.1
+      ],
+      "annualKwhPerKwp": 1037.46,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json"
+      ]
+    },
+    "brasov|west|30": {
+      "monthlyKwhPerKwp": [
+        30.71,
+        46.83,
+        78.74,
+        95.46,
+        111.61,
+        116.69,
+        124.29,
+        115.32,
+        87.19,
+        64.41,
+        36.73,
+        24.76
+      ],
+      "annualKwhPerKwp": 932.74,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.6579&lon=25.6012&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "cluj-napoca|east-west|45": {
+      "monthlyKwhPerKwp": [
+        27.26,
+        42.57,
+        75.52,
+        96.065,
+        112.53,
+        119.835,
+        124.86,
+        113.165,
+        85.59,
+        62.0,
+        34.3,
+        21.655
+      ],
+      "annualKwhPerKwp": 915.35,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=45&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=45&aspect=90&outputformat=json"
+      ]
+    },
+    "constanta|north|45": {
+      "monthlyKwhPerKwp": [
+        13.55,
+        18.75,
+        30.18,
+        54.27,
+        89.59,
+        103.63,
+        101.5,
+        68.66,
+        32.07,
+        21.89,
+        14.65,
+        11.33
+      ],
+      "annualKwhPerKwp": 560.07,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=45&aspect=180&outputformat=json"
+      ]
+    },
+    "craiova|south|45": {
+      "monthlyKwhPerKwp": [
+        66.84,
+        79.12,
+        117.42,
+        128.02,
+        135.49,
+        134.35,
+        145.77,
+        144.66,
+        125.5,
+        105.78,
+        64.15,
+        59.21
+      ],
+      "annualKwhPerKwp": 1306.31,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=45&aspect=0&outputformat=json"
+      ]
+    },
+    "iasi|south-east|45": {
+      "monthlyKwhPerKwp": [
+        41.09,
+        58.01,
+        94.55,
+        111.76,
+        129.25,
+        130.37,
+        139.32,
+        134.17,
+        110.02,
+        85.0,
+        47.44,
+        36.51
+      ],
+      "annualKwhPerKwp": 1117.49,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=45&aspect=-45&outputformat=json"
+      ]
+    },
+    "timisoara|east|45": {
+      "monthlyKwhPerKwp": [
+        28.97,
+        41.17,
+        78.07,
+        99.9,
+        118.0,
+        125.98,
+        132.74,
+        117.3,
+        86.22,
+        62.47,
+        36.07,
+        23.42
+      ],
+      "annualKwhPerKwp": 950.31,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=45&aspect=-90&outputformat=json"
+      ]
+    },
+    "suceava|west|30": {
+      "monthlyKwhPerKwp": [
+        24.6,
+        38.99,
+        75.31,
+        101.41,
+        122.81,
+        124.5,
+        130.33,
+        119.72,
+        89.34,
+        59.62,
+        30.63,
+        21.32
+      ],
+      "annualKwhPerKwp": 938.58,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.6514&lon=26.2556&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "bucharest|east-west|30": {
+      "monthlyKwhPerKwp": [
+        32.665,
+        48.99,
+        84.915,
+        109.125,
+        128.815,
+        134.735,
+        143.53,
+        130.36,
+        97.09,
+        67.005,
+        36.605,
+        27.7
+      ],
+      "annualKwhPerKwp": 1041.535,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "brasov|north|30": {
+      "monthlyKwhPerKwp": [
+        16.0,
+        21.82,
+        43.38,
+        72.31,
+        99.66,
+        109.69,
+        113.52,
+        91.58,
+        53.0,
+        24.45,
+        16.02,
+        13.43
+      ],
+      "annualKwhPerKwp": 674.86,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.6579&lon=25.6012&peakpower=1&loss=14&angle=30&aspect=180&outputformat=json"
+      ]
+    },
+    "cluj-napoca|south|30": {
+      "monthlyKwhPerKwp": [
+        47.41,
+        65.87,
+        105.42,
+        120.63,
+        132.47,
+        137.54,
+        144.41,
+        140.18,
+        117.02,
+        97.66,
+        60.2,
+        39.73
+      ],
+      "annualKwhPerKwp": 1208.54,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=30&aspect=0&outputformat=json"
+      ]
+    },
+    "constanta|south-east|30": {
+      "monthlyKwhPerKwp": [
+        52.66,
+        61.44,
+        97.06,
+        122.61,
+        145.05,
+        148.68,
+        158.67,
+        153.32,
+        118.17,
+        84.26,
+        52.25,
+        44.33
+      ],
+      "annualKwhPerKwp": 1238.5,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=30&aspect=-45&outputformat=json"
+      ]
+    },
+    "craiova|east|15": {
+      "monthlyKwhPerKwp": [
+        34.11,
+        49.39,
+        88.68,
+        115.53,
+        138.84,
+        146.28,
+        154.65,
+        135.48,
+        100.95,
+        68.0,
+        35.15,
+        28.18
+      ],
+      "annualKwhPerKwp": 1095.24,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=15&aspect=-90&outputformat=json"
+      ]
+    },
+    "iasi|west|15": {
+      "monthlyKwhPerKwp": [
+        25.73,
+        41.48,
+        79.34,
+        105.55,
+        132.59,
+        138.18,
+        146.11,
+        131.14,
+        95.07,
+        61.93,
+        30.69,
+        21.23
+      ],
+      "annualKwhPerKwp": 1009.04,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=15&aspect=90&outputformat=json"
+      ]
+    },
+    "timisoara|east-west|15": {
+      "monthlyKwhPerKwp": [
+        29.72,
+        43.995,
+        84.345,
+        112.02,
+        133.04,
+        141.145,
+        149.155,
+        131.2,
+        93.85,
+        67.285,
+        37.78,
+        24.0
+      ],
+      "annualKwhPerKwp": 1047.535,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=15&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=15&aspect=90&outputformat=json"
+      ]
+    },
+    "suceava|north|15": {
+      "monthlyKwhPerKwp": [
+        15.18,
+        27.3,
+        59.99,
+        92.23,
+        121.63,
+        126.98,
+        132.71,
+        112.2,
+        74.07,
+        39.5,
+        17.07,
+        11.51
+      ],
+      "annualKwhPerKwp": 830.37,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.6514&lon=26.2556&peakpower=1&loss=14&angle=15&aspect=180&outputformat=json"
+      ]
+    },
+    "brasov|south-east|30": {
+      "monthlyKwhPerKwp": [
+        50.32,
+        64.92,
+        95.79,
+        108.75,
+        123.16,
+        126.25,
+        137.25,
+        132.95,
+        105.6,
+        87.24,
+        57.4,
+        39.87
+      ],
+      "annualKwhPerKwp": 1129.5,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.6579&lon=25.6012&peakpower=1&loss=14&angle=30&aspect=-45&outputformat=json"
+      ]
+    },
+    "cluj-napoca|east|30": {
+      "monthlyKwhPerKwp": [
+        28.45,
+        44.36,
+        81.02,
+        104.43,
+        125.11,
+        133.05,
+        137.69,
+        123.75,
+        91.89,
+        64.05,
+        34.53,
+        21.99
+      ],
+      "annualKwhPerKwp": 990.32,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json"
+      ]
+    },
+    "constanta|west|30": {
+      "monthlyKwhPerKwp": [
+        32.25,
+        44.46,
+        78.88,
+        108.65,
+        137.68,
+        141.04,
+        149.73,
+        137.18,
+        97.65,
+        61.54,
+        34.94,
+        25.33
+      ],
+      "annualKwhPerKwp": 1049.33,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "craiova|east-west|30": {
+      "monthlyKwhPerKwp": [
+        34.085,
+        48.915,
+        86.15,
+        111.065,
+        131.855,
+        138.85,
+        146.825,
+        130.24,
+        97.01,
+        67.11,
+        35.495,
+        28.63
+      ],
+      "annualKwhPerKwp": 1056.23,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "timisoara|south|45": {
+      "monthlyKwhPerKwp": [
+        57.12,
+        70.08,
+        111.05,
+        124.45,
+        130.18,
+        130.31,
+        141.45,
+        139.82,
+        116.95,
+        106.43,
+        73.34,
+        49.69
+      ],
+      "annualKwhPerKwp": 1250.87,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=45&aspect=0&outputformat=json"
+      ]
+    },
+    "suceava|south-east|45": {
+      "monthlyKwhPerKwp": [
+        38.82,
+        53.83,
+        91.36,
+        111.1,
+        127.35,
+        124.75,
+        136.81,
+        130.88,
+        107.96,
+        84.74,
+        49.1,
+        37.71
+      ],
+      "annualKwhPerKwp": 1094.41,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.6514&lon=26.2556&peakpower=1&loss=14&angle=45&aspect=-45&outputformat=json"
+      ]
+    },
+    "bucharest|east|45": {
+      "monthlyKwhPerKwp": [
+        31.61,
+        46.1,
+        78.95,
+        101.38,
+        118.82,
+        124.43,
+        132.99,
+        120.81,
+        90.87,
+        62.68,
+        33.84,
+        26.27
+      ],
+      "annualKwhPerKwp": 968.75,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=45&aspect=-90&outputformat=json"
+      ]
+    },
+    "brasov|west|45": {
+      "monthlyKwhPerKwp": [
+        29.15,
+        44.57,
+        74.32,
+        88.94,
+        102.64,
+        106.54,
+        113.94,
+        106.54,
+        81.73,
+        61.24,
+        35.12,
+        23.83
+      ],
+      "annualKwhPerKwp": 868.56,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.6579&lon=25.6012&peakpower=1&loss=14&angle=45&aspect=90&outputformat=json"
+      ]
+    },
+    "constanta|north|30": {
+      "monthlyKwhPerKwp": [
+        15.6,
+        20.69,
+        44.9,
+        80.35,
+        116.3,
+        128.36,
+        130.61,
+        103.05,
+        57.47,
+        25.89,
+        16.6,
+        13.06
+      ],
+      "annualKwhPerKwp": 752.88,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=30&aspect=180&outputformat=json"
+      ]
+    },
+    "craiova|south|30": {
+      "monthlyKwhPerKwp": [
+        59.72,
+        73.58,
+        114.34,
+        131.11,
+        144.43,
+        146.16,
+        157.41,
+        150.44,
+        124.24,
+        99.24,
+        58.17,
+        52.21
+      ],
+      "annualKwhPerKwp": 1311.05,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=30&aspect=0&outputformat=json"
+      ]
+    },
+    "iasi|south-east|30": {
+      "monthlyKwhPerKwp": [
+        38.13,
+        55.54,
+        94.17,
+        115.11,
+        136.36,
+        138.67,
+        147.57,
+        139.39,
+        110.31,
+        81.66,
+        44.32,
+        33.37
+      ],
+      "annualKwhPerKwp": 1134.6,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=30&aspect=-45&outputformat=json"
+      ]
+    },
+    "timisoara|east|30": {
+      "monthlyKwhPerKwp": [
+        29.89,
+        43.01,
+        82.4,
+        107.05,
+        127.38,
+        135.36,
+        142.55,
+        125.73,
+        91.26,
+        65.39,
+        37.29,
+        24.05
+      ],
+      "annualKwhPerKwp": 1011.36,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json"
+      ]
+    },
+    "bucharest|east-west|15": {
+      "monthlyKwhPerKwp": [
+        32.69,
+        49.945,
+        88.115,
+        114.09,
+        135.875,
+        142.185,
+        151.6,
+        136.89,
+        101.045,
+        68.68,
+        37.055,
+        27.66
+      ],
+      "annualKwhPerKwp": 1085.83,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=15&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=15&aspect=90&outputformat=json"
+      ]
+    },
+    "brasov|north|15": {
+      "monthlyKwhPerKwp": [
+        18.28,
+        32.55,
+        64.61,
+        89.85,
+        113.77,
+        121.93,
+        128.61,
+        112.17,
+        75.43,
+        44.5,
+        20.76,
+        14.51
+      ],
+      "annualKwhPerKwp": 836.97,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.6579&lon=25.6012&peakpower=1&loss=14&angle=15&aspect=180&outputformat=json"
+      ]
+    },
+    "cluj-napoca|south|15": {
+      "monthlyKwhPerKwp": [
+        38.99,
+        56.99,
+        96.96,
+        117.44,
+        134.15,
+        141.75,
+        147.63,
+        137.99,
+        109.16,
+        84.59,
+        49.28,
+        31.94
+      ],
+      "annualKwhPerKwp": 1146.87,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=15&aspect=0&outputformat=json"
+      ]
+    },
+    "constanta|south-east|15": {
+      "monthlyKwhPerKwp": [
+        44.9,
+        55.98,
+        92.77,
+        122.01,
+        148.64,
+        153.83,
+        163.37,
+        153.73,
+        113.97,
+        77.32,
+        45.93,
+        37.13
+      ],
+      "annualKwhPerKwp": 1209.58,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=15&aspect=-45&outputformat=json"
+      ]
+    },
+    "iasi|west|30": {
+      "monthlyKwhPerKwp": [
+        25.69,
+        40.74,
+        76.97,
+        101.0,
+        125.76,
+        130.78,
+        138.62,
+        125.43,
+        91.96,
+        60.89,
+        30.86,
+        21.26
+      ],
+      "annualKwhPerKwp": 969.96,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "timisoara|east-west|30": {
+      "monthlyKwhPerKwp": [
+        29.705,
+        43.275,
+        81.825,
+        107.125,
+        126.58,
+        133.46,
+        141.445,
+        125.41,
+        90.42,
+        66.035,
+        37.525,
+        24.135
+      ],
+      "annualKwhPerKwp": 1006.94,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "suceava|north|30": {
+      "monthlyKwhPerKwp": [
+        14.02,
+        20.47,
+        39.31,
+        71.79,
+        103.89,
+        112.32,
+        114.7,
+        88.84,
+        49.06,
+        22.46,
+        14.25,
+        11.15
+      ],
+      "annualKwhPerKwp": 662.26,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.6514&lon=26.2556&peakpower=1&loss=14&angle=30&aspect=180&outputformat=json"
+      ]
+    },
+    "bucharest|south|30": {
+      "monthlyKwhPerKwp": [
+        54.89,
+        73.39,
+        112.79,
+        128.57,
+        140.44,
+        141.72,
+        154.17,
+        150.59,
+        124.63,
+        99.25,
+        60.75,
+        50.31
+      ],
+      "annualKwhPerKwp": 1291.5,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.4268&lon=26.1025&peakpower=1&loss=14&angle=30&aspect=0&outputformat=json"
+      ]
+    },
+    "cluj-napoca|east|45": {
+      "monthlyKwhPerKwp": [
+        27.62,
+        42.82,
+        77.02,
+        98.49,
+        117.17,
+        123.89,
+        128.66,
+        116.5,
+        87.04,
+        61.35,
+        33.58,
+        21.35
+      ],
+      "annualKwhPerKwp": 935.49,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=45&aspect=-90&outputformat=json"
+      ]
+    },
+    "constanta|west|45": {
+      "monthlyKwhPerKwp": [
+        30.55,
+        41.64,
+        73.46,
+        100.73,
+        126.91,
+        128.67,
+        137.09,
+        127.14,
+        90.83,
+        57.7,
+        32.92,
+        23.78
+      ],
+      "annualKwhPerKwp": 971.42,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.1598&lon=28.6348&peakpower=1&loss=14&angle=45&aspect=90&outputformat=json"
+      ]
+    },
+    "craiova|east-west|45": {
+      "monthlyKwhPerKwp": [
+        32.81,
+        46.92,
+        81.295,
+        103.51,
+        121.47,
+        127.44,
+        135.53,
+        120.95,
+        91.115,
+        63.87,
+        34.21,
+        27.93
+      ],
+      "annualKwhPerKwp": 987.05,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=45&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=45&aspect=90&outputformat=json"
+      ]
+    },
+    "iasi|north|45": {
+      "monthlyKwhPerKwp": [
+        12.92,
+        18.67,
+        28.3,
+        47.57,
+        81.22,
+        94.8,
+        92.92,
+        61.02,
+        29.71,
+        20.22,
+        12.58,
+        10.08
+      ],
+      "annualKwhPerKwp": 510.01,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=45&aspect=180&outputformat=json"
+      ]
+    },
+    "cluj-napoca|east-west|30": {
+      "monthlyKwhPerKwp": [
+        28.165,
+        44.17,
+        79.795,
+        102.58,
+        121.245,
+        129.9,
+        134.415,
+        121.255,
+        90.695,
+        64.615,
+        35.12,
+        22.255
+      ],
+      "annualKwhPerKwp": 974.21,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=30&aspect=-90&outputformat=json",
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=46.7712&lon=23.6236&peakpower=1&loss=14&angle=30&aspect=90&outputformat=json"
+      ]
+    },
+    "craiova|south|15": {
+      "monthlyKwhPerKwp": [
+        48.79,
+        63.85,
+        105.26,
+        127.85,
+        146.75,
+        151.37,
+        161.59,
+        148.73,
+        116.53,
+        87.07,
+        48.66,
+        41.77
+      ],
+      "annualKwhPerKwp": 1248.22,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=44.3302&lon=23.7949&peakpower=1&loss=14&angle=15&aspect=0&outputformat=json"
+      ]
+    },
+    "iasi|south-east|15": {
+      "monthlyKwhPerKwp": [
+        32.92,
+        50.15,
+        89.12,
+        113.41,
+        138.26,
+        142.36,
+        150.79,
+        138.89,
+        105.58,
+        73.99,
+        38.51,
+        28.15
+      ],
+      "annualKwhPerKwp": 1102.13,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.1585&lon=27.6014&peakpower=1&loss=14&angle=15&aspect=-45&outputformat=json"
+      ]
+    },
+    "timisoara|east|15": {
+      "monthlyKwhPerKwp": [
+        29.82,
+        43.82,
+        84.6,
+        111.93,
+        133.33,
+        142.0,
+        149.64,
+        131.22,
+        94.23,
+        66.92,
+        37.63,
+        23.98
+      ],
+      "annualKwhPerKwp": 1049.12,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=45.7489&lon=21.2087&peakpower=1&loss=14&angle=15&aspect=-90&outputformat=json"
+      ]
+    },
+    "suceava|west|15": {
+      "monthlyKwhPerKwp": [
+        24.57,
+        39.61,
+        77.35,
+        105.61,
+        129.74,
+        131.73,
+        139.02,
+        125.72,
+        92.75,
+        60.71,
+        30.66,
+        21.13
+      ],
+      "annualKwhPerKwp": 978.6,
+      "source": "PVGIS 5.3 PVcalc",
+      "database": {
+        "radiation_db": "PVGIS-SARAH3",
+        "meteo_db": "ERA5",
+        "year_min": 2005,
+        "year_max": 2023,
+        "use_horizon": true,
+        "horizon_db": "DEM-calculated"
+      },
+      "lossPercent": 14,
+      "retrievalDate": "2026-07-30",
+      "apiUrls": [
+        "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?lat=47.6514&lon=26.2556&peakpower=1&loss=14&angle=15&aspect=90&outputformat=json"
+      ]
+    }
+  }
+}

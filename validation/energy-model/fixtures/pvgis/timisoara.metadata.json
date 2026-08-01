@@ -1,0 +1,70 @@
+{
+  "location": {
+    "name": "timisoara",
+    "latitude": 45.7489,
+    "longitude": 21.2087
+  },
+  "source": "European Commission JRC PVGIS 5.3 TMY API",
+  "retrieval_date": "2026-07-30",
+  "database": {
+    "radiation_db": "PVGIS-SARAH3",
+    "meteo_db": "ERA5",
+    "year_min": 2005,
+    "year_max": 2023,
+    "use_horizon": true,
+    "horizon_db": "DEM-calculated"
+  },
+  "timezone": "UTC",
+  "horizon_setting": null,
+  "selected_years": [
+    {
+      "month": 1,
+      "year": 2021
+    },
+    {
+      "month": 2,
+      "year": 2009
+    },
+    {
+      "month": 3,
+      "year": 2008
+    },
+    {
+      "month": 4,
+      "year": 2009
+    },
+    {
+      "month": 5,
+      "year": 2015
+    },
+    {
+      "month": 6,
+      "year": 2018
+    },
+    {
+      "month": 7,
+      "year": 2018
+    },
+    {
+      "month": 8,
+      "year": 2005
+    },
+    {
+      "month": 9,
+      "year": 2022
+    },
+    {
+      "month": 10,
+      "year": 2005
+    },
+    {
+      "month": 11,
+      "year": 2020
+    },
+    {
+      "month": 12,
+      "year": 2020
+    }
+  ],
+  "api_url": "https://re.jrc.ec.europa.eu/api/v5_3/tmy?lat=45.7489&lon=21.2087&outputformat=json"
+}

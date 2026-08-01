@@ -1,0 +1,29 @@
+{
+  "label": "baseline",
+  "scenarioCount": 64,
+  "versions": {
+    "productionAssumptions": "RO-2026.07-v3",
+    "pvlib": "0.15.2",
+    "python": "3.13",
+    "PySAM": "7.1.1.post1"
+  },
+  "thresholds": {
+    "annualProductionPercent": 5,
+    "monthlyNormalizedPercent": 10,
+    "panelCount": 1,
+    "batteryKwh": 1,
+    "economicsPercent": 5,
+    "energyBalanceKwh": 1e-09
+  },
+  "metrics": {
+    "annualProductionMapePercent": 3.37,
+    "annualProductionMaxErrorPercent": 9.201,
+    "directSelfConsumptionMapePercent": 12.447,
+    "meanAbsolutePanelDifference": 0.578,
+    "maxAbsolutePanelDifference": 7,
+    "meanAbsoluteBatteryDifferenceKwh": 5.438,
+    "maxEnergyBalanceErrorKwh": 4.440892098500626e-16,
+    "paybackMapePercent": 23.433,
+    "runtimeSeconds": 198.18
+  }
+}

@@ -1,0 +1,3011 @@
+{
+  "schemaVersion": 1,
+  "count": 64,
+  "scenarios": [
+    {
+      "id": "RO-001",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|south|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "orientation": "south",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "none",
+        "roofLimit": "unrestricted",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "none",
+        "connectionType": "unknown",
+        "goal": "bill",
+        "batteryPreference": "none",
+        "buildingType": "house",
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-002",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|south-east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "orientation": "south-east",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "ev-day",
+        "roofLimit": "unrestricted",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-1",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "none",
+        "buildingType": "house",
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-003",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "orientation": "east",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "small",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-2",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "none",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-004",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|west|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "orientation": "west",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "heat-pump",
+        "roofLimit": "small",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "hp-3",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "compare",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-005",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|east-west|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "orientation": "east-west",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "boiler",
+        "roofLimit": "max-panels",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "boiler-4",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "compare",
+        "maxPanelCount": 12,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-006",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|north|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "orientation": "north",
+        "tiltDeg": 30,
+        "shading": "none",
+        "futureLoad": "none",
+        "roofLimit": "max-panels",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "compare",
+        "maxPanelCount": 12,
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-007",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|south|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "orientation": "south",
+        "tiltDeg": 30,
+        "shading": "none",
+        "futureLoad": "ev-day",
+        "roofLimit": "apartment",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-6",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "practical",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-008",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|south-east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "orientation": "south-east",
+        "tiltDeg": 30,
+        "shading": "light",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "apartment",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-7",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "practical",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-009",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "orientation": "east",
+        "tiltDeg": 30,
+        "shading": "light",
+        "futureLoad": "heat-pump",
+        "roofLimit": "unrestricted",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "hp-8",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "practical",
+        "buildingType": "house",
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-010",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "orientation": "west",
+        "tiltDeg": 30,
+        "shading": "light",
+        "futureLoad": "boiler",
+        "roofLimit": "unrestricted",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "boiler-9",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "light",
+        "connectionType": "unknown",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "tiltDeg": 30,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-011",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|east-west|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "orientation": "east-west",
+        "tiltDeg": 45,
+        "shading": "light",
+        "futureLoad": "none",
+        "roofLimit": "small",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 45,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-012",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|north|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "orientation": "north",
+        "tiltDeg": 45,
+        "shading": "light",
+        "futureLoad": "ev-day",
+        "roofLimit": "small",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-11",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 45,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-013",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|south|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "orientation": "south",
+        "tiltDeg": 45,
+        "shading": "light",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "max-panels",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-12",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "backup",
+        "maxPanelCount": 12,
+        "tiltDeg": 45,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-014",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|south-east|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "orientation": "south-east",
+        "tiltDeg": 45,
+        "shading": "light",
+        "futureLoad": "heat-pump",
+        "roofLimit": "max-panels",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "hp-13",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "backup",
+        "maxPanelCount": 12,
+        "tiltDeg": 45,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-015",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|east|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "orientation": "east",
+        "tiltDeg": 45,
+        "shading": "moderate",
+        "futureLoad": "boiler",
+        "roofLimit": "apartment",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "boiler-14",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "county",
+        "orientation": "east",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 45,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-016",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "orientation": "west",
+        "tiltDeg": null,
+        "shading": "moderate",
+        "futureLoad": "none",
+        "roofLimit": "apartment",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "none",
+        "buildingType": "apartment",
+        "maxPanelCount": 8
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-017",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|east-west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "orientation": "east-west",
+        "tiltDeg": null,
+        "shading": "moderate",
+        "futureLoad": "ev-day",
+        "roofLimit": "unrestricted",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-16",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "none",
+        "buildingType": "house"
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-018",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|north|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "orientation": "north",
+        "tiltDeg": null,
+        "shading": "moderate",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "unrestricted",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-17",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "none",
+        "buildingType": "house"
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-019",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|south|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "orientation": "south",
+        "tiltDeg": null,
+        "shading": "moderate",
+        "futureLoad": "heat-pump",
+        "roofLimit": "small",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "hp-18",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "moderate",
+        "connectionType": "unknown",
+        "goal": "backup",
+        "batteryPreference": "compare",
+        "usableRoofAreaM2": 18
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-020",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|south-east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "orientation": "south-east",
+        "tiltDeg": null,
+        "shading": "moderate",
+        "futureLoad": "boiler",
+        "roofLimit": "small",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "boiler-19",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "compare",
+        "usableRoofAreaM2": 18
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-021",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "orientation": "east",
+        "tiltDeg": 15,
+        "shading": "moderate",
+        "futureLoad": "none",
+        "roofLimit": "max-panels",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "compare",
+        "maxPanelCount": 12,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-022",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|west|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "orientation": "west",
+        "tiltDeg": 15,
+        "shading": "severe",
+        "futureLoad": "ev-day",
+        "roofLimit": "max-panels",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-21",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "practical",
+        "maxPanelCount": 12,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-023",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|east-west|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "orientation": "east-west",
+        "tiltDeg": 15,
+        "shading": "severe",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "apartment",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-22",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "practical",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-024",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|north|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "orientation": "north",
+        "tiltDeg": 15,
+        "shading": "severe",
+        "futureLoad": "heat-pump",
+        "roofLimit": "apartment",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "hp-23",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "practical",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-025",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|south|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "orientation": "south",
+        "tiltDeg": 15,
+        "shading": "severe",
+        "futureLoad": "boiler",
+        "roofLimit": "unrestricted",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "boiler-24",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "tiltDeg": 15,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-026",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|south-east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "orientation": "south-east",
+        "tiltDeg": 30,
+        "shading": "severe",
+        "futureLoad": "none",
+        "roofLimit": "unrestricted",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "tiltDeg": 30,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-027",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "orientation": "east",
+        "tiltDeg": 30,
+        "shading": "severe",
+        "futureLoad": "ev-day",
+        "roofLimit": "small",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-26",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 30,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-028",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "orientation": "west",
+        "tiltDeg": 30,
+        "shading": "severe",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "small",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-27",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "severe",
+        "connectionType": "unknown",
+        "goal": "independence",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 30,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-029",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|east-west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "orientation": "east-west",
+        "tiltDeg": 30,
+        "shading": "none",
+        "futureLoad": "heat-pump",
+        "roofLimit": "max-panels",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "hp-28",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "backup",
+        "maxPanelCount": 12,
+        "tiltDeg": 30,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-030",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|north|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "orientation": "north",
+        "tiltDeg": 30,
+        "shading": "none",
+        "futureLoad": "boiler",
+        "roofLimit": "max-panels",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "boiler-29",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "county",
+        "orientation": "north",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "maxPanelCount": 12,
+        "tiltDeg": 30,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-031",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|south|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "orientation": "south",
+        "tiltDeg": 45,
+        "shading": "none",
+        "futureLoad": "none",
+        "roofLimit": "apartment",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "none",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-032",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|south-east|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "orientation": "south-east",
+        "tiltDeg": 45,
+        "shading": "none",
+        "futureLoad": "ev-day",
+        "roofLimit": "apartment",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-31",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "none",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-033",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|east|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "orientation": "east",
+        "tiltDeg": 45,
+        "shading": "none",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "unrestricted",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-32",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "none",
+        "buildingType": "house",
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-034",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|west|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "orientation": "west",
+        "tiltDeg": 45,
+        "shading": "none",
+        "futureLoad": "heat-pump",
+        "roofLimit": "unrestricted",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "hp-33",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "compare",
+        "buildingType": "house",
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-035",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|east-west|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "orientation": "east-west",
+        "tiltDeg": 45,
+        "shading": "none",
+        "futureLoad": "boiler",
+        "roofLimit": "small",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "boiler-34",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "compare",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-036",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|north|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "orientation": "north",
+        "tiltDeg": null,
+        "shading": "light",
+        "futureLoad": "none",
+        "roofLimit": "small",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "compare",
+        "usableRoofAreaM2": 18
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-037",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|south|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "orientation": "south",
+        "tiltDeg": null,
+        "shading": "light",
+        "futureLoad": "ev-day",
+        "roofLimit": "max-panels",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-36",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "light",
+        "connectionType": "unknown",
+        "goal": "payback",
+        "batteryPreference": "practical",
+        "maxPanelCount": 12
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-038",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|south-east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "orientation": "south-east",
+        "tiltDeg": null,
+        "shading": "light",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "max-panels",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-37",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "practical",
+        "maxPanelCount": 12
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-039",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "orientation": "east",
+        "tiltDeg": null,
+        "shading": "light",
+        "futureLoad": "heat-pump",
+        "roofLimit": "apartment",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "hp-38",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "practical",
+        "buildingType": "apartment",
+        "maxPanelCount": 8
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-040",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "orientation": "west",
+        "tiltDeg": null,
+        "shading": "light",
+        "futureLoad": "boiler",
+        "roofLimit": "apartment",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "boiler-39",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-041",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|east-west|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "orientation": "east-west",
+        "tiltDeg": 15,
+        "shading": "light",
+        "futureLoad": "none",
+        "roofLimit": "unrestricted",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "tiltDeg": 15,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-042",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|north|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "orientation": "north",
+        "tiltDeg": 15,
+        "shading": "light",
+        "futureLoad": "ev-day",
+        "roofLimit": "unrestricted",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-41",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "light",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "tiltDeg": 15,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-043",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|south|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "orientation": "south",
+        "tiltDeg": 15,
+        "shading": "moderate",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "small",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-42",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 15,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-044",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|south-east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "orientation": "south-east",
+        "tiltDeg": 15,
+        "shading": "moderate",
+        "futureLoad": "heat-pump",
+        "roofLimit": "small",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "hp-43",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 15,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-045",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "orientation": "east",
+        "tiltDeg": 15,
+        "shading": "moderate",
+        "futureLoad": "boiler",
+        "roofLimit": "max-panels",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "boiler-44",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "maxPanelCount": 12,
+        "tiltDeg": 15,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-046",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "orientation": "west",
+        "tiltDeg": 30,
+        "shading": "moderate",
+        "futureLoad": "none",
+        "roofLimit": "max-panels",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "moderate",
+        "connectionType": "unknown",
+        "goal": "bill",
+        "batteryPreference": "none",
+        "maxPanelCount": 12,
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-047",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|east-west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "orientation": "east-west",
+        "tiltDeg": 30,
+        "shading": "moderate",
+        "futureLoad": "ev-day",
+        "roofLimit": "apartment",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-46",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "county",
+        "orientation": "east-west",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "none",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-048",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|north|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "orientation": "north",
+        "tiltDeg": 30,
+        "shading": "moderate",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "apartment",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-47",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "none",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-049",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|south|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "orientation": "south",
+        "tiltDeg": 30,
+        "shading": "moderate",
+        "futureLoad": "heat-pump",
+        "roofLimit": "unrestricted",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "hp-48",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "moderate",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "compare",
+        "buildingType": "house",
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-050",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|south-east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "orientation": "south-east",
+        "tiltDeg": 30,
+        "shading": "severe",
+        "futureLoad": "boiler",
+        "roofLimit": "unrestricted",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "boiler-49",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "compare",
+        "buildingType": "house",
+        "tiltDeg": 30
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-051",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|east|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "orientation": "east",
+        "tiltDeg": 45,
+        "shading": "severe",
+        "futureLoad": "none",
+        "roofLimit": "small",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "evening",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "compare",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-052",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|west|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "orientation": "west",
+        "tiltDeg": 45,
+        "shading": "severe",
+        "futureLoad": "ev-day",
+        "roofLimit": "small",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 180,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-51",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "practical",
+        "usableRoofAreaM2": 18,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-053",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|east-west|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "orientation": "east-west",
+        "tiltDeg": 45,
+        "shading": "severe",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "max-panels",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-52",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "practical",
+        "maxPanelCount": 12,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-054",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|north|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "orientation": "north",
+        "tiltDeg": 45,
+        "shading": "severe",
+        "futureLoad": "heat-pump",
+        "roofLimit": "max-panels",
+        "battery": "practical"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "hp-53",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "practical",
+        "maxPanelCount": 12,
+        "tiltDeg": 45
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-055",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|south|45",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "orientation": "south",
+        "tiltDeg": 45,
+        "shading": "severe",
+        "futureLoad": "boiler",
+        "roofLimit": "apartment",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "boiler-54",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "severe",
+        "connectionType": "unknown",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 45,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-056",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|south-east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "orientation": "south-east",
+        "tiltDeg": null,
+        "shading": "severe",
+        "futureLoad": "none",
+        "roofLimit": "apartment",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 300,
+        "usageProfile": "day",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south-east",
+        "shading": "severe",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "backup",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-057",
+      "locationFixture": "bucharest",
+      "weatherKey": "bucharest|east|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "orientation": "east",
+        "tiltDeg": null,
+        "shading": "none",
+        "futureLoad": "ev-day",
+        "roofLimit": "unrestricted",
+        "battery": "backup"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "ev-56",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.4268,
+          "lng": 26.1025,
+          "locality": "București",
+          "countyName": "București"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "backupEssentialLoadKw": 1.2,
+        "backupHours": 6
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-058",
+      "locationFixture": "brasov",
+      "weatherKey": "brasov|west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "orientation": "west",
+        "tiltDeg": null,
+        "shading": "none",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "unrestricted",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "ev-57",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.6579,
+          "lng": 25.6012,
+          "locality": "Brașov",
+          "countyName": "Brașov"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "backup",
+        "buildingType": "house",
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-059",
+      "locationFixture": "cluj-napoca",
+      "weatherKey": "cluj-napoca|east-west|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "orientation": "east-west",
+        "tiltDeg": null,
+        "shading": "none",
+        "futureLoad": "heat-pump",
+        "roofLimit": "small",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "hp-58",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 46.7712,
+          "lng": 23.6236,
+          "locality": "Cluj-Napoca",
+          "countyName": "Cluj-Napoca"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east-west",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "backup",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-060",
+      "locationFixture": "constanta",
+      "weatherKey": "constanta|north|30",
+      "matrix": {
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "orientation": "north",
+        "tiltDeg": null,
+        "shading": "none",
+        "futureLoad": "boiler",
+        "roofLimit": "small",
+        "battery": "backup-infeasible"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 450,
+        "usageProfile": "evening",
+        "loads": [
+          {
+            "id": "boiler-59",
+            "kind": "boiler",
+            "status": "planned",
+            "annualKwh": 1800,
+            "timing": "evening",
+            "label": "Boiler electric"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 44.1598,
+          "lng": 28.6348,
+          "locality": "Constanța",
+          "countyName": "Constanța"
+        },
+        "locationPrecision": "precise",
+        "orientation": "north",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "ev",
+        "batteryPreference": "backup",
+        "usableRoofAreaM2": 18,
+        "backupEssentialLoadKw": 12,
+        "backupHours": 16
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-061",
+      "locationFixture": "craiova",
+      "weatherKey": "craiova|south|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "orientation": "south",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "none",
+        "roofLimit": "max-panels",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "loads": [],
+        "noLargeLoads": true,
+        "location": {
+          "lat": 44.3302,
+          "lng": 23.7949,
+          "locality": "Craiova",
+          "countyName": "Craiova"
+        },
+        "locationPrecision": "precise",
+        "orientation": "south",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "bill",
+        "batteryPreference": "none",
+        "maxPanelCount": 12,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-062",
+      "locationFixture": "iasi",
+      "weatherKey": "iasi|south-east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "orientation": "south-east",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "ev-day",
+        "roofLimit": "max-panels",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-61",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "day",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.1585,
+          "lng": 27.6014,
+          "locality": "Iași",
+          "countyName": "Iași"
+        },
+        "locationPrecision": "county",
+        "orientation": "south-east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "payback",
+        "batteryPreference": "none",
+        "maxPanelCount": 12,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-063",
+      "locationFixture": "timisoara",
+      "weatherKey": "timisoara|east|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "orientation": "east",
+        "tiltDeg": 15,
+        "shading": "none",
+        "futureLoad": "ev-overnight",
+        "roofLimit": "apartment",
+        "battery": "none"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "constant",
+        "loads": [
+          {
+            "id": "ev-62",
+            "kind": "ev",
+            "status": "planned",
+            "evKmPerYear": 14000,
+            "evEfficiencyKwhPer100Km": 18,
+            "evHomeChargingPercent": 80,
+            "timing": "evening",
+            "label": "Mașină electrică"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 45.7489,
+          "lng": 21.2087,
+          "locality": "Timișoara",
+          "countyName": "Timișoara"
+        },
+        "locationPrecision": "precise",
+        "orientation": "east",
+        "shading": "none",
+        "connectionType": "three-phase",
+        "goal": "independence",
+        "batteryPreference": "none",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    },
+    {
+      "id": "RO-064",
+      "locationFixture": "suceava",
+      "weatherKey": "suceava|west|15",
+      "matrix": {
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "orientation": "west",
+        "tiltDeg": 15,
+        "shading": "light",
+        "futureLoad": "heat-pump",
+        "roofLimit": "apartment",
+        "battery": "compare"
+      },
+      "input": {
+        "schemaVersion": 2,
+        "consumptionMode": "monthly-kwh",
+        "monthlyConsumptionKwh": 700,
+        "usageProfile": "day",
+        "loads": [
+          {
+            "id": "hp-63",
+            "kind": "heat-pump",
+            "status": "planned",
+            "annualKwh": 4200,
+            "timing": "constant",
+            "primaryHeating": true,
+            "label": "Pompă de căldură"
+          }
+        ],
+        "noLargeLoads": false,
+        "location": {
+          "lat": 47.6514,
+          "lng": 26.2556,
+          "locality": "Suceava",
+          "countyName": "Suceava"
+        },
+        "locationPrecision": "precise",
+        "orientation": "west",
+        "shading": "light",
+        "connectionType": "unknown",
+        "goal": "backup",
+        "batteryPreference": "compare",
+        "buildingType": "apartment",
+        "maxPanelCount": 8,
+        "tiltDeg": 15
+      },
+      "assumptionsVersion": "RO-2026.07-v3"
+    }
+  ]
+}

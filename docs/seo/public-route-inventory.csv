@@ -1,0 +1,34 @@
+path,type,status_baseline,indexability,canonical_source,sitemap,notes
+/,public,200,index,route metadata,yes,SSR homepage
+/recomandare-sistem,workflow-public,200,index,route metadata,yes,SSR calculator
+/upload-oferta,workflow-public,200,index,route metadata,yes,offer analysis entry
+/introducere-manuala,workflow-public,200,index,route metadata,yes,manual entry
+/exemplu-raport,public,200,index,route metadata,yes,example content
+/harta-solara-romania,public,200,index,route metadata,yes,solar exploration
+/cum-functioneaza,public,200,index,route metadata,yes,method overview
+/intrebari-frecvente,public,200,index,route metadata,yes,FAQ
+/contact,public,200,index,route metadata,yes,contact
+/ghid-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone hub
+/dimensionare-sistem-fotovoltaic,editorial,new,index,seo registry,yes,cornerstone
+/cost-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone
+/productie-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone
+/baterie-pentru-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone
+/invertor-fotovoltaic-ghid,editorial,new,index,seo registry,yes,cornerstone
+/cum-devii-prosumator,editorial,new,index,seo registry,yes,cornerstone
+/cum-verifici-o-oferta-fotovoltaica,editorial,new,index,seo registry,yes,cornerstone
+/autoconsum-energie-solara,editorial,new,index,seo registry,yes,cornerstone
+/finantare-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone
+/mentenanta-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone
+/garantii-panouri-fotovoltaice,editorial,new,index,seo registry,yes,cornerstone
+/autentificare,private,200,noindex,X-Robots-Tag,no,login
+/cont,private,200,noindex,X-Robots-Tag,no,account
+/cont/rapoarte,private,auth-dependent,noindex,X-Robots-Tag,no,account data
+/cont/setari,private,auth-dependent,noindex,X-Robots-Tag,no,account data
+/analiza/$offerId,private,dynamic,noindex,X-Robots-Tag,no,offer data
+/corectare/$offerId,private,dynamic,noindex,X-Robots-Tag,no,offer data
+/rezultat-gratuit/$analysisId,private,dynamic,noindex,X-Robots-Tag,no,analysis result
+/raport-complet/$analysisId,private,dynamic,noindex,X-Robots-Tag,no,paid result
+/admin/*,private,auth-dependent,noindex,X-Robots-Tag,no,administration
+/api/*,utility,dynamic,noindex,X-Robots-Tag,no,API
+/sitemap.xml,utility,200,n/a,self,no,XML sitemap
+/robots.txt,utility,200,n/a,self,no,crawler policy

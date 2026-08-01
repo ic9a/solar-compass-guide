@@ -1,0 +1,7 @@
+title = "Raport Solar secret scanning policy"
+
+[allowlist]
+description = "The browser-safe Supabase publishable key is intentionally public and constrained by RLS."
+regexTarget = "line"
+paths = ['''^wrangler\.jsonc$''']
+regexes = ['''"SUPABASE_PUBLISHABLE_KEY"\s*:''']

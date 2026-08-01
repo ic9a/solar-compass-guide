@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "frozenAt": "2026-07-30",
+  "policy": {
+    "acceptedRequires": ["stable source URL", "explicit redistribution licence", "checksum", "documented transformation"],
+    "productionRawData": false,
+    "liveNetworkInRequiredChecks": false
+  },
+  "sources": [
+    {
+      "id": "zenodo-utrecht-10953360",
+      "title": "Open-source quality control routine and multi-year power generation data of 175 PV systems",
+      "publisher": "Zenodo",
+      "url": "https://doi.org/10.5281/zenodo.10953360",
+      "licence": "CC-BY-4.0",
+      "licenceEvidence": "https://zenodo.org/api/records/10953360",
+      "status": "accepted-derived",
+      "coverage": "All 175 system metadata rows; power time-series not frozen because the filtered sources total about 6 GB",
+      "sourceFiles": [{"name":"metadata.csv","md5":"df6b38f4ca7c0ca5191c33acd2dc5b7b","bytes":22902}],
+      "output": "fixtures/utrecht-systems.csv",
+      "attribution": "Killinger et al.; Zenodo record 10953360"
+    },
+    {
+      "id": "zenodo-cyprus-8348862",
+      "title": "Photovoltaic Generation and Load Demand Datasets with 30 seconds resolution from an Actual Prosumer in Cyprus",
+      "publisher": "Zenodo",
+      "url": "https://doi.org/10.5281/zenodo.8348862",
+      "licence": "CC-BY-4.0",
+      "licenceEvidence": "https://zenodo.org/api/records/8348862",
+      "status": "accepted-derived",
+      "coverage": "All 24 monthly files, aggregated from 30-second observations to energy totals",
+      "output": "fixtures/cyprus-monthly.csv",
+      "attribution": "Zenodo record 8348862"
+    },
+    {
+      "id": "zenodo-energy-community-11351017",
+      "title": "A complete energy community dataset with photovoltaic generation, battery energy storage systems and electric vehicles (v1.5)",
+      "publisher": "Zenodo",
+      "url": "https://doi.org/10.5281/zenodo.11351017",
+      "licence": "CC-BY-4.0",
+      "licenceEvidence": "https://zenodo.org/api/records/11351017",
+      "status": "accepted-derived",
+      "coverage": "All 250 profiles; 200 contain PV production",
+      "sourceFiles": [{"name":"EC_EV_dataset (fixed error).xlsx","md5":"daaf8365feaca5808369ec573004a030","bytes":1403559}],
+      "output": "fixtures/energy-community-profiles.csv",
+      "attribution": "Faia, Goncalves, Gomes and Vale; Zenodo record 11351017"
+    },
+    {
+      "id": "eurostat-nrg-pc-204",
+      "title": "Electricity prices for household consumers",
+      "publisher": "Eurostat",
+      "url": "https://doi.org/10.2908/nrg_pc_204",
+      "licence": "CC-BY-4.0",
+      "status": "accepted-context-only",
+      "coverage": "Romania household tariff context; not a prosumer export-price proxy",
+      "output": null
+    },
+    {
+      "id": "anre-prosumer-reports",
+      "title": "Monthly and annual prosumer monitoring reports",
+      "publisher": "ANRE",
+      "url": "https://anre.ro/consumatori/energie-electrica/cum-devin-prosumator/",
+      "licence": "unresolved",
+      "status": "rejected-redistribution",
+      "coverage": "Official page lists Jan 2024-May 2026 monthly reports and 2025 annual report; no explicit reusable-data licence verified",
+      "output": null
+    },
+    {
+      "id": "opcom-pzu-monthly",
+      "title": "Piaţa pentru Ziua Următoare monthly reports",
+      "publisher": "OPCOM",
+      "url": "https://www.opcom.ro/tranzactii-rezultate/ro/22",
+      "licence": "unresolved",
+      "status": "rejected-redistribution",
+      "coverage": "Official market context only; PZU is not ordinary residential export value",
+      "output": null
+    },
+    {
+      "id": "romanian-procurement-and-installer-offers",
+      "title": "SEAP/data.gov.ro records and public installer offers",
+      "publisher": "mixed",
+      "url": "https://data.gov.ro/",
+      "licence": "record-specific",
+      "status": "not-ingested",
+      "coverage": "Candidate-level terms and comparable price fields were not sufficiently verified for the requested 50 awards and 30-50 offers",
+      "output": null
+    },
+    {
+      "id": "pvoutput",
+      "title": "PVOutput adapter",
+      "publisher": "PVOutput",
+      "url": "https://pvoutput.org/",
+      "licence": "not-granted",
+      "status": "disabled",
+      "coverage": "No adapter or data is enabled without a separate licence",
+      "output": null
+    }
+  ]
+}

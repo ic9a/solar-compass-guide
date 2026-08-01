@@ -1,0 +1,70 @@
+{
+  "location": {
+    "name": "constanta",
+    "latitude": 44.1598,
+    "longitude": 28.6348
+  },
+  "source": "European Commission JRC PVGIS 5.3 TMY API",
+  "retrieval_date": "2026-07-30",
+  "database": {
+    "radiation_db": "PVGIS-SARAH3",
+    "meteo_db": "ERA5",
+    "year_min": 2005,
+    "year_max": 2023,
+    "use_horizon": true,
+    "horizon_db": "DEM-calculated"
+  },
+  "timezone": "UTC",
+  "horizon_setting": null,
+  "selected_years": [
+    {
+      "month": 1,
+      "year": 2016
+    },
+    {
+      "month": 2,
+      "year": 2019
+    },
+    {
+      "month": 3,
+      "year": 2015
+    },
+    {
+      "month": 4,
+      "year": 2013
+    },
+    {
+      "month": 5,
+      "year": 2008
+    },
+    {
+      "month": 6,
+      "year": 2012
+    },
+    {
+      "month": 7,
+      "year": 2022
+    },
+    {
+      "month": 8,
+      "year": 2009
+    },
+    {
+      "month": 9,
+      "year": 2018
+    },
+    {
+      "month": 10,
+      "year": 2009
+    },
+    {
+      "month": 11,
+      "year": 2013
+    },
+    {
+      "month": 12,
+      "year": 2014
+    }
+  ],
+  "api_url": "https://re.jrc.ec.europa.eu/api/v5_3/tmy?lat=44.1598&lon=28.6348&outputformat=json"
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "auditedAt": "2026-07-30",
+  "baselineCommit": "b9d4762d4f6eb217f4926dbfd725c85e49b36927",
+  "productionOrigin": "https://raportsolar.ro",
+  "summary": {
+    "serverRenderedPublicHtml": true,
+    "baselineSitemapUrlCount": 12,
+    "baselineCanonicalObservedInSample": false,
+    "privateUrlsCanReturn200": true,
+    "robotsDisallowIsNotNoindex": true
+  },
+  "findings": [
+    {
+      "id": "IDX-001",
+      "severity": "high",
+      "finding": "Private account, analysis and result URL families can return 200 HTML.",
+      "remediation": "Emit X-Robots-Tag noindex, nofollow, noarchive centrally for every private prefix.",
+      "test": "tests/seo-phase-1.test.ts validates registry separation; production smoke checks response headers."
+    },
+    {
+      "id": "IDX-002",
+      "severity": "high",
+      "finding": "Canonical behavior and sitemap membership are not driven by one registry.",
+      "remediation": "Use the SEO registry as the source for editorial canonicals and sitemap URLs.",
+      "test": "Unique slugs, normalized canonicals and exclusion of private paths are deterministic."
+    },
+    {
+      "id": "IDX-003",
+      "severity": "medium",
+      "finding": "Baseline topical coverage is concentrated in workflows and a small number of informational routes.",
+      "remediation": "Publish a 12-page Romanian cornerstone cluster with breadcrumbs, sources and internal links.",
+      "test": "Every page meets minimum content, FAQ, source and related-link requirements."
+    },
+    {
+      "id": "IDX-004",
+      "severity": "medium",
+      "finding": "Structured data is global rather than page-specific.",
+      "remediation": "Emit Article, BreadcrumbList and FAQPage graphs only where the visible page content supports them.",
+      "test": "SSR smoke tests validate JSON-LD type and page title."
+    }
+  ],
+  "nonGoals": [
+    "No recommendation-engine formula or numerical assumption changes.",
+    "No generated county doorway pages.",
+    "No ranking or indexing guarantee."
+  ]
+}
