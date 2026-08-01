@@ -42,3 +42,13 @@ Legendă faze: P1 public, P2 instrumente, P3 rezultate/cont, P4 administrare. To
 ## Rute non-vizuale inspectate
 
 `/sitemap.xml`, `/api/analytics` și `/api/public/stripe-webhook` rămân operaționale și în afara redesignului vizual. Analytics nu acceptă date libere sau identificatori. Webhookul și sitemapul nu se modifică fără un defect funcțional demonstrat.
+
+## Închidere audit după faza 4
+
+Toate rutele vizuale din tabel au starea finală: **redesenată · testată · verificată responsive · copy revizuit · accesibilitate verificată**. Verificarea este acoperită prin testele deterministe de fază, matricea Playwright Chromium mobil/desktop, Firefox și WebKit, verificarea snapshotului public curat și Browser gate.
+
+- Public și editorial: `/`, `/cum-functioneaza`, `/contact`, `/intrebari-frecvente`, `/ghid-panouri-fotovoltaice`, `/$slug` și paginile legale — finalizat.
+- Instrumente: `/recomandare-sistem`, `/upload-oferta`, `/introducere-manuala`, `/harta-solara-romania`, `/exemplu-raport` — finalizat fără modificarea formulelor sau PVGIS.
+- Analiză, rezultate și cont: toate rutele din P3 — finalizat cu protecția proprietății, plăților și indexării păstrată.
+- Administrare: toate rutele din P4 — finalizat în arborele autentificat, cu autorizarea server-side păstrată.
+- Stări globale error/not-found și rutele non-vizuale — verificate fără schimbarea semanticii.
