@@ -7,8 +7,8 @@ import { useAuthSession } from "@/hooks/useAuthSession";
 import { supabase } from "@/integrations/supabase/client";
 
 const NAV = [
-  { to: "/recomandare-sistem", label: "Recomandare" },
-  { to: "/upload-oferta", label: "Analiză ofertă" },
+  { to: "/recomandare-sistem", label: "Sistem recomandat" },
+  { to: "/upload-oferta", label: "Verifică oferta" },
   { to: "/harta-solara-romania", label: "Harta solară" },
   { to: "/ghid-panouri-fotovoltaice", label: "Ghiduri" },
   { to: "/exemplu-raport", label: "Exemplu raport" },
@@ -18,12 +18,20 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [portalReady, setPortalReady] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const { isAuthenticated, session } = useAuthSession();
 
   useEffect(() => {
     setPortalReady(true);
+  }, []);
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 18);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   useEffect(() => {
@@ -103,7 +111,10 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="site-header sticky top-0 z-40 border-b border-border/55 bg-background/82 backdrop-blur-xl">
+    <header
+      data-scrolled={scrolled}
+      className="site-header sticky top-0 z-40 border-b border-border/55 bg-background/82 backdrop-blur-xl"
+    >
       <div className="mx-auto flex h-[var(--site-header-height)] max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <Logo />
         <nav className="hidden lg:flex items-center gap-1">
@@ -138,10 +149,10 @@ export function SiteHeader() {
             <User className="h-4 w-4" /> {isAuthenticated ? "Contul meu" : "Autentificare"}
           </Link>
           <Link
-            to="/upload-oferta"
+            to="/recomandare-sistem"
             className="inline-flex items-center rounded-full bg-gradient-brand px-4 py-2.5 text-sm font-semibold text-white shadow-glow transition-transform hover:-translate-y-0.5"
           >
-            Analizează o ofertă
+            Află ce sistem ți se potrivește
           </Link>
         </div>
         <button
@@ -202,11 +213,11 @@ export function SiteHeader() {
                 </Link>
               )}
               <Link
-                to="/upload-oferta"
+                to="/recomandare-sistem"
                 onClick={() => setOpen(false)}
                 className="mt-3 inline-flex min-h-12 items-center justify-center rounded-full bg-gradient-brand px-5 py-3 text-sm font-semibold text-white"
               >
-                Analizează o ofertă
+                Află ce sistem ți se potrivește
               </Link>
             </nav>
           </div>,

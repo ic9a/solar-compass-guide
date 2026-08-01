@@ -8,24 +8,27 @@ test.describe("homepage trust and conversion baseline", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: /Află ce sistem fotovoltaic se potrivește locuinței tale/i,
+        name: /Află ce sistem fotovoltaic ți se potrivește înainte să ceri sau să accepți o ofertă/i,
       }),
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: "Începe recomandarea" }).first()).toHaveAttribute(
-      "href",
-      "/recomandare-sistem",
-    );
-    await expect(page.getByRole("link", { name: "Analizează o ofertă" }).first()).toHaveAttribute(
-      "href",
-      "/upload-oferta",
-    );
-    await expect(page.getByRole("heading", { name: "Începe de unde ești acum." })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Nu primești doar o cifră." })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: /Calculează sistemul potrivit/ }).first(),
+    ).toHaveAttribute("href", "/recomandare-sistem");
+    await expect(
+      page.getByRole("link", { name: "Verifică oferta primită" }).first(),
+    ).toHaveAttribute("href", "/upload-oferta");
+    await expect(
+      page.getByRole("heading", { name: "Cu ce te poate ajuta RaportSolar?" }),
+    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Vezi sistemul recomandat/ })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Nu trebuie să compari ofertele doar după preț" }),
+    ).toBeVisible();
     await expect(page.getByRole("link", { name: "Explorează harta solară" })).toHaveAttribute(
       "href",
       "/harta-solara-romania",
     );
-    await expect(page.getByRole("link", { name: "Vezi cum arată analiza" })).toHaveAttribute(
+    await expect(page.getByRole("link", { name: /Vezi un exemplu complet/ })).toHaveAttribute(
       "href",
       "/exemplu-raport",
     );
@@ -36,8 +39,10 @@ test.describe("homepage trust and conversion baseline", () => {
     page,
   }) => {
     await page.goto("/", { waitUntil: "networkidle" });
-    await expect(page.locator("[data-home-guide-slug]")).toHaveCount(3);
-    for (const guide of await page.locator("[data-home-guide-slug]").all()) {
+    const guides = page.locator("[data-home-guide-slug]");
+    await expect(guides.first()).toBeVisible();
+    expect(await guides.count()).toBeGreaterThanOrEqual(12);
+    for (const guide of await guides.all()) {
       await expect(guide).toHaveAttribute("href", /^\/[a-z0-9-]+$/);
     }
     const dimensions = await page.evaluate(() => ({

@@ -3,25 +3,30 @@ import { Link } from "@tanstack/react-router";
 export function Logo({
   className = "",
   size = "md",
-  onDark = false,
 }: {
   className?: string;
   size?: "sm" | "md" | "lg";
   onDark?: boolean;
 }) {
   const sizes = {
-    sm: { base: "text-base", ro: "text-[0.6em]" },
-    md: { base: "text-xl", ro: "text-[0.55em]" },
-    lg: { base: "text-3xl md:text-4xl", ro: "text-[0.5em]" },
+    sm: "h-7 w-auto",
+    md: "h-8 w-auto lg:h-9",
+    lg: "h-10 w-auto md:h-12",
   }[size];
 
   return (
-    <Link to="/" className={`inline-flex items-baseline font-extrabold tracking-tight ${sizes.base} ${className}`}>
-      <span style={{ color: onDark ? "#7ee0aa" : "var(--brand-green)" }}>raport</span>
-      <span style={{ color: onDark ? "#ffc66d" : "#a85f00" }}>solar</span>
-      <span className={`${sizes.ro} ml-0.5 font-semibold ${onDark ? "text-white/80" : "text-foreground/65"}`}>
-        .ro
-      </span>
+    <Link
+      to="/"
+      aria-label="raportsolar.ro — pagina principală"
+      className={`inline-flex shrink-0 items-center focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sun ${className}`}
+    >
+      <img
+        src="/brand/raportsolar-wordmark.png"
+        width={720}
+        height={154}
+        alt="raportsolar.ro"
+        className={sizes}
+      />
     </Link>
   );
 }
