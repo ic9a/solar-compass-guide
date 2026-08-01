@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import React, { useState } from "react";
 import { Mail, LogIn, CheckCircle2 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Card, PageHero, Section } from "@/components/primitives";
+import { Card, Section } from "@/components/primitives";
 import { supabase } from "@/integrations/supabase/client";
 import { useServerFn } from "@tanstack/react-start";
 import { claimAnonymousOwnership } from "@/lib/account.functions";
@@ -185,74 +185,94 @@ function Page() {
 
   return (
     <SiteLayout>
-      <PageHero
-        eyebrow="Cont raportsolar.ro"
-        title="Păstrează toate analizele într-un singur loc."
-        description="Autentifică-te pentru a reveni la ofertele și rapoartele tale de pe orice dispozitiv. Poți folosi Google sau un link securizat trimis pe email."
-      />
-      <Section className="!py-10 md:!py-16">
-        <div className="max-w-md mx-auto">
-          <Card className="p-6 md:p-8">
-            {state.kind === "sent" ? (
-              <div className="text-center py-6">
-                <div className="mx-auto h-12 w-12 rounded-full bg-gradient-brand grid place-items-center text-white">
-                  <CheckCircle2 className="h-5 w-5" />
-                </div>
-                <h2 className="mt-4 text-lg font-bold">Verifică-ți emailul</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Ți-am trimis un link de confirmare la <strong>{email}</strong>. Deschide-l pe
-                  același dispozitiv pentru a păstra oferta încărcată.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={onSubmit} className="grid gap-4">
-                <label className="block">
-                  <span className="block text-sm font-semibold mb-1.5">Email</span>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="field-control"
-                  />
-                </label>
-                {state.kind === "error" && (
-                  <div
-                    role="alert"
-                    className="rounded-lg border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive"
-                  >
-                    {state.message}
+      <Section className="auth-page !py-10 md:!py-20">
+        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+          <div className="auth-story">
+            <div className="product-kicker">Cont raportsolar.ro</div>
+            <h1>Revino oricând la analiza ofertei tale.</h1>
+            <p>
+              Autentificarea leagă ofertele și rapoartele de contul tău, ca să le poți deschide în
+              siguranță și de pe alt dispozitiv.
+            </p>
+            <div
+              className="auth-document"
+              role="img"
+              aria-label="Un raport privat, păstrat în contul tău"
+            >
+              <span />
+              <span />
+              <span />
+              <strong>Raport privat</strong>
+            </div>
+            <ul>
+              <li>Oferta încărcată rămâne privată.</li>
+              <li>Poți continua cu Google sau cu un link primit pe email.</li>
+              <li>Dacă ai început fără cont, păstrăm analiza curentă.</li>
+            </ul>
+          </div>
+          <div className="max-w-md w-full mx-auto">
+            <Card className="p-6 md:p-8">
+              {state.kind === "sent" ? (
+                <div className="text-center py-6">
+                  <div className="mx-auto h-12 w-12 rounded-full bg-gradient-brand grid place-items-center text-white">
+                    <CheckCircle2 className="h-5 w-5" />
                   </div>
-                )}
-                <button
-                  type="submit"
-                  disabled={state.kind === "sending"}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow disabled:opacity-50"
-                >
-                  {state.kind === "sending" ? "Se trimite..." : "Trimite linkul de autentificare"}
-                  <Mail className="h-4 w-4" />
-                </button>
-                <div className="relative my-1 text-center text-xs uppercase tracking-wider text-muted-foreground">
-                  <span className="bg-surface px-2">sau</span>
-                  <div className="absolute inset-x-0 top-1/2 -z-10 h-px bg-border" />
+                  <h2 className="mt-4 text-lg font-bold">Verifică-ți emailul</h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Ți-am trimis un link de confirmare la <strong>{email}</strong>. Deschide-l pe
+                    același dispozitiv pentru a păstra oferta încărcată.
+                  </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={google}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold hover:bg-muted"
-                >
-                  <LogIn className="h-4 w-4" /> Continuă cu Google
-                </button>
-              </form>
-            )}
-          </Card>
+              ) : (
+                <form onSubmit={onSubmit} className="grid gap-4">
+                  <label className="block">
+                    <span className="block text-sm font-semibold mb-1.5">Email</span>
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="field-control"
+                    />
+                  </label>
+                  {state.kind === "error" && (
+                    <div
+                      role="alert"
+                      className="rounded-lg border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive"
+                    >
+                      {state.message}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={state.kind === "sending"}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow disabled:opacity-50"
+                  >
+                    {state.kind === "sending" ? "Se trimite..." : "Trimite linkul de autentificare"}
+                    <Mail className="h-4 w-4" />
+                  </button>
+                  <div className="relative my-1 text-center text-xs uppercase tracking-wider text-muted-foreground">
+                    <span className="bg-surface px-2">sau</span>
+                    <div className="absolute inset-x-0 top-1/2 -z-10 h-px bg-border" />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={google}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold hover:bg-muted"
+                  >
+                    <LogIn className="h-4 w-4" /> Continuă cu Google
+                  </button>
+                </form>
+              )}
+            </Card>
 
-          <p className="mt-4 text-xs text-muted-foreground text-center">
-            Deja autentificat?{" "}
-            <button className="underline" onClick={() => nav({ to: "/cont" })}>
-              Mergi la contul tău
-            </button>
-          </p>
+            <p className="mt-4 text-xs text-muted-foreground text-center">
+              Ești deja autentificat?{" "}
+              <button className="underline" onClick={() => nav({ to: "/cont" })}>
+                Mergi la contul tău
+              </button>
+            </p>
+          </div>
         </div>
       </Section>
     </SiteLayout>
