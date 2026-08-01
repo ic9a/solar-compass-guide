@@ -8,7 +8,12 @@ import { Card, Section } from "@/components/primitives";
 import { getOfferCorrectionData, applyManualCorrection } from "@/lib/analysis.functions";
 
 export const Route = createFileRoute("/corectare/$offerId")({
-  head: () => ({ meta: [{ title: "Corectează datele extrase — raportsolar.ro" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({
+    meta: [
+      { title: "Corectează datele extrase — raportsolar.ro" },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
   component: Page,
   errorComponent: ({ error }) => <Err msg={error.message} />,
   notFoundComponent: () => <Err msg="Oferta nu a fost găsită." />,
@@ -35,10 +40,23 @@ type Fields = {
 };
 
 const empty: Fields = {
-  supplier_name: "", system_kwp: "", panel_brand: "", panel_model: "", panel_count: "", panel_wattage: "",
-  inverter_brand: "", inverter_model: "", inverter_kva: "", battery_present: false, battery_kwh: "",
-  total_price_lei: "", vat_included: false, warranty_panels_years: "", warranty_inverter_years: "",
-  warranty_workmanship_years: "", payment_terms: "",
+  supplier_name: "",
+  system_kwp: "",
+  panel_brand: "",
+  panel_model: "",
+  panel_count: "",
+  panel_wattage: "",
+  inverter_brand: "",
+  inverter_model: "",
+  inverter_kva: "",
+  battery_present: false,
+  battery_kwh: "",
+  total_price_lei: "",
+  vat_included: false,
+  warranty_panels_years: "",
+  warranty_inverter_years: "",
+  warranty_workmanship_years: "",
+  payment_terms: "",
 };
 
 function Page() {
@@ -111,70 +129,184 @@ function Page() {
           },
         },
       });
-      router.navigate({ to: "/rezultat-gratuit/$analysisId", params: { analysisId: res.analysisId } });
+      router.navigate({
+        to: "/rezultat-gratuit/$analysisId",
+        params: { analysisId: res.analysisId },
+      });
     } catch (e) {
       setErr(e instanceof Error ? e.message : "Nu am putut salva corecțiile.");
       setSaving(false);
     }
   }
 
-  if (loading) return <SiteLayout><Section className="!py-20 text-center"><Loader2 className="mx-auto h-8 w-8 animate-spin" /></Section></SiteLayout>;
+  if (loading)
+    return (
+      <SiteLayout>
+        <Section className="!py-20 text-center">
+          <Loader2 className="mx-auto h-8 w-8 animate-spin" />
+        </Section>
+      </SiteLayout>
+    );
   if (err) return <Err msg={err} />;
 
   return (
     <SiteLayout>
       <Section className="!py-10">
-        <div className="max-w-2xl mx-auto">
-          <Link to="/analiza/$offerId" params={{ offerId }} className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:underline">
+        <div className="correction-shell max-w-3xl mx-auto">
+          <Link
+            to="/analiza/$offerId"
+            params={{ offerId }}
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:underline"
+          >
             <ArrowLeft className="h-4 w-4" /> Înapoi la analiză
           </Link>
-          <h1 className="mt-3 text-3xl font-bold">Corectează datele extrase</h1>
+          <div className="product-kicker mt-8">Verificare înainte de rezultat</div>
+          <h1 className="mt-4 text-3xl font-bold tracking-[-0.04em] md:text-5xl">
+            Corectează doar ce nu corespunde ofertei
+          </h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            Editează doar câmpurile pe care extracția automată le-a interpretat greșit. Restul rămân neschimbate.
+            Editează doar câmpurile pe care extracția automată le-a interpretat greșit. Restul rămân
+            neschimbate.
           </p>
 
+          <div className="correction-note" role="note">
+            <strong>Datele originale rămân păstrate.</strong>
+            <span>Recalculăm analiza numai după ce salvezi modificările.</span>
+          </div>
           <form onSubmit={submit} className="mt-8 space-y-4">
-            <Card className="p-5 space-y-3">
-              <F label="Instalator" v={form.supplier_name} on={(v) => setForm({ ...form, supplier_name: v })} />
-              <F label="Preț total (lei)" v={form.total_price_lei} on={(v) => setForm({ ...form, total_price_lei: v })} type="number" />
-              <Check label="Preț include TVA" v={form.vat_included} on={(v) => setForm({ ...form, vat_included: v })} />
-              <F label="Putere sistem (kWp)" v={form.system_kwp} on={(v) => setForm({ ...form, system_kwp: v })} type="number" />
+            <Card className="correction-section p-5 space-y-3 md:p-7">
+              <h2>Ofertă și preț</h2>
+              <F
+                label="Instalator"
+                v={form.supplier_name}
+                on={(v) => setForm({ ...form, supplier_name: v })}
+              />
+              <F
+                label="Preț total (lei)"
+                v={form.total_price_lei}
+                on={(v) => setForm({ ...form, total_price_lei: v })}
+                type="number"
+              />
+              <Check
+                label="Preț include TVA"
+                v={form.vat_included}
+                on={(v) => setForm({ ...form, vat_included: v })}
+              />
+              <F
+                label="Putere sistem (kWp)"
+                v={form.system_kwp}
+                on={(v) => setForm({ ...form, system_kwp: v })}
+                type="number"
+              />
             </Card>
-            <Card className="p-5 space-y-3">
-              <div className="text-sm font-semibold">Panouri</div>
+            <Card className="correction-section p-5 space-y-3 md:p-7">
+              <h2>Panouri</h2>
               <div className="grid grid-cols-2 gap-3">
-                <F label="Brand" v={form.panel_brand} on={(v) => setForm({ ...form, panel_brand: v })} />
-                <F label="Model" v={form.panel_model} on={(v) => setForm({ ...form, panel_model: v })} />
-                <F label="Număr" v={form.panel_count} on={(v) => setForm({ ...form, panel_count: v })} type="number" />
-                <F label="Wattage (W)" v={form.panel_wattage} on={(v) => setForm({ ...form, panel_wattage: v })} type="number" />
+                <F
+                  label="Brand"
+                  v={form.panel_brand}
+                  on={(v) => setForm({ ...form, panel_brand: v })}
+                />
+                <F
+                  label="Model"
+                  v={form.panel_model}
+                  on={(v) => setForm({ ...form, panel_model: v })}
+                />
+                <F
+                  label="Număr"
+                  v={form.panel_count}
+                  on={(v) => setForm({ ...form, panel_count: v })}
+                  type="number"
+                />
+                <F
+                  label="Wattage (W)"
+                  v={form.panel_wattage}
+                  on={(v) => setForm({ ...form, panel_wattage: v })}
+                  type="number"
+                />
               </div>
             </Card>
-            <Card className="p-5 space-y-3">
-              <div className="text-sm font-semibold">Invertor</div>
+            <Card className="correction-section p-5 space-y-3 md:p-7">
+              <h2>Invertor</h2>
               <div className="grid grid-cols-2 gap-3">
-                <F label="Brand" v={form.inverter_brand} on={(v) => setForm({ ...form, inverter_brand: v })} />
-                <F label="Model" v={form.inverter_model} on={(v) => setForm({ ...form, inverter_model: v })} />
-                <F label="Putere (kVA)" v={form.inverter_kva} on={(v) => setForm({ ...form, inverter_kva: v })} type="number" />
+                <F
+                  label="Brand"
+                  v={form.inverter_brand}
+                  on={(v) => setForm({ ...form, inverter_brand: v })}
+                />
+                <F
+                  label="Model"
+                  v={form.inverter_model}
+                  on={(v) => setForm({ ...form, inverter_model: v })}
+                />
+                <F
+                  label="Putere (kVA)"
+                  v={form.inverter_kva}
+                  on={(v) => setForm({ ...form, inverter_kva: v })}
+                  type="number"
+                />
               </div>
             </Card>
-            <Card className="p-5 space-y-3">
-              <Check label="Sistem cu baterie" v={form.battery_present} on={(v) => setForm({ ...form, battery_present: v })} />
-              {form.battery_present && <F label="Capacitate baterie (kWh)" v={form.battery_kwh} on={(v) => setForm({ ...form, battery_kwh: v })} type="number" />}
+            <Card className="correction-section p-5 space-y-3 md:p-7">
+              <h2>Baterie</h2>
+              <Check
+                label="Sistem cu baterie"
+                v={form.battery_present}
+                on={(v) => setForm({ ...form, battery_present: v })}
+              />
+              {form.battery_present && (
+                <F
+                  label="Capacitate baterie (kWh)"
+                  v={form.battery_kwh}
+                  on={(v) => setForm({ ...form, battery_kwh: v })}
+                  type="number"
+                />
+              )}
             </Card>
-            <Card className="p-5 space-y-3">
-              <div className="text-sm font-semibold">Garanții (ani)</div>
+            <Card className="correction-section p-5 space-y-3 md:p-7">
+              <h2>Garanții și plată</h2>
               <div className="grid grid-cols-3 gap-3">
-                <F label="Panouri" v={form.warranty_panels_years} on={(v) => setForm({ ...form, warranty_panels_years: v })} type="number" />
-                <F label="Invertor" v={form.warranty_inverter_years} on={(v) => setForm({ ...form, warranty_inverter_years: v })} type="number" />
-                <F label="Manoperă" v={form.warranty_workmanship_years} on={(v) => setForm({ ...form, warranty_workmanship_years: v })} type="number" />
+                <F
+                  label="Panouri"
+                  v={form.warranty_panels_years}
+                  on={(v) => setForm({ ...form, warranty_panels_years: v })}
+                  type="number"
+                />
+                <F
+                  label="Invertor"
+                  v={form.warranty_inverter_years}
+                  on={(v) => setForm({ ...form, warranty_inverter_years: v })}
+                  type="number"
+                />
+                <F
+                  label="Manoperă"
+                  v={form.warranty_workmanship_years}
+                  on={(v) => setForm({ ...form, warranty_workmanship_years: v })}
+                  type="number"
+                />
               </div>
-              <F label="Termeni de plată" v={form.payment_terms} on={(v) => setForm({ ...form, payment_terms: v })} />
+              <F
+                label="Termeni de plată"
+                v={form.payment_terms}
+                on={(v) => setForm({ ...form, payment_terms: v })}
+              />
             </Card>
 
-            <button type="submit" disabled={saving} className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow disabled:opacity-60">
-              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-              Recalculează scorul cu datele corectate
-            </button>
+            <div className="sticky-action-bar">
+              <p>Verifică încă o dată valorile modificate.</p>
+              <button
+                type="submit"
+                disabled={saving}
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-6 py-3 text-sm font-semibold text-white shadow-glow disabled:opacity-60"
+              >
+                {saving ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Save className="h-4 w-4" />
+                )}
+                Recalculează scorul cu datele corectate
+              </button>
+            </div>
           </form>
         </div>
       </Section>
@@ -182,11 +314,26 @@ function Page() {
   );
 }
 
-function F({ label, v, on, type = "text" }: { label: string; v: string; on: (v: string) => void; type?: string }) {
+function F({
+  label,
+  v,
+  on,
+  type = "text",
+}: {
+  label: string;
+  v: string;
+  on: (v: string) => void;
+  type?: string;
+}) {
   return (
     <label className="block text-sm">
       <span className="text-muted-foreground">{label}</span>
-      <input type={type} value={v} onChange={(e) => on(e.target.value)} className="mt-1 w-full rounded-md border bg-background px-3 py-2" />
+      <input
+        type={type}
+        value={v}
+        onChange={(e) => on(e.target.value)}
+        className="field-control mt-1 w-full"
+      />
     </label>
   );
 }
@@ -203,14 +350,26 @@ function Err({ msg }: { msg: string }) {
     <SiteLayout>
       <Section className="!py-20">
         <div className="max-w-md mx-auto text-center">
-          <div className="mx-auto h-14 w-14 rounded-full bg-destructive/10 grid place-items-center text-destructive"><AlertOctagon className="h-6 w-6" /></div>
+          <div className="mx-auto h-14 w-14 rounded-full bg-destructive/10 grid place-items-center text-destructive">
+            <AlertOctagon className="h-6 w-6" />
+          </div>
           <p className="mt-4 text-sm text-muted-foreground">{msg}</p>
         </div>
       </Section>
     </SiteLayout>
   );
 }
-function str(v: unknown): string { return typeof v === "string" ? v : ""; }
-function num(v: unknown): string { return typeof v === "number" && Number.isFinite(v) ? String(v) : ""; }
-function nnum(s: string): number | null { const n = parseFloat(s); return Number.isFinite(n) ? n : null; }
-function nint(s: string): number | null { const n = parseInt(s, 10); return Number.isFinite(n) ? n : null; }
+function str(v: unknown): string {
+  return typeof v === "string" ? v : "";
+}
+function num(v: unknown): string {
+  return typeof v === "number" && Number.isFinite(v) ? String(v) : "";
+}
+function nnum(s: string): number | null {
+  const n = parseFloat(s);
+  return Number.isFinite(n) ? n : null;
+}
+function nint(s: string): number | null {
+  const n = parseInt(s, 10);
+  return Number.isFinite(n) ? n : null;
+}

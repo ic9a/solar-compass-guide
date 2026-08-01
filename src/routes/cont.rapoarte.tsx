@@ -13,6 +13,7 @@ import {
   RefreshCw,
   ClipboardList,
 } from "lucide-react";
+import { AccountShell } from "@/components/account/AccountShell";
 
 export const Route = createFileRoute("/cont/rapoarte")({
   head: () => ({
@@ -56,57 +57,61 @@ function Page() {
   return (
     <SiteLayout>
       <Section className="!py-10 md:!py-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex items-center justify-between flex-wrap gap-3">
-            <div>
-              <div className="product-kicker">Istoricul tău</div>
-              <h1 className="mt-4 text-4xl font-bold tracking-[-0.05em] md:text-6xl">Oferte și analize</h1>
-              <p className="mt-3 max-w-2xl leading-7 text-muted-foreground">
-                Revino la documentele încărcate, urmărește procesarea și deschide concluziile fiecărei analize.
-              </p>
-            </div>
-            {isAnon && (
-              <Link
-                to="/autentificare"
-                search={{ next: "/cont/rapoarte" }}
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
+        <div className="max-w-6xl mx-auto">
+          <AccountShell
+            eyebrow="Istoricul tău"
+            title="Oferte și analize"
+            description="Revino la documentele încărcate, urmărește procesarea și deschide concluziile fiecărei analize."
+            action={
+              isAnon ? (
+                <Link
+                  to="/autentificare"
+                  search={{ next: "/cont/rapoarte" }}
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
+                >
+                  Salvează contul permanent
+                </Link>
+              ) : undefined
+            }
+          >
+            {err && (
+              <div
+                role="alert"
+                className="mt-4 rounded-lg border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive"
               >
-                Salvează contul permanent
-              </Link>
-            )}
-          </div>
-
-          {err && (
-            <div role="alert" className="mt-4 rounded-lg border border-destructive/40 bg-destructive/5 px-3 py-2 text-sm text-destructive">
-              {err}
-            </div>
-          )}
-
-          {!rows ? (
-            <div className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground">
-              <Loader2 className="h-4 w-4 animate-spin" /> Se încarcă...
-            </div>
-          ) : rows.length === 0 ? (
-            <Card className="mt-8 p-10 text-center">
-              <div className="mx-auto h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white mb-3">
-                <ClipboardList className="h-5 w-5" />
+                {err}
               </div>
-              <h2 className="text-xl font-bold">Prima ta analiză începe aici</h2>
-              <p className="mt-2 text-sm text-muted-foreground">Încarcă o ofertă și raportsolar.ro îți explică ce conține și ce trebuie clarificat.</p>
-              <Link
-                to="/upload-oferta"
-                className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
-              >
-                Încarcă o ofertă <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Card>
-          ) : (
-            <ul className="mt-8 grid gap-4">
-              {rows.map((r) => (
-                <OfferRow key={r.offerId} r={r} />
-              ))}
-            </ul>
-          )}
+            )}
+
+            {!rows ? (
+              <div className="mt-8 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                <Loader2 className="h-4 w-4 animate-spin" /> Se încarcă...
+              </div>
+            ) : rows.length === 0 ? (
+              <Card className="mt-8 p-10 text-center">
+                <div className="mx-auto h-11 w-11 rounded-xl bg-gradient-brand grid place-items-center text-white mb-3">
+                  <ClipboardList className="h-5 w-5" />
+                </div>
+                <h2 className="text-xl font-bold">Prima ta analiză începe aici</h2>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Încarcă o ofertă și raportsolar.ro îți explică ce conține și ce trebuie
+                  clarificat.
+                </p>
+                <Link
+                  to="/upload-oferta"
+                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow"
+                >
+                  Încarcă o ofertă <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Card>
+            ) : (
+              <ul className="account-report-list mt-8 grid gap-4">
+                {rows.map((r) => (
+                  <OfferRow key={r.offerId} r={r} />
+                ))}
+              </ul>
+            )}
+          </AccountShell>
         </div>
       </Section>
     </SiteLayout>
@@ -114,11 +119,14 @@ function Page() {
 }
 
 function OfferRow({ r }: { r: Row }) {
-  const title = r.supplierName ?? r.filename ?? (r.sourceMethod === "manual" ? "Ofertă introdusă manual" : "Ofertă");
+  const title =
+    r.supplierName ??
+    r.filename ??
+    (r.sourceMethod === "manual" ? "Ofertă introdusă manual" : "Ofertă");
   const date = new Date(r.createdAt).toLocaleDateString("ro-RO");
 
   return (
-    <Card className="p-6 transition-shadow hover:shadow-lift">
+    <Card className="account-report-card p-6 transition-shadow hover:shadow-lift">
       <div className="flex items-start justify-between gap-4 flex-wrap">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
@@ -131,13 +139,25 @@ function OfferRow({ r }: { r: Row }) {
             {r.totalPriceLei ? ` · ${r.totalPriceLei.toLocaleString("ro-RO")} lei` : ""}
           </div>
           <div className="mt-2 flex flex-wrap gap-2 text-xs">
-            <StatusPill label="Extracție" value={extractionLabel(r.extractionStatus)} tone={statusTone(r.extractionStatus)} />
-            <StatusPill label="Analiză" value={analysisLabel(r.analysisStatus)} tone={statusTone(r.analysisStatus)} />
+            <StatusPill
+              label="Extracție"
+              value={extractionLabel(r.extractionStatus)}
+              tone={statusTone(r.extractionStatus)}
+            />
+            <StatusPill
+              label="Analiză"
+              value={analysisLabel(r.analysisStatus)}
+              tone={statusTone(r.analysisStatus)}
+            />
             {r.overallScore != null && (
               <StatusPill label="Scor" value={`${Math.round(r.overallScore)}/100`} tone="info" />
             )}
             {r.extractionConfidence && r.extractionConfidence !== "high" && (
-              <StatusPill label="Încredere" value={r.extractionConfidence === "medium" ? "medie" : "redusă"} tone="warn" />
+              <StatusPill
+                label="Încredere"
+                value={r.extractionConfidence === "medium" ? "medie" : "redusă"}
+                tone="warn"
+              />
             )}
           </div>
           {r.extractionError && (
@@ -183,7 +203,15 @@ function OfferRow({ r }: { r: Row }) {
   );
 }
 
-function StatusPill({ label, value, tone }: { label: string; value: string; tone: "ok" | "warn" | "info" | "muted" }) {
+function StatusPill({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone: "ok" | "warn" | "info" | "muted";
+}) {
   const cls =
     tone === "ok"
       ? "border-[color:var(--brand-green)]/40 bg-[color:var(--brand-green)]/10 text-[color:var(--brand-green)]"

@@ -16,3 +16,11 @@ Interfața folosește persoana a II-a singular, verbe concrete și termeni româ
 | pagini legale                | Introduceri mai clare; sensul juridic rămâne neschimbat.                                         |
 
 Inventarul se completează în fiecare PR cu schimbările de pe rutele fazei respective.
+
+# Faza 3 — rezultate, rapoarte și cont
+
+- Analiza în curs explică direct cele trei etape și ce se întâmplă cu documentul.
+- Corectarea datelor precizează că utilizatorul modifică doar informațiile care nu corespund ofertei.
+- Autentificarea explică motivul, confidențialitatea și continuitatea analizei începute fără cont.
+- Istoricul și setările folosesc aceeași navigare și aceleași denumiri pentru stările ofertelor.
+- Rezultatul gratuit separă informațiile disponibile, contradicțiile și limitele comparației fără presiune artificială de vânzare.
