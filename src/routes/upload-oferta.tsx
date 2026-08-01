@@ -278,6 +278,10 @@ function Page() {
               <p className="mt-2 text-center text-xs text-muted-foreground">
                 PDF, PNG, JPG sau WEBP · maximum 20 MB
               </p>
+              <p className="upload-privacy-note">
+                <CheckCircle2 aria-hidden="true" /> Documentul rămâne privat și este accesibil numai
+                în sesiunea sau contul tău.
+              </p>
 
               {(stage.kind === "picked" || stage.kind === "uploading") && (
                 <div className="mt-4 flex min-w-0 items-center gap-3 rounded-2xl border border-border bg-white p-3">

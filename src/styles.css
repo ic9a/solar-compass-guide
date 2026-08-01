@@ -1876,6 +1876,22 @@
 .example-report-notice span {
   font-size: 0.86rem;
 }
+.upload-privacy-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0.8rem;
+  color: #587066;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+.upload-privacy-note svg {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  margin-top: 0.08rem;
+  color: #0d6b50;
+}
 @media (min-width: 768px) {
   .recommendation-review dl,
   .manual-review dl {
