@@ -177,7 +177,7 @@ function SolarMapPage() {
 
   return (
     <SiteLayout>
-      <section className="solar-map-hero relative overflow-hidden border-b border-border/60 bg-[#f4f7f2]">
+      <section className="solar-map-hero core-tool-hero relative overflow-hidden border-b border-border/60 bg-[#f4f7f2]">
         <div className="solar-orb solar-orb--one" />
         <div className="solar-orb solar-orb--two" />
         <div className="relative mx-auto max-w-7xl px-4 pb-7 pt-8 sm:px-6 md:pb-14 md:pt-20 lg:px-8">
@@ -229,7 +229,10 @@ function SolarMapPage() {
               onRetryResolution={() => resolveCoordinates(location)}
             />
 
-            <aside className="space-y-4">
+            <aside
+              className="solar-control-panel space-y-4"
+              aria-label="Configurarea estimării solare"
+            >
               <div className="rounded-[2rem] border border-border/70 bg-white p-5 shadow-soft md:p-6">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -375,7 +378,9 @@ function SolarMapPage() {
               />
             </div>
           </div>
-          <MonthlyProductionChart values={result.monthlyProductionKwh} />
+          <div aria-busy={loading} aria-live="polite">
+            <MonthlyProductionChart values={result.monthlyProductionKwh} />
+          </div>
         </div>
       </section>
 

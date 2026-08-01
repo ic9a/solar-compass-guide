@@ -36,6 +36,7 @@ import { StepProgress } from "@/components/ui-kit/StepProgress";
 import { VisualChoiceCard } from "@/components/ui-kit/VisualChoiceCard";
 import { RoofOrientationIllustration } from "@/components/recommendation/RoofOrientationIllustration";
 import { RoofShadingIllustration } from "@/components/recommendation/RoofShadingIllustration";
+import { WizardStepStory } from "@/components/core-tool-visuals";
 import { COUNTIES } from "@/data/countyPotential";
 import { createSolarLocation } from "@/lib/solarLocation";
 import { RECOMMENDATION_ASSUMPTIONS_V2 as A } from "@/lib/recommendation-v2/assumptions";
@@ -91,7 +92,13 @@ function validateRecommendationDraft(state: State): RecommendationInputV2 {
   if (!state.usageProfile) throw new Error("Alege profilul obișnuit de consum.");
   if (state.noLargeLoads === undefined) throw new Error("Spune explicit dacă ai consumatori mari.");
   if (!state.batteryPreference) throw new Error("Alege cum vrei să analizăm bateria.");
-  if (!state.location || !state.orientation || !state.shading || !state.buildingType || !state.goal) {
+  if (
+    !state.location ||
+    !state.orientation ||
+    !state.shading ||
+    !state.buildingType ||
+    !state.goal
+  ) {
     throw new Error("Completează toate datele obligatorii înainte de calcul.");
   }
   return {
@@ -258,7 +265,9 @@ function RecommendationPage() {
           : [
               await fetchPvgis({
                 ...requestBase,
-                orientation: state.orientation ? orientationMap[state.orientation as keyof typeof orientationMap] : "sud",
+                orientation: state.orientation
+                  ? orientationMap[state.orientation as keyof typeof orientationMap]
+                  : "sud",
               }),
             ];
       const responseCount = responses.length;
@@ -268,29 +277,41 @@ function RecommendationPage() {
           : responses.some((response) => response.source === "cache")
             ? "cache"
             : "PVGIS",
-        normalizedMonthlyKwhPerKwp: responses[0].monthlyProductionKwh.map((_, index) =>
-          responses.reduce((total, response) => total + response.monthlyProductionKwh[index].productionKwh, 0) / responseCount,
+        normalizedMonthlyKwhPerKwp: responses[0].monthlyProductionKwh.map(
+          (_, index) =>
+            responses.reduce(
+              (total, response) => total + response.monthlyProductionKwh[index].productionKwh,
+              0,
+            ) / responseCount,
         ),
         normalizedAnnualKwhPerKwp:
-          responses.reduce((total, response) => total + response.annualProductionKwh, 0) / responseCount,
+          responses.reduce((total, response) => total + response.annualProductionKwh, 0) /
+          responseCount,
         locationPrecision: state.locationPrecision === "precise" ? "precise" : "county",
         fetchedAt: responses[0].lastFetchedAt,
-        fallbackReason: responses.map((response) => response.errorMessage).filter(Boolean).join("; ") || undefined,
+        fallbackReason:
+          responses
+            .map((response) => response.errorMessage)
+            .filter(Boolean)
+            .join("; ") || undefined,
         orientationIncluded: state.orientation !== "unknown",
         shadingIncluded: state.shading !== "unknown",
       };
     } catch (pvgisError) {
       const fallback = localPvgisEstimate({
         ...requestBase,
-        orientation: state.orientation === "east-west"
-          ? "est-vest"
-          : state.orientation
-            ? orientationMap[state.orientation as keyof typeof orientationMap]
-            : "sud",
+        orientation:
+          state.orientation === "east-west"
+            ? "est-vest"
+            : state.orientation
+              ? orientationMap[state.orientation as keyof typeof orientationMap]
+              : "sud",
       });
       nextProfile = {
         source: "fallback",
-        normalizedMonthlyKwhPerKwp: fallback.monthlyProductionKwh.map((month) => month.productionKwh),
+        normalizedMonthlyKwhPerKwp: fallback.monthlyProductionKwh.map(
+          (month) => month.productionKwh,
+        ),
         normalizedAnnualKwhPerKwp: fallback.annualProductionKwh,
         locationPrecision: state.locationPrecision === "precise" ? "precise" : "county",
         fetchedAt: fallback.lastFetchedAt,
@@ -341,10 +362,11 @@ function RecommendationPage() {
   return (
     <SiteLayout>
       <PageHero
-        className="wizard-page-hero"
+        className="wizard-page-hero core-tool-hero"
         eyebrow="Recomandare personalizată"
         title="Găsește sistemul potrivit pentru locuința ta"
         description="Răspunde la câteva întrebări despre consum, locație și acoperiș. Comparăm variantele și îți explicăm recomandarea."
+        aside={<WizardStepStory step={step} />}
       />
       <Section className="!py-5 md:!py-12">
         <div
@@ -433,7 +455,7 @@ function RecommendationPage() {
             </div>
 
             <aside className="hidden lg:block">
-              <div className="sticky top-[var(--sticky-content-offset)] rounded-2xl border border-border bg-white p-5 shadow-soft">
+              <div className="core-tool-summary sticky top-[var(--sticky-content-offset)] rounded-2xl border border-border bg-white p-5 shadow-soft">
                 <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   Date folosite
                 </div>
@@ -444,7 +466,12 @@ function RecommendationPage() {
                     label="Acoperiș"
                     value={state.orientation ? labelOrientation(state.orientation) : "Necompletat"}
                   />
-                  <Summary label="Date solare" value={profile?.source ? `${profile.source} — Comisia Europeană` : "Se vor calcula"} />
+                  <Summary
+                    label="Date solare"
+                    value={
+                      profile?.source ? `${profile.source} — Comisia Europeană` : "Se vor calcula"
+                    }
+                  />
                 </dl>
                 <p className="mt-5 text-xs leading-5 text-muted-foreground">
                   Nu afișăm o recomandare personalizată până când datele minime nu sunt complete.
@@ -482,9 +509,24 @@ function ConsumptionStep({ state, patch }: StepProps) {
       ? Math.round(state.monthlyBillLei / A.electricity.billConversionLeiPerKwh)
       : undefined;
   const modes = [
-    { value: "monthly-kwh" as ConsumptionMode, label: "Consum lunar", description: "Din factura unei luni obișnuite, în kWh.", icon: Activity },
-    { value: "annual-kwh" as ConsumptionMode, label: "Consum anual", description: "Cea mai bună bază dacă ai istoricul pe 12 luni.", icon: CalendarDays },
-    { value: "bill" as ConsumptionMode, label: "Valoarea facturii", description: "Estimăm consumul și îți arătăm ipoteza folosită.", icon: Receipt },
+    {
+      value: "monthly-kwh" as ConsumptionMode,
+      label: "Consum lunar",
+      description: "Din factura unei luni obișnuite, în kWh.",
+      icon: Activity,
+    },
+    {
+      value: "annual-kwh" as ConsumptionMode,
+      label: "Consum anual",
+      description: "Cea mai bună bază dacă ai istoricul pe 12 luni.",
+      icon: CalendarDays,
+    },
+    {
+      value: "bill" as ConsumptionMode,
+      label: "Valoarea facturii",
+      description: "Estimăm consumul și îți arătăm ipoteza folosită.",
+      icon: Receipt,
+    },
   ];
   return (
     <Card
@@ -551,9 +593,17 @@ function ConsumptionStep({ state, patch }: StepProps) {
                 />
               </div>
               <p className="mt-3 text-sm font-medium">
-                {state.editedBillEstimateKwh
-                  ? <>Estimarea inițială a fost {estimatedBillKwh} kWh/lună. Pentru calcul folosim {state.editedBillEstimateKwh} kWh/lună, valoarea corectată de tine.</>
-                  : <>Pentru calcul folosim estimarea automată de {estimatedBillKwh} kWh/lună. Câmpul de corecție poate rămâne gol.</>}
+                {state.editedBillEstimateKwh ? (
+                  <>
+                    Estimarea inițială a fost {estimatedBillKwh} kWh/lună. Pentru calcul folosim{" "}
+                    {state.editedBillEstimateKwh} kWh/lună, valoarea corectată de tine.
+                  </>
+                ) : (
+                  <>
+                    Pentru calcul folosim estimarea automată de {estimatedBillKwh} kWh/lună. Câmpul
+                    de corecție poate rămâne gol.
+                  </>
+                )}
               </p>
             </div>
           )}
@@ -561,12 +611,36 @@ function ConsumptionStep({ state, patch }: StepProps) {
       )}
       <fieldset>
         <legend className="text-sm font-bold">Profilul obișnuit de consum</legend>
-        <div className="mt-2 grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Profilul obișnuit de consum">
+        <div
+          className="mt-2 grid gap-3 sm:grid-cols-2"
+          role="radiogroup"
+          aria-label="Profilul obișnuit de consum"
+        >
           {[
-            { value: "day" as const, title: "Mai ales ziua", description: "O mare parte din consum apare când panourile produc.", icon: Sun },
-            { value: "evening" as const, title: "Mai ales seara", description: "Consumul crește după apus.", icon: Moon },
-            { value: "constant" as const, title: "Relativ constant", description: "Consumul este distribuit pe parcursul zilei.", icon: Gauge },
-            { value: "commercial" as const, title: "Spațiu comercial", description: "Activitate și consum în principal în timpul zilei.", icon: Store },
+            {
+              value: "day" as const,
+              title: "Mai ales ziua",
+              description: "O mare parte din consum apare când panourile produc.",
+              icon: Sun,
+            },
+            {
+              value: "evening" as const,
+              title: "Mai ales seara",
+              description: "Consumul crește după apus.",
+              icon: Moon,
+            },
+            {
+              value: "constant" as const,
+              title: "Relativ constant",
+              description: "Consumul este distribuit pe parcursul zilei.",
+              icon: Gauge,
+            },
+            {
+              value: "commercial" as const,
+              title: "Spațiu comercial",
+              description: "Activitate și consum în principal în timpul zilei.",
+              icon: Store,
+            },
           ].map((option) => (
             <Choice
               key={option.value}
@@ -580,19 +654,50 @@ function ConsumptionStep({ state, patch }: StepProps) {
         </div>
       </fieldset>
       <InfoBox>
-        Un istoric pe 12 luni crește precizia rezultatului. Consumul actual și cel viitor rămân calculate separat.
+        Un istoric pe 12 luni crește precizia rezultatului. Consumul actual și cel viitor rămân
+        calculate separat.
       </InfoBox>
     </Card>
   );
 }
 
 const LOADS = [
-  { kind: "ev" as LoadKind, label: "Mașină electrică", description: "Include încărcarea actuală sau planificată.", icon: CarFront },
-  { kind: "heat-pump" as LoadKind, label: "Pompă de căldură", description: "Poate schimba semnificativ consumul anual.", icon: ThermometerSun },
-  { kind: "boiler" as LoadKind, label: "Boiler electric", description: "Apă caldă produsă electric.", icon: BatteryCharging },
-  { kind: "air-conditioning" as LoadKind, label: "Aer condiționat", description: "Consum sezonier, în special vara.", icon: Snowflake },
-  { kind: "workshop" as LoadKind, label: "Atelier / echipamente mari", description: "Motoare, scule sau utilaje cu consum relevant.", icon: Wrench },
-  { kind: "other" as LoadKind, label: "Alt consumator", description: "Un consum important care nu apare mai sus.", icon: Zap },
+  {
+    kind: "ev" as LoadKind,
+    label: "Mașină electrică",
+    description: "Include încărcarea actuală sau planificată.",
+    icon: CarFront,
+  },
+  {
+    kind: "heat-pump" as LoadKind,
+    label: "Pompă de căldură",
+    description: "Poate schimba semnificativ consumul anual.",
+    icon: ThermometerSun,
+  },
+  {
+    kind: "boiler" as LoadKind,
+    label: "Boiler electric",
+    description: "Apă caldă produsă electric.",
+    icon: BatteryCharging,
+  },
+  {
+    kind: "air-conditioning" as LoadKind,
+    label: "Aer condiționat",
+    description: "Consum sezonier, în special vara.",
+    icon: Snowflake,
+  },
+  {
+    kind: "workshop" as LoadKind,
+    label: "Atelier / echipamente mari",
+    description: "Motoare, scule sau utilaje cu consum relevant.",
+    icon: Wrench,
+  },
+  {
+    kind: "other" as LoadKind,
+    label: "Alt consumator",
+    description: "Un consum important care nu apare mai sus.",
+    icon: Zap,
+  },
 ];
 
 function LoadsStep({ state, patch }: StepProps) {
@@ -717,11 +822,19 @@ function LocationStep({ state, patch }: StepProps) {
     >
       <SolarLocationSearch
         value={state.locationPrecision === "precise" ? state.location : undefined}
-        onSelect={(location) => { patch({ location, locationPrecision: "precise" }); setCountyOpen(false); }}
+        onSelect={(location) => {
+          patch({ location, locationPrecision: "precise" });
+          setCountyOpen(false);
+        }}
         onClear={() => patch({ location: undefined, locationPrecision: "missing" })}
       />
       <div>
-        <button type="button" className="text-sm font-semibold text-brand-green underline underline-offset-4" onClick={() => setCountyOpen((open) => !open)} aria-expanded={countyOpen}>
+        <button
+          type="button"
+          className="text-sm font-semibold text-brand-green underline underline-offset-4"
+          onClick={() => setCountyOpen((open) => !open)}
+          aria-expanded={countyOpen}
+        >
           Nu găsești localitatea? Alege județul.
         </button>
         {countyOpen && (
@@ -746,9 +859,15 @@ function LocationStep({ state, patch }: StepProps) {
               className="mt-2 w-full rounded-xl border border-input bg-white px-3 py-3"
             >
               <option value="">Alege județul</option>
-              {COUNTIES.map((county) => <option key={county.code} value={county.code}>{county.county}</option>)}
+              {COUNTIES.map((county) => (
+                <option key={county.code} value={county.code}>
+                  {county.county}
+                </option>
+              ))}
             </select>
-            <span className="mt-2 block text-xs text-muted-foreground">Estimarea folosește centrul județului și are precizie mai redusă.</span>
+            <span className="mt-2 block text-xs text-muted-foreground">
+              Estimarea folosește centrul județului și are precizie mai redusă.
+            </span>
           </label>
         )}
       </div>
@@ -770,9 +889,24 @@ function LocationStep({ state, patch }: StepProps) {
 
 function RoofStep({ state, patch }: StepProps) {
   const propertyOptions = [
-    { value: "house" as const, title: "Casă", description: "Acoperiș individual, cu acces direct pentru verificări.", icon: Home },
-    { value: "apartment" as const, title: "Apartament / acoperiș comun", description: "Necesită acorduri și verificarea dreptului de utilizare.", icon: Store },
-    { value: "small-commercial" as const, title: "Spațiu comercial mic", description: "Consum și branșament care trebuie confirmate separat.", icon: Wrench },
+    {
+      value: "house" as const,
+      title: "Casă",
+      description: "Acoperiș individual, cu acces direct pentru verificări.",
+      icon: Home,
+    },
+    {
+      value: "apartment" as const,
+      title: "Apartament / acoperiș comun",
+      description: "Necesită acorduri și verificarea dreptului de utilizare.",
+      icon: Store,
+    },
+    {
+      value: "small-commercial" as const,
+      title: "Spațiu comercial mic",
+      description: "Consum și branșament care trebuie confirmate separat.",
+      icon: Wrench,
+    },
   ];
   const orientationOptions = [
     ["south", "Sud", "Producție anuală de regulă favorabilă."],
@@ -798,9 +932,20 @@ function RoofStep({ state, patch }: StepProps) {
     >
       <fieldset>
         <legend className="text-sm font-bold">Tipul proprietății</legend>
-        <div className="mt-2 grid gap-3 sm:grid-cols-3" role="radiogroup" aria-label="Tipul proprietății">
+        <div
+          className="mt-2 grid gap-3 sm:grid-cols-3"
+          role="radiogroup"
+          aria-label="Tipul proprietății"
+        >
           {propertyOptions.map((option) => (
-            <Choice key={option.value} selected={state.buildingType === option.value} onClick={() => patch({ buildingType: option.value })} icon={option.icon} title={option.title} description={option.description} />
+            <Choice
+              key={option.value}
+              selected={state.buildingType === option.value}
+              onClick={() => patch({ buildingType: option.value })}
+              icon={option.icon}
+              title={option.title}
+              description={option.description}
+            />
           ))}
         </div>
       </fieldset>
@@ -808,9 +953,25 @@ function RoofStep({ state, patch }: StepProps) {
       {state.buildingType && (
         <fieldset>
           <legend className="text-sm font-bold">Orientarea principală</legend>
-          <div className="mt-2 grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Orientarea principală">
+          <div
+            className="mt-2 grid gap-3 sm:grid-cols-2"
+            role="radiogroup"
+            aria-label="Orientarea principală"
+          >
             {orientationOptions.map(([value, title, description]) => (
-              <Choice key={value} selected={state.orientation === value} onClick={() => patch({ orientation: value })} illustration={<RoofOrientationIllustration orientation={value} selected={state.orientation === value} />} title={title} description={description} />
+              <Choice
+                key={value}
+                selected={state.orientation === value}
+                onClick={() => patch({ orientation: value })}
+                illustration={
+                  <RoofOrientationIllustration
+                    orientation={value}
+                    selected={state.orientation === value}
+                  />
+                }
+                title={title}
+                description={description}
+              />
             ))}
           </div>
         </fieldset>
@@ -819,9 +980,22 @@ function RoofStep({ state, patch }: StepProps) {
       {state.orientation && (
         <fieldset>
           <legend className="text-sm font-bold">Umbrirea acoperișului</legend>
-          <div className="mt-2 grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Umbrirea acoperișului">
+          <div
+            className="mt-2 grid gap-3 sm:grid-cols-2"
+            role="radiogroup"
+            aria-label="Umbrirea acoperișului"
+          >
             {shadingOptions.map(([value, title, description]) => (
-              <Choice key={value} selected={state.shading === value} onClick={() => patch({ shading: value })} illustration={<RoofShadingIllustration shading={value} selected={state.shading === value} />} title={title} description={description} />
+              <Choice
+                key={value}
+                selected={state.shading === value}
+                onClick={() => patch({ shading: value })}
+                illustration={
+                  <RoofShadingIllustration shading={value} selected={state.shading === value} />
+                }
+                title={title}
+                description={description}
+              />
             ))}
           </div>
         </fieldset>
@@ -836,7 +1010,18 @@ function RoofStep({ state, patch }: StepProps) {
               ["three-phase", "Trifazat"],
               ["unknown", "Nu știu"],
             ].map(([value, title]) => (
-              <Choice key={value} selected={state.connectionType === value} onClick={() => patch({ connectionType: value as State["connectionType"] })} icon={Zap} title={title} description={value === "unknown" ? "Încrederea rezultatului va fi mai redusă." : "Va fi verificat față de puterea sistemului."} />
+              <Choice
+                key={value}
+                selected={state.connectionType === value}
+                onClick={() => patch({ connectionType: value as State["connectionType"] })}
+                icon={Zap}
+                title={title}
+                description={
+                  value === "unknown"
+                    ? "Încrederea rezultatului va fi mai redusă."
+                    : "Va fi verificat față de puterea sistemului."
+                }
+              />
             ))}
           </div>
         </fieldset>
@@ -844,20 +1029,45 @@ function RoofStep({ state, patch }: StepProps) {
 
       {state.buildingType === "apartment" && (
         <InfoBox>
-          Pentru un acoperiș comun sunt necesare acordurile aplicabile și o verificare tehnică a suprafeței disponibile. Estimarea rămâne preliminară.
+          Pentru un acoperiș comun sunt necesare acordurile aplicabile și o verificare tehnică a
+          suprafeței disponibile. Estimarea rămâne preliminară.
         </InfoBox>
       )}
 
       <details className="rounded-xl border border-border p-4">
-        <summary className="cursor-pointer font-bold">Detalii opționale pentru o recomandare mai precisă</summary>
+        <summary className="cursor-pointer font-bold">
+          Detalii opționale pentru o recomandare mai precisă
+        </summary>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <NumberField label="Înclinație aproximativă" unit="grade" value={state.tiltDeg} min={0} max={70} onChange={(value) => patch({ tiltDeg: value })} />
-          <NumberField label="Suprafață utilă" unit="m²" value={state.usableRoofAreaM2} min={1} max={1000} onChange={(value) => patch({ usableRoofAreaM2: value })} />
-          <NumberField label="Număr maxim panouri" unit="panouri" value={state.maxPanelCount} min={1} max={200} onChange={(value) => patch({ maxPanelCount: value })} />
+          <NumberField
+            label="Înclinație aproximativă"
+            unit="grade"
+            value={state.tiltDeg}
+            min={0}
+            max={70}
+            onChange={(value) => patch({ tiltDeg: value })}
+          />
+          <NumberField
+            label="Suprafață utilă"
+            unit="m²"
+            value={state.usableRoofAreaM2}
+            min={1}
+            max={1000}
+            onChange={(value) => patch({ usableRoofAreaM2: value })}
+          />
+          <NumberField
+            label="Număr maxim panouri"
+            unit="panouri"
+            value={state.maxPanelCount}
+            min={1}
+            max={200}
+            onChange={(value) => patch({ maxPanelCount: value })}
+          />
         </div>
       </details>
       <InfoBox>
-        Dacă suprafața sau numărul de panouri nu sunt cunoscute, recomandarea rămâne provizorie și va cere verificarea acoperișului.
+        Dacă suprafața sau numărul de panouri nu sunt cunoscute, recomandarea rămâne provizorie și
+        va cere verificarea acoperișului.
       </InfoBox>
     </Card>
   );
@@ -865,11 +1075,36 @@ function RoofStep({ state, patch }: StepProps) {
 
 function GoalStep({ state, patch }: StepProps) {
   const goals = [
-    { value: "bill" as Goal, label: "Factură mai mică", description: "Prioritizăm reducerea costului energiei.", icon: Wallet },
-    { value: "payback" as Goal, label: "Amortizare rezonabilă", description: "Echilibrăm investiția și economiile estimate.", icon: TrendingUp },
-    { value: "independence" as Goal, label: "Mai multă independență", description: "Reducem dependența de energia din rețea.", icon: Sun },
-    { value: "backup" as Goal, label: "Backup la întreruperi", description: "Analizăm autonomia pentru circuitele esențiale.", icon: ShieldCheck },
-    { value: "ev" as Goal, label: "Pregătire pentru mașină electrică", description: "Luăm în calcul încărcarea viitoare acasă.", icon: CarFront },
+    {
+      value: "bill" as Goal,
+      label: "Factură mai mică",
+      description: "Prioritizăm reducerea costului energiei.",
+      icon: Wallet,
+    },
+    {
+      value: "payback" as Goal,
+      label: "Amortizare rezonabilă",
+      description: "Echilibrăm investiția și economiile estimate.",
+      icon: TrendingUp,
+    },
+    {
+      value: "independence" as Goal,
+      label: "Mai multă independență",
+      description: "Reducem dependența de energia din rețea.",
+      icon: Sun,
+    },
+    {
+      value: "backup" as Goal,
+      label: "Backup la întreruperi",
+      description: "Analizăm autonomia pentru circuitele esențiale.",
+      icon: ShieldCheck,
+    },
+    {
+      value: "ev" as Goal,
+      label: "Pregătire pentru mașină electrică",
+      description: "Luăm în calcul încărcarea viitoare acasă.",
+      icon: CarFront,
+    },
   ];
   return (
     <Card
@@ -890,14 +1125,45 @@ function GoalStep({ state, patch }: StepProps) {
       </div>
       <fieldset>
         <legend className="text-sm font-bold">Cum analizăm bateria?</legend>
-        <div className="mt-2 grid gap-3 sm:grid-cols-2" role="radiogroup" aria-label="Scenariu baterie">
+        <div
+          className="mt-2 grid gap-3 sm:grid-cols-2"
+          role="radiogroup"
+          aria-label="Scenariu baterie"
+        >
           {[
-            { value: "compare" as const, title: "Compară ambele variante", description: "Vezi separat investiția și amortizarea cu și fără baterie.", icon: Gauge },
-            { value: "none" as const, title: "Fără baterie", description: "Investiție inițială mai mică și, de regulă, amortizare mai rapidă.", icon: Sun },
-            { value: "practical" as const, title: "Pentru autoconsum", description: "Mută o parte din surplus către seară, dar crește investiția.", icon: BatteryCharging },
-            { value: "backup" as const, title: "Pentru backup", description: "Păstrează circuite esențiale alimentate în timpul unei pene de curent.", icon: ShieldCheck },
+            {
+              value: "compare" as const,
+              title: "Compară ambele variante",
+              description: "Vezi separat investiția și amortizarea cu și fără baterie.",
+              icon: Gauge,
+            },
+            {
+              value: "none" as const,
+              title: "Fără baterie",
+              description: "Investiție inițială mai mică și, de regulă, amortizare mai rapidă.",
+              icon: Sun,
+            },
+            {
+              value: "practical" as const,
+              title: "Pentru autoconsum",
+              description: "Mută o parte din surplus către seară, dar crește investiția.",
+              icon: BatteryCharging,
+            },
+            {
+              value: "backup" as const,
+              title: "Pentru backup",
+              description: "Păstrează circuite esențiale alimentate în timpul unei pene de curent.",
+              icon: ShieldCheck,
+            },
           ].map((option) => (
-            <Choice key={option.value} selected={state.batteryPreference === option.value} onClick={() => patch({ batteryPreference: option.value })} icon={option.icon} title={option.title} description={option.description} />
+            <Choice
+              key={option.value}
+              selected={state.batteryPreference === option.value}
+              onClick={() => patch({ batteryPreference: option.value })}
+              icon={option.icon}
+              title={option.title}
+              description={option.description}
+            />
           ))}
         </div>
       </fieldset>
@@ -921,8 +1187,40 @@ function GoalStep({ state, patch }: StepProps) {
           />
         </div>
       )}
+      {state.goal && state.batteryPreference && (
+        <section className="recommendation-review" aria-labelledby="recommendation-review-title">
+          <p className="home-v2-eyebrow">Verificare înainte de calcul</p>
+          <h3 id="recommendation-review-title">Datele pe care se va baza recomandarea</h3>
+          <dl>
+            <Summary label="Consum declarat" value={consumptionSummary(state)} />
+            <Summary label="Locație" value={state.location?.displayLabel ?? "De completat"} />
+            <Summary
+              label="Acoperiș"
+              value={state.orientation ? labelOrientation(state.orientation) : "De completat"}
+            />
+            <Summary
+              label="Baterie"
+              value={
+                state.batteryPreference === "compare"
+                  ? "Comparăm cu și fără baterie"
+                  : state.batteryPreference === "none"
+                    ? "Fără baterie"
+                    : state.batteryPreference === "backup"
+                      ? "Scenariu de backup"
+                      : "Scenariu de autoconsum"
+              }
+            />
+          </dl>
+          <p>
+            Poți reveni la orice pas înainte de calcul. Formulele și valorile implicite nu sunt
+            modificate de această prezentare.
+          </p>
+        </section>
+      )}
       <InfoBox>
-        Un invertor hibrid nu menține automat întreaga locuință alimentată în timpul unei pene de curent. Pentru funcția de backup sunt necesare o ieșire EPS compatibilă, o baterie dimensionată corect și circuite esențiale dedicate.
+        Un invertor hibrid nu menține automat întreaga locuință alimentată în timpul unei pene de
+        curent. Pentru funcția de backup sunt necesare o ieșire EPS compatibilă, o baterie
+        dimensionată corect și circuite esențiale dedicate.
       </InfoBox>
     </Card>
   );
@@ -954,9 +1252,7 @@ function ResultView({
         <div className="text-xs font-bold uppercase tracking-wider text-[color:var(--brand-green)]">
           Recomandarea ta orientativă
         </div>
-        <h2 className="mt-3 text-3xl font-black md:text-5xl">
-          {p.capacityKwp} kWp
-        </h2>
+        <h2 className="mt-3 text-3xl font-black md:text-5xl">{p.capacityKwp} kWp</h2>
         <p className="mt-2 text-lg font-bold">
           Recomandarea principală · aproximativ {p.panelCount} panouri
         </p>
@@ -971,7 +1267,11 @@ function ResultView({
             label="Producție estimată"
             value={`${p.annualProductionKwh.toLocaleString("ro-RO")} kWh/an`}
           />
-          <Metric icon={Wallet} label="Investiție de bază" value={`${p.economics.base.investmentLei.toLocaleString("ro-RO")} lei`} />
+          <Metric
+            icon={Wallet}
+            label="Investiție de bază"
+            value={`${p.economics.base.investmentLei.toLocaleString("ro-RO")} lei`}
+          />
           <Metric
             icon={TrendingUp}
             label="Economie anuală de bază"
@@ -998,33 +1298,59 @@ function ResultView({
 
       <section className="grid gap-4 md:grid-cols-3" aria-label="Intervale și incertitudini">
         <ResultDetails title="Sensibilitatea producției">
-          <Summary label="Estimare centrală" value={`${p.annualProductionKwh.toLocaleString("ro-RO")} kWh/an`} />
-          <Summary label="Interval orientativ" value={`${result.uncertainty.productionKwh.min.toLocaleString("ro-RO")}–${result.uncertainty.productionKwh.max.toLocaleString("ro-RO")} kWh/an`} />
-          <Summary label="Poate varia din cauza" value={result.uncertainty.productionDrivers.join(", ")} />
+          <Summary
+            label="Estimare centrală"
+            value={`${p.annualProductionKwh.toLocaleString("ro-RO")} kWh/an`}
+          />
+          <Summary
+            label="Interval orientativ"
+            value={`${result.uncertainty.productionKwh.min.toLocaleString("ro-RO")}–${result.uncertainty.productionKwh.max.toLocaleString("ro-RO")} kWh/an`}
+          />
+          <Summary
+            label="Poate varia din cauza"
+            value={result.uncertainty.productionDrivers.join(", ")}
+          />
         </ResultDetails>
         <ResultDetails title="Intervalul costului de piață">
-          <Summary label="Scenariu central" value={`${p.economics.base.investmentLei.toLocaleString("ro-RO")} lei`} />
+          <Summary
+            label="Scenariu central"
+            value={`${p.economics.base.investmentLei.toLocaleString("ro-RO")} lei`}
+          />
           <Summary label="Interval realist" value={money(result.uncertainty.marketCostLei)} />
-          <Summary label="Poate varia din cauza" value="echipamentelor, montajului și serviciilor incluse" />
+          <Summary
+            label="Poate varia din cauza"
+            value="echipamentelor, montajului și serviciilor incluse"
+          />
         </ResultDetails>
         <ResultDetails title="Sensibilitatea economică">
           <Summary label="Amortizare centrală" value={`${p.economics.base.paybackYears} ani`} />
-          <Summary label="Scenarii" value={`${result.uncertainty.economicPaybackYears.min}–${result.uncertainty.economicPaybackYears.max} ani`} />
+          <Summary
+            label="Scenarii"
+            value={`${result.uncertainty.economicPaybackYears.min}–${result.uncertainty.economicPaybackYears.max} ani`}
+          />
           <Summary label="Poate varia din cauza" value="tarifelor și orelor de autoconsum" />
         </ResultDetails>
       </section>
 
       {state.batteryPreference === "compare" && (
-        <section className="rounded-2xl border border-border bg-white p-5 md:p-6" data-testid="battery-comparison">
+        <section
+          className="rounded-2xl border border-border bg-white p-5 md:p-6"
+          data-testid="battery-comparison"
+        >
           <h3 className="text-xl font-bold">Comparație cu și fără baterie</h3>
-          <p className="mt-2 text-sm text-muted-foreground">Scenariu financiar de bază: fără baterie. Capacitatea fotovoltaică rămâne {p.capacityKwp} kWp; bateria schimbă fluxul energiei și economia, nu producția panourilor.</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Scenariu financiar de bază: fără baterie. Capacitatea fotovoltaică rămâne{" "}
+            {p.capacityKwp} kWp; bateria schimbă fluxul energiei și economia, nu producția
+            panourilor.
+          </p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {[
               ["Fără baterie", p.scenarios.withoutBattery],
               ["Cu baterie practică", p.scenarios.withBattery],
             ].map(([label, scenario]) => {
               const item = scenario as typeof p.scenarios.withoutBattery;
-              const other = item.kind === "none" ? p.scenarios.withBattery : p.scenarios.withoutBattery;
+              const other =
+                item.kind === "none" ? p.scenarios.withBattery : p.scenarios.withoutBattery;
               const badge =
                 item.economics.base.paybackYears < other.economics.base.paybackYears
                   ? "Amortizare mai rapidă"
@@ -1033,13 +1359,24 @@ function ResultView({
                     : "Investiție mai mică";
               return (
                 <div key={label as string} className="rounded-xl border border-border p-4">
-                  <div className="text-xs font-bold uppercase tracking-wider text-brand-green">{badge}</div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-brand-green">
+                    {badge}
+                  </div>
                   <h4 className="mt-2 font-bold">{label as string}</h4>
                   <dl className="mt-3 space-y-2 text-sm">
                     <Summary label="Investiție" value={money(item.investmentLei)} />
-                    <Summary label="Economii/an" value={`${item.annualSavingsLei.min.toLocaleString("ro-RO")}–${item.annualSavingsLei.max.toLocaleString("ro-RO")} lei`} />
-                    <Summary label="Amortizare simplă" value={`${item.paybackYears.min}–${item.paybackYears.max} ani`} />
-                    <Summary label="Backup" value={item.kind === "none" ? "Nu" : "Doar cu EPS și circuite dedicate"} />
+                    <Summary
+                      label="Economii/an"
+                      value={`${item.annualSavingsLei.min.toLocaleString("ro-RO")}–${item.annualSavingsLei.max.toLocaleString("ro-RO")} lei`}
+                    />
+                    <Summary
+                      label="Amortizare simplă"
+                      value={`${item.paybackYears.min}–${item.paybackYears.max} ani`}
+                    />
+                    <Summary
+                      label="Backup"
+                      value={item.kind === "none" ? "Nu" : "Doar cu EPS și circuite dedicate"}
+                    />
                   </dl>
                 </div>
               );
@@ -1133,7 +1470,8 @@ function ResultView({
         <summary className="cursor-pointer font-bold">Cum am calculat</summary>
         <div className="mt-4 space-y-2 text-sm text-muted-foreground">
           <p>
-            Versiune model: <b>{result.assumptionsVersion}</b> · benchmark: <b>{result.benchmarkVersion}</b>
+            Versiune model: <b>{result.assumptionsVersion}</b> · benchmark:{" "}
+            <b>{result.benchmarkVersion}</b>
           </p>
           <p>
             Locație: <b>{state.location?.displayLabel}</b> · precizie{" "}
@@ -1144,7 +1482,11 @@ function ResultView({
             {profile?.fallbackReason ? ` — ${profile.fallbackReason}` : ""}
           </p>
           <p>Calculat la: {new Date(result.calculatedAt).toLocaleString("ro-RO")}</p>
-          <p>Prețurile sunt intervale orientative, nu oferte. Amortizarea simplă nu include finanțare, rată de actualizare, schimbări viitoare de tarif, mentenanță sau înlocuiri. Rezultatul nu este proiect tehnic.</p>
+          <p>
+            Prețurile sunt intervale orientative, nu oferte. Amortizarea simplă nu include
+            finanțare, rată de actualizare, schimbări viitoare de tarif, mentenanță sau înlocuiri.
+            Rezultatul nu este proiect tehnic.
+          </p>
         </div>
       </details>
 
