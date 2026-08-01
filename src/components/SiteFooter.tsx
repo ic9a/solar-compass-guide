@@ -8,8 +8,7 @@ export function SiteFooter() {
         <div className="md:col-span-2">
           <Logo onDark />
           <p className="mt-5 max-w-md text-sm leading-7 text-white/75">
-            raportsolar.ro te ajută să alegi un sistem potrivit consumului tău și să înțelegi oferta
-            instalatorului înainte să iei o decizie.
+            Află ce sistem se potrivește casei tale și verifică oferta primită înainte să semnezi.
           </p>
         </div>
         <div>

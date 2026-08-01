@@ -1,48 +1,31 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import {
-  ArrowRight,
-  BarChart3,
-  BatteryCharging,
-  BookOpen,
-  Check,
-  ChevronRight,
-  CircleHelp,
-  FileSearch,
-  Gauge,
-  Home,
-  Layers3,
-  MapPinned,
-  PanelTop,
-  Route as RouteIcon,
-  ShieldCheck,
-  Sun,
-  Upload,
-  Zap,
-} from "lucide-react";
+import type { CSSProperties, ReactNode } from "react";
+import { ArrowRight, Check, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { trackAnalytics } from "@/lib/analytics";
-import { HOMEPAGE_GUIDE_SLUGS, editorialBySlug } from "@/lib/seo-content";
+import { editorialPages } from "@/lib/seo-content";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "raportsolar.ro — recomandare și analiză pentru sistemul tău fotovoltaic" },
+      { title: "Sistem fotovoltaic potrivit pentru casa ta | raportsolar.ro" },
       {
         name: "description",
         content:
-          "Află ce sistem fotovoltaic se potrivește locuinței tale sau verifică oferta primită, cu ipoteze explicate și estimări bazate pe date.",
+          "Află ce putere, producție și baterie se potrivesc casei tale sau verifică oferta fotovoltaică primită înainte să iei o decizie.",
       },
       {
         property: "og:title",
-        content: "RaportSolar — o decizie fotovoltaică explicată pentru locuința ta",
+        content: "Sistem fotovoltaic potrivit pentru casa ta | raportsolar.ro",
       },
       {
         property: "og:description",
         content:
-          "Recomandare bazată pe consum, locuință și obiective sau analiză clară pentru oferta pe care ai primit-o.",
+          "Calculează sistemul potrivit pentru casa ta sau verifică, punct cu punct, oferta primită.",
       },
       { property: "og:url", content: "/" },
+      { property: "og:image", content: "/brand/raportsolar-og.png" },
     ],
     links: [{ rel: "canonical", href: "/" }],
   }),
@@ -52,607 +35,637 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   useEffect(() => {
     trackAnalytics("homepage_view", { session: "unknown" });
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      elements.forEach((element) => element.setAttribute("data-visible", "true"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          (entry.target as HTMLElement).setAttribute("data-visible", "true");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16 },
+    );
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
   }, []);
 
   return (
     <SiteLayout>
       <Hero />
-      <MainPaths />
-      <HowItWorks />
-      <Independence />
-      <RecommendationPreview />
-      <SolarMap />
-      <EditorialGuides />
-      <FinalCta />
+      <Choice />
+      <Journey />
+      <RecommendationShowcase />
+      <OfferAnalysis />
+      <SolarMapStory />
+      <Trust />
+      <Guides />
+      <Closing />
     </SiteLayout>
   );
 }
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#f4f7f1]">
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute -left-40 top-24 h-80 w-80 rounded-full bg-brand-green/10 blur-3xl" />
-        <div className="absolute -right-24 -top-24 h-[28rem] w-[28rem] rounded-full bg-brand-sun/16 blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-20 lg:grid-cols-[minmax(0,1.02fr)_minmax(25rem,.78fr)] lg:px-8">
-        <div>
-          <div className="product-kicker">
-            <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
-            Instrument independent pentru decizia ta fotovoltaică
-          </div>
-          <h1 className="mt-5 max-w-4xl text-[2.65rem] font-bold leading-[1.02] tracking-[-0.055em] sm:text-6xl sm:leading-[0.98] lg:text-[4.75rem]">
-            Află ce sistem fotovoltaic se potrivește
-            <span className="block text-gradient-brand">locuinței tale.</span>
+    <section className="home-v2-hero">
+      <div className="home-v2-hero__glow" aria-hidden="true" />
+      <div className="home-v2-shell home-v2-hero__grid">
+        <div className="home-v2-hero__copy">
+          <p className="home-v2-eyebrow">Recomandare fotovoltaică pentru casa ta</p>
+          <h1>
+            Află ce sistem fotovoltaic ți se potrivește înainte să ceri sau să accepți o ofertă.
           </h1>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg md:text-xl md:leading-8">
-            RaportSolar folosește consumul, locuința și obiectivele tale pentru o recomandare
-            explicată. Dacă ai deja o ofertă, verifică prețul, echipamentele și informațiile care
-            lipsesc înainte să decizi.
+          <p className="home-v2-lead">
+            RaportSolar estimează puterea sistemului, producția și rolul bateriei pe baza consumului
+            și a locuinței tale. Ai primit deja o ofertă? O poți verifica punct cu punct înainte să
+            iei o decizie.
           </p>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link
+          <div className="home-v2-actions">
+            <TrackedLink
               to="/recomandare-sistem"
-              onClick={() =>
-                trackAnalytics("homepage_primary_cta_clicked", {
-                  session: "unknown",
-                  destinationTool: "recommendation",
-                })
-              }
-              className="hero-action hero-action--primary !px-6 !py-3.5"
+              event="homepage_primary_cta_clicked"
+              destination="recommendation"
+              primary
             >
-              Începe recomandarea
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
+              Calculează sistemul potrivit <ArrowRight aria-hidden="true" />
+            </TrackedLink>
+            <TrackedLink
               to="/upload-oferta"
-              onClick={() =>
-                trackAnalytics("homepage_secondary_cta_clicked", {
-                  session: "unknown",
-                  destinationTool: "offer_analysis",
-                })
-              }
-              className="hero-action !px-6 !py-3.5"
+              event="homepage_secondary_cta_clicked"
+              destination="offer_analysis"
             >
-              <Upload className="h-4 w-4" aria-hidden="true" />
-              Analizează o ofertă
-            </Link>
+              Verifică oferta primită
+            </TrackedLink>
           </div>
-
-          <ul className="mt-8 grid max-w-2xl gap-3 text-sm text-foreground/70 sm:grid-cols-2">
-            <TrustPoint text="Recomandare și ipoteze explicate" />
-            <TrustPoint text="Estimări de producție bazate pe PVGIS" />
-            <TrustPoint text="Fără obligația de a cumpăra de la un instalator" />
-            <TrustPoint text="Incertitudinile rămân vizibile" />
-          </ul>
+          <p className="home-v2-proof">
+            Estimări bazate pe PVGIS <span>·</span> explicații clare <span>·</span> fără vânzare de
+            echipamente
+          </p>
         </div>
-
-        <ProductVisual />
+        <HeroScene />
       </div>
+      <SolarCurve />
     </section>
   );
 }
 
-function ProductVisual() {
+function HeroScene() {
   return (
-    <div className="relative" aria-label="Exemplu orientativ de recomandare RaportSolar">
-      <div
-        className="pointer-events-none absolute -inset-8 rounded-full bg-brand-green/10 blur-3xl"
-        aria-hidden="true"
-      />
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-white/80 bg-white p-5 shadow-[0_36px_100px_-40px_rgba(16,42,43,.42)] sm:rounded-[2.35rem] sm:p-7">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-              Exemplu orientativ
-            </div>
-            <h2 className="mt-1 text-xl font-bold tracking-[-0.03em]">
-              Recomandare pentru locuință
-            </h2>
-          </div>
-          <span className="rounded-full bg-brand-green-soft px-3 py-1.5 text-xs font-bold text-brand-green">
-            Ipoteze vizibile
-          </span>
+    <div
+      className="hero-scene"
+      role="img"
+      aria-label="Ilustrație: energia solară este transformată într-o recomandare pentru casă"
+    >
+      <svg viewBox="0 0 720 620" role="img" aria-hidden="true" className="hero-scene__svg">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#e9f7dc" />
+            <stop offset="1" stopColor="#f8f5e9" />
+          </linearGradient>
+          <linearGradient id="roof" x1="0" y1="0" x2="1" y2="1">
+            <stop stopColor="#174d42" />
+            <stop offset="1" stopColor="#0b2f29" />
+          </linearGradient>
+          <filter id="softShadow" x="-30%" y="-30%" width="160%" height="180%">
+            <feDropShadow
+              dx="0"
+              dy="18"
+              stdDeviation="18"
+              floodColor="#0c332a"
+              floodOpacity=".16"
+            />
+          </filter>
+        </defs>
+        <path d="M48 468C110 307 226 179 389 91c104-56 202-66 283-43v520H48Z" fill="url(#sky)" />
+        <circle className="hero-sun" cx="563" cy="116" r="59" fill="#ffb511" />
+        <g filter="url(#softShadow)">
+          <path d="M100 378 286 222l186 156v157H100Z" fill="#fffdf7" />
+          <path d="m68 381 218-182 219 182-35 31-184-154-184 154Z" fill="url(#roof)" />
+          <path d="M159 330 276 235l90 75-119 91Z" fill="#123f37" />
+          <g transform="translate(173 292) skewX(-13)">
+            <rect width="142" height="82" rx="5" fill="#1f6e63" stroke="#9ed9c7" strokeWidth="3" />
+            <path
+              d="M47 0v82M94 0v82M0 27h142M0 55h142"
+              stroke="#9ed9c7"
+              strokeWidth="2"
+              opacity=".72"
+            />
+          </g>
+          <rect x="309" y="397" width="81" height="138" rx="6" fill="#e9d3ad" />
+          <rect x="140" y="421" width="98" height="66" rx="6" fill="#c6e8dc" />
+          <path d="M148 487h84M189 424v60" stroke="#6fae9d" strokeWidth="5" />
+        </g>
+        <path
+          className="energy-path"
+          d="M557 185c-35 55-86 75-135 80-55 6-97 25-120 63"
+          fill="none"
+          stroke="#ffb511"
+          strokeLinecap="round"
+          strokeWidth="8"
+        />
+        <path
+          className="energy-path energy-path--two"
+          d="M319 370c58 48 109 61 156 40 45-20 84-12 113 25"
+          fill="none"
+          stroke="#0e9f61"
+          strokeLinecap="round"
+          strokeWidth="7"
+        />
+        <g className="hero-battery" transform="translate(523 405)">
+          <rect x="0" y="0" width="91" height="126" rx="18" fill="#103d35" />
+          <rect x="33" y="-9" width="25" height="12" rx="5" fill="#103d35" />
+          <path d="m51 28-19 34h18l-11 34 27-44H48Z" fill="#ffb511" />
+        </g>
+      </svg>
+      <div className="hero-result">
+        <span>Exemplu de rezultat</span>
+        <strong>Sistem recomandat</strong>
+        <div>
+          <b>5,4–6,2</b> kWp
         </div>
-
-        <div className="mt-6 rounded-[1.5rem] bg-[#102a2b] p-5 text-white">
-          <div className="text-xs font-semibold text-white/60">Interval recomandat</div>
-          <div className="mt-2 flex items-end gap-2">
-            <strong className="text-4xl tracking-[-0.05em]">5,4–6,2</strong>
-            <span className="pb-1 text-sm text-white/65">kWp</span>
-          </div>
-          <div className="mt-5 h-2 overflow-hidden rounded-full bg-white/10" aria-hidden="true">
-            <div className="h-full w-[72%] rounded-full bg-gradient-brand" />
-          </div>
-          <p className="mt-4 text-xs leading-5 text-white/60">
-            Exemplul nu reprezintă o ofertă sau un rezultat garantat. Recomandarea reală depinde de
-            datele locuinței.
-          </p>
+        <p>12–14 panouri · 6.500–7.400 kWh/an</p>
+      </div>
+      <div className="hero-offer">
+        <img src="/brand/raportsolar-mark-512.png" width="32" height="32" alt="" />
+        <div>
+          <span>Oferta primită</span>
+          <strong>7 lucruri verificate</strong>
         </div>
-
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <PreviewStat icon={PanelTop} label="Panouri" value="12–14" />
-          <PreviewStat icon={Zap} label="Producție anuală" value="6,5–7,4 MWh" />
-          <PreviewStat icon={BatteryCharging} label="Baterie" value="Comparată separat" />
-          <PreviewStat icon={BarChart3} label="Investiție" value="Interval, nu promisiune" />
-        </div>
+        <i aria-hidden="true">✓</i>
       </div>
     </div>
   );
 }
 
-function MainPaths() {
+function Choice() {
   return (
-    <section aria-labelledby="paths-title" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <div className="product-kicker">
-            <RouteIcon className="h-3.5 w-3.5" aria-hidden="true" />
-            Două puncte de plecare
-          </div>
-          <h2 id="paths-title" className="mt-5 text-4xl font-bold tracking-[-0.055em] md:text-6xl">
-            Începe de unde ești acum.
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-muted-foreground">
-            Construiește întâi un reper pentru locuința ta sau verifică documentul pe care l-ai
-            primit deja.
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <PathCard
-            tone="light"
-            icon={Home}
-            eyebrow="Nu ai încă o ofertă"
-            title="Află ce configurație merită cerută instalatorilor"
-            text="Estimăm un interval potrivit folosind consumul de electricitate, acoperișul, locația, consumatorii viitori și obiectivul pentru baterie."
-            points={[
-              "Consum și profil zilnic",
-              "Acoperiș, orientare și umbrire",
-              "Mașină electrică, pompă de căldură sau baterie",
-            ]}
-            to="/recomandare-sistem"
-            cta="Construiește recomandarea"
-            destination="recommendation"
-          />
-          <PathCard
-            tone="dark"
-            icon={FileSearch}
-            eyebrow="Ai primit deja o ofertă"
-            title="Vezi ce este clar, ce lipsește și ce trebuie întrebat"
-            text="Verificăm poziționarea prețului, panourile și invertorul, bateria, transparența instalării, garanțiile și contradicțiile dintre valori."
-            points={[
-              "Preț și servicii incluse",
-              "Echipamente și compatibilitate",
-              "Lipsuri, contradicții și garanții",
-            ]}
-            to="/upload-oferta"
-            cta="Analizează oferta"
-            destination="offer_analysis"
-          />
+    <section className="home-v2-choice" aria-labelledby="choice-title">
+      <div className="home-v2-shell" data-reveal>
+        <p className="home-v2-section-number">01</p>
+        <h2 id="choice-title">Cu ce te poate ajuta RaportSolar?</h2>
+        <div className="choice-scenes">
+          <article className="choice-scene choice-scene--home">
+            <div className="choice-scene__art" aria-hidden="true">
+              <span className="choice-roof">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="choice-meter">324 kWh</span>
+            </div>
+            <div>
+              <span>Înainte să ceri oferte</span>
+              <h3>Vrei să afli ce sistem să ceri</h3>
+              <p>
+                Răspunzi la câteva întrebări despre consum, locuință și planurile tale. Primești o
+                estimare pentru puterea sistemului, producție și baterie.
+              </p>
+              <TrackedLink
+                to="/recomandare-sistem"
+                event="homepage_tool_opened"
+                destination="recommendation"
+              >
+                Află ce sistem ți se potrivește <ChevronRight aria-hidden="true" />
+              </TrackedLink>
+            </div>
+          </article>
+          <article className="choice-scene choice-scene--offer">
+            <div className="choice-document" aria-hidden="true">
+              <span>OFERTĂ FOTOVOLTAICĂ</span>
+              <i />
+              <i />
+              <i />
+              <b>?</b>
+            </div>
+            <div>
+              <span>După ce ai primit o propunere</span>
+              <h3>Ai deja o ofertă</h3>
+              <p>
+                Încarci documentul și vezi dacă prețul, echipamentele, garanțiile și lucrările
+                incluse sunt explicate suficient.
+              </p>
+              <TrackedLink
+                to="/upload-oferta"
+                event="homepage_tool_opened"
+                destination="offer_analysis"
+              >
+                Verifică oferta <ChevronRight aria-hidden="true" />
+              </TrackedLink>
+            </div>
+          </article>
         </div>
       </div>
     </section>
   );
 }
 
-function HowItWorks() {
-  const steps = [
-    {
-      icon: Home,
-      title: "Spui cum consumă locuința",
-      text: "Adaugi datele relevante pentru cazul tău sau documentul ofertei primite.",
-    },
-    {
-      icon: Layers3,
-      title: "RaportSolar compară scenarii",
-      text: "Calculăm pe baza regulilor și ipotezelor afișate, fără să ascundem incertitudinea.",
-    },
-    {
-      icon: Gauge,
-      title: "Primești o concluzie explicată",
-      text: "Vezi recomandarea sau verificarea ofertei și factorii care pot schimba rezultatul.",
-    },
-  ];
+function Journey() {
   return (
-    <section
-      aria-labelledby="how-title"
-      className="bg-[#102a2b] px-4 py-20 text-white sm:px-6 md:py-28 lg:px-8"
-    >
-      <div className="mx-auto max-w-7xl">
-        <div className="max-w-3xl">
-          <div className="product-kicker product-kicker--dark">Cum funcționează</div>
-          <h2 id="how-title" className="mt-5 text-4xl font-bold tracking-[-0.055em] md:text-6xl">
-            Datele tale devin o decizie pe care o poți verifica.
-          </h2>
-        </div>
-        <ol className="mt-12 grid gap-8 md:grid-cols-3">
-          {steps.map((step, index) => (
-            <li key={step.title} className="border-t border-white/15 pt-6">
-              <div className="flex items-center gap-3 text-brand-sun">
-                <step.icon className="h-5 w-5" aria-hidden="true" />
-                <span className="text-xs font-bold uppercase tracking-[0.15em]">
-                  Pasul {index + 1}
-                </span>
-              </div>
-              <h3 className="mt-7 text-2xl font-bold tracking-[-0.035em]">{step.title}</h3>
-              <p className="mt-3 leading-7 text-white/62">{step.text}</p>
-            </li>
-          ))}
+    <section className="home-v2-journey" aria-labelledby="journey-title">
+      <div className="home-v2-shell" data-reveal>
+        <p className="home-v2-section-number">02</p>
+        <h2 id="journey-title">De la consumul casei la o recomandare pe care o înțelegi</h2>
+        <ol className="journey-line">
+          <JourneyStep
+            number="1"
+            title="Ne spui cum consumă locuința"
+            text="Alegi consumul lunar sau anual și adaugi informațiile care contează pentru casa ta."
+          />
+          <JourneyStep
+            number="2"
+            title="Comparăm producția și scenariile potrivite"
+            text="Calculăm producția lună cu lună și comparăm variante cu sau fără baterie."
+          />
+          <JourneyStep
+            number="3"
+            title="Vezi recomandarea și ce poate schimba rezultatul"
+            text="Primești valori orientative, explicații și întrebările pe care merită să le pui instalatorului."
+          />
         </ol>
       </div>
     </section>
   );
 }
 
-function Independence() {
+function JourneyStep({ number, title, text }: { number: string; title: string; text: string }) {
   return (
-    <section aria-labelledby="independence-title" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center">
-        <div>
-          <div className="product-kicker">
-            <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
-            Separat de vânzarea sistemului
-          </div>
-          <h2
-            id="independence-title"
-            className="mt-5 max-w-4xl text-4xl font-bold tracking-[-0.055em] md:text-6xl"
-          >
-            RaportSolar nu vinde panouri și nu clasifică instalatori pentru comision.
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground">
-            Produsul te ajută să inspectezi presupunerile din spatele unei concluzii. Vezi datele
-            folosite, limitele estimării și ce informații ar putea schimba recomandarea.
-          </p>
-        </div>
-        <div className="rounded-[2rem] border border-border bg-[#fafbf9] p-7">
-          <ul className="space-y-5">
-            <TrustPoint text="Ipotezele sunt afișate, nu mascate" />
-            <TrustPoint text="Incertitudinea este semnalată explicit" />
-            <TrustPoint text="Poți urmări cum s-a ajuns la concluzie" />
-            <TrustPoint text="Decizia rămâne a ta" />
-          </ul>
-        </div>
+    <li>
+      <span>{number}</span>
+      <div>
+        <h3>{title}</h3>
+        <p>{text}</p>
       </div>
-    </section>
-  );
-}
-
-function RecommendationPreview() {
-  const outputs = [
-    ["Panouri recomandate", "interval justificat"],
-    ["Puterea sistemului", "kWp potriviți scenariului"],
-    ["Producție anuală", "estimare și sezonalitate"],
-    ["Investiție", "interval orientativ"],
-    ["Baterie", "cu și fără stocare"],
-    ["Amortizare", "sensibilitate la ipoteze"],
-  ];
-  return (
-    <section
-      aria-labelledby="preview-title"
-      className="bg-[#f4f7f1] px-4 py-20 sm:px-6 md:py-28 lg:px-8"
-    >
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,.8fr)_minmax(30rem,1.2fr)]">
-        <div>
-          <div className="product-kicker">
-            <Gauge className="h-3.5 w-3.5" aria-hidden="true" />
-            Recomandare explicată
-          </div>
-          <h2
-            id="preview-title"
-            className="mt-5 text-4xl font-bold tracking-[-0.055em] md:text-6xl"
-          >
-            Nu primești doar o cifră.
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-muted-foreground">
-            Rezultatul pune intervalele lângă ipotezele care le susțin și arată ce se poate schimba
-            dacă evoluează consumul, orientarea sau obiectivul pentru baterie.
-          </p>
-          <Link
-            to="/exemplu-raport"
-            onClick={() =>
-              trackAnalytics("homepage_tool_opened", {
-                session: "unknown",
-                destinationTool: "offer_analysis",
-              })
-            }
-            className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#102a2b] px-5 py-3 text-sm font-semibold text-white hover:bg-[#183c3d]"
-          >
-            Vezi cum arată analiza
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-        <div className="overflow-hidden rounded-[2rem] border border-border bg-white shadow-soft">
-          <div className="border-b border-border px-6 py-5 sm:px-8">
-            <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-green">
-              Ce poți compara
-            </span>
-          </div>
-          <dl className="grid sm:grid-cols-2">
-            {outputs.map(([term, detail]) => (
-              <div
-                key={term}
-                className="border-b border-border p-6 last:border-b-0 sm:border-r sm:p-7 sm:[&:nth-last-child(-n+2)]:border-b-0 sm:[&:nth-child(even)]:border-r-0"
-              >
-                <dt className="font-bold tracking-[-0.02em]">{term}</dt>
-                <dd className="mt-2 text-sm text-muted-foreground">{detail}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SolarMap() {
-  return (
-    <section aria-labelledby="map-title" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div className="mx-auto grid max-w-7xl overflow-hidden rounded-[2rem] bg-[#102a2b] text-white lg:grid-cols-[minmax(0,1fr)_minmax(22rem,.72fr)]">
-        <div className="p-7 sm:p-10 md:p-14">
-          <div className="product-kicker product-kicker--dark">
-            <MapPinned className="h-3.5 w-3.5" aria-hidden="true" />
-            Context local bazat pe PVGIS
-          </div>
-          <h2 id="map-title" className="mt-5 text-4xl font-bold tracking-[-0.055em] md:text-6xl">
-            Soarele nu produce la fel în orice configurație.
-          </h2>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-white/62">
-            Explorează producția pentru localitatea ta și vezi efectul locației, orientării,
-            înclinației și umbririi. Harta oferă context; recomandarea completă ține cont și de
-            consum.
-          </p>
-          <Link
-            to="/harta-solara-romania"
-            onClick={() =>
-              trackAnalytics("homepage_tool_opened", {
-                session: "unknown",
-                destinationTool: "solar_map",
-              })
-            }
-            className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-[#102a2b]"
-          >
-            Explorează harta solară
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-        <div
-          className="relative min-h-72 overflow-hidden bg-[radial-gradient(circle_at_70%_35%,rgba(244,183,52,.32),transparent_30%),linear-gradient(145deg,#176247,#102a2b)]"
-          aria-hidden="true"
-        >
-          <Sun
-            className="absolute right-[18%] top-[18%] h-20 w-20 text-brand-sun"
-            strokeWidth={1.25}
-          />
-          <div className="absolute bottom-[18%] left-[14%] right-[14%] rounded-[1.4rem] border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
-            <div className="text-xs font-bold uppercase tracking-[0.14em] text-white/55">
-              Producție estimată
-            </div>
-            <div className="mt-2 text-3xl font-bold">lună cu lună</div>
-            <div className="mt-5 flex h-20 items-end gap-2">
-              {[30, 46, 62, 78, 92, 82, 70].map((height, index) => (
-                <span
-                  key={index}
-                  className="flex-1 rounded-t bg-brand-sun"
-                  style={{ height: `${height}%`, opacity: 0.48 + index * 0.06 }}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EditorialGuides() {
-  return (
-    <section aria-labelledby="guides-title" className="px-4 py-20 sm:px-6 md:py-28 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
-          <div>
-            <div className="product-kicker">
-              <BookOpen className="h-3.5 w-3.5" aria-hidden="true" />
-              Ghiduri selectate
-            </div>
-            <h2
-              id="guides-title"
-              className="mt-5 max-w-4xl text-4xl font-bold tracking-[-0.055em] md:text-6xl"
-            >
-              Înțelege opțiunile înainte să compari ofertele.
-            </h2>
-          </div>
-          <Link
-            to="/ghid-panouri-fotovoltaice"
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-white px-5 py-3 text-sm font-semibold hover:bg-muted"
-          >
-            Vezi toate cele 18 ghiduri
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
-          {HOMEPAGE_GUIDE_SLUGS.map((slug) => {
-            const page = editorialBySlug[slug];
-            return (
-              <Link
-                key={slug}
-                data-home-guide-slug={slug}
-                to="/$slug"
-                params={{ slug }}
-                onClick={() =>
-                  trackAnalytics("homepage_guide_opened", {
-                    session: "unknown",
-                    guideSlug: page.slug,
-                    editorialCategory: page.category,
-                    editorialPlacement: "homepage",
-                  })
-                }
-                className="group flex min-h-64 flex-col rounded-[1.8rem] border border-border bg-white p-7 transition-all hover:-translate-y-1 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transform-none"
-              >
-                <span className="text-xs font-bold uppercase tracking-[0.13em] text-brand-green">
-                  {page.eyebrow}
-                </span>
-                <h3 className="mt-7 text-2xl font-bold tracking-[-0.035em]">{page.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{page.summary}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-7 text-sm font-semibold">
-                  Citește ghidul
-                  <ArrowRight
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1 motion-reduce:transform-none"
-                    aria-hidden="true"
-                  />
-                </span>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FinalCta() {
-  return (
-    <section aria-labelledby="final-cta-title" className="px-4 pb-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] bg-[#f4f7f1] p-7 sm:rounded-[2.6rem] sm:p-10 md:p-14">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_auto]">
-          <div>
-            <div className="text-sm font-bold text-brand-green">Primul pas poate fi simplu</div>
-            <h2
-              id="final-cta-title"
-              className="mt-3 max-w-4xl text-3xl font-bold tracking-[-0.05em] md:text-6xl"
-            >
-              Construiește un reper înainte să ceri sau să accepți o ofertă.
-            </h2>
-          </div>
-          <div className="flex flex-col items-start gap-4 lg:items-end">
-            <Link
-              to="/recomandare-sistem"
-              onClick={() =>
-                trackAnalytics("homepage_primary_cta_clicked", {
-                  session: "unknown",
-                  destinationTool: "recommendation",
-                })
-              }
-              className="hero-action hero-action--primary !px-7 !py-4"
-            >
-              Începe recomandarea
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-            <Link
-              to="/upload-oferta"
-              onClick={() =>
-                trackAnalytics("homepage_secondary_cta_clicked", {
-                  session: "unknown",
-                  destinationTool: "offer_analysis",
-                })
-              }
-              className="inline-flex items-center gap-1 text-sm font-semibold underline-offset-4 hover:underline"
-            >
-              Ai deja o ofertă? Analizeaz-o
-              <ChevronRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PathCard({
-  tone,
-  icon: Icon,
-  eyebrow,
-  title,
-  text,
-  points,
-  to,
-  cta,
-  destination,
-}: {
-  tone: "light" | "dark";
-  icon: typeof CircleHelp;
-  eyebrow: string;
-  title: string;
-  text: string;
-  points: string[];
-  to: "/recomandare-sistem" | "/upload-oferta";
-  cta: string;
-  destination: "recommendation" | "offer_analysis";
-}) {
-  const dark = tone === "dark";
-  return (
-    <article
-      className={`rounded-[2.2rem] p-7 sm:p-9 ${dark ? "bg-[#102a2b] text-white shadow-lift" : "border border-border bg-white shadow-soft"}`}
-    >
-      <div
-        className={`grid h-12 w-12 place-items-center rounded-2xl ${dark ? "bg-white/10 text-brand-sun" : "bg-brand-green-soft text-brand-green"}`}
-      >
-        <Icon className="h-6 w-6" aria-hidden="true" />
-      </div>
-      <div
-        className={`mt-10 text-xs font-bold uppercase tracking-[0.14em] ${dark ? "text-brand-sun" : "text-brand-green"}`}
-      >
-        {eyebrow}
-      </div>
-      <h3 className="mt-3 text-3xl font-bold tracking-[-0.045em]">{title}</h3>
-      <p className={`mt-4 leading-7 ${dark ? "text-white/62" : "text-muted-foreground"}`}>{text}</p>
-      <ul className="mt-6 space-y-3 text-sm">
-        {points.map((point) => (
-          <li key={point} className="flex items-start gap-3">
-            <Check
-              className={`mt-0.5 h-4 w-4 shrink-0 ${dark ? "text-brand-sun" : "text-brand-green"}`}
-              aria-hidden="true"
-            />
-            <span>{point}</span>
-          </li>
-        ))}
-      </ul>
-      <Link
-        to={to}
-        onClick={() =>
-          trackAnalytics("homepage_tool_opened", {
-            session: "unknown",
-            destinationTool: destination,
-          })
-        }
-        className={`mt-8 inline-flex min-h-12 items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold ${dark ? "bg-white text-[#102a2b]" : "bg-[#102a2b] text-white"}`}
-      >
-        {cta}
-        <ArrowRight className="h-4 w-4" aria-hidden="true" />
-      </Link>
-    </article>
-  );
-}
-
-function TrustPoint({ text }: { text: string }) {
-  return (
-    <li className="flex items-start gap-2">
-      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-brand-green-soft text-brand-green">
-        <Check className="h-3 w-3" strokeWidth={3} aria-hidden="true" />
-      </span>
-      <span>{text}</span>
     </li>
   );
 }
 
-function PreviewStat({
-  icon: Icon,
-  label,
-  value,
+function RecommendationShowcase() {
+  return (
+    <section className="home-v2-result" aria-labelledby="result-title">
+      <div className="home-v2-shell home-v2-result__grid" data-reveal>
+        <div>
+          <p className="home-v2-section-number">03</p>
+          <h2 id="result-title">Vezi sistemul recomandat, nu doar o cifră scoasă din context</h2>
+          <p className="home-v2-copy">
+            Rezultatul îți arată cât ar putea produce sistemul, ce costuri sunt plauzibile și dacă
+            bateria are sens pentru felul în care consumi energia.
+          </p>
+          <TrackedLink
+            to="/exemplu-raport"
+            event="homepage_tool_opened"
+            destination="offer_analysis"
+            primary
+          >
+            Vezi un exemplu complet <ArrowRight aria-hidden="true" />
+          </TrackedLink>
+        </div>
+        <div className="result-board">
+          <header>
+            <span>Exemplu de rezultat</span>
+            <strong>Sistem recomandat</strong>
+          </header>
+          <div className="result-board__main">
+            <strong>5,4–6,2 kWp</strong>
+            <span>12–14 panouri</span>
+          </div>
+          <dl>
+            <div>
+              <dt>Producție anuală estimată</dt>
+              <dd>6.500–7.400 kWh</dd>
+            </div>
+            <div>
+              <dt>Cost estimat</dt>
+              <dd>
+                27.000–34.000 lei
+                <small>în funcție de echipamente, montaj și lucrările incluse</small>
+              </dd>
+            </div>
+            <div>
+              <dt>Perioadă estimată de recuperare</dt>
+              <dd>7–10 ani</dd>
+            </div>
+            <div>
+              <dt>Baterie</dt>
+              <dd>Vezi dacă merită pentru felul în care consumi energia</dd>
+            </div>
+          </dl>
+          <div className="production-chart" role="img" aria-label="Exemplu de producție lunară">
+            {[32, 42, 60, 76, 91, 100, 98, 89, 68, 50, 31, 25].map((height, index) => (
+              <i
+                key={index}
+                style={{ "--bar": `${height}%`, "--delay": `${index * 55}ms` } as CSSProperties}
+              />
+            ))}
+          </div>
+          <p className="result-board__note">
+            Valorile sunt orientative. Orientarea, înclinarea, umbrirea și lucrările necesare la
+            fața locului pot schimba rezultatul.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function OfferAnalysis() {
+  return (
+    <section className="home-v2-offer" aria-labelledby="offer-title">
+      <div className="home-v2-shell home-v2-offer__grid" data-reveal>
+        <div className="offer-paper" aria-label="Exemplu fictiv de ofertă fotovoltaică analizată">
+          <header>
+            <img src="/brand/raportsolar-mark-512.png" width="46" height="46" alt="" />
+            <div>
+              <span>Exemplu fictiv</span>
+              <strong>Ofertă fotovoltaică</strong>
+            </div>
+          </header>
+          <p className="offer-paper__line">
+            <span>Putere sistem</span>
+            <b>6 kWp</b>
+          </p>
+          <p className="offer-paper__line is-good">
+            <span>Panouri</span>
+            <b>14 × 430 W</b>
+            <em>clar</em>
+          </p>
+          <p className="offer-paper__line is-warn">
+            <span>Invertor</span>
+            <b>model neprecizat</b>
+            <em>lipsește</em>
+          </p>
+          <p className="offer-paper__line">
+            <span>Preț total</span>
+            <b>34.800 lei</b>
+          </p>
+          <p className="offer-paper__line is-warn">
+            <span>Lucrări incluse</span>
+            <b>„montaj standard”</b>
+            <em>de clarificat</em>
+          </p>
+          <p className="offer-paper__line is-good">
+            <span>Garanție panouri</span>
+            <b>25 ani</b>
+            <em>clar</em>
+          </p>
+        </div>
+        <div>
+          <p className="home-v2-section-number">04</p>
+          <h2 id="offer-title">Nu trebuie să compari ofertele doar după preț</h2>
+          <p className="home-v2-copy">
+            RaportSolar caută informațiile care te ajută să înțelegi ce cumperi: puterea sistemului,
+            modelele echipamentelor, bateria, lucrările incluse și garanțiile.
+          </p>
+          <ul className="offer-checks">
+            <li>
+              <Check aria-hidden="true" /> vezi ce lipsește din ofertă
+            </li>
+            <li>
+              <Check aria-hidden="true" /> observi valorile care se contrazic
+            </li>
+            <li>
+              <Check aria-hidden="true" /> pregătești întrebări concrete pentru instalator
+            </li>
+          </ul>
+          <TrackedLink
+            to="/upload-oferta"
+            event="homepage_tool_opened"
+            destination="offer_analysis"
+            primary
+          >
+            Verifică oferta primită <ArrowRight aria-hidden="true" />
+          </TrackedLink>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SolarMapStory() {
+  return (
+    <section className="home-v2-map" aria-labelledby="map-title">
+      <div className="home-v2-shell home-v2-map__grid" data-reveal>
+        <div>
+          <p className="home-v2-section-number">05</p>
+          <h2 id="map-title">Vezi cât poate produce un sistem în localitatea ta</h2>
+          <p className="home-v2-copy">
+            Locația este doar începutul. Orientarea și înclinarea acoperișului, umbrirea și felul în
+            care este proiectat sistemul pot schimba producția.
+          </p>
+          <p className="map-source">
+            Estimările de producție folosesc date PVGIS ale Comisiei Europene.
+          </p>
+          <TrackedLink
+            to="/harta-solara-romania"
+            event="homepage_tool_opened"
+            destination="solar_map"
+          >
+            Explorează harta solară <ArrowRight aria-hidden="true" />
+          </TrackedLink>
+        </div>
+        <div className="map-visual" aria-hidden="true">
+          <svg viewBox="0 0 560 420">
+            <path
+              d="m208 50 42 15 31-19 37 24 53-3 41 41-2 45 40 35-28 48 5 50-44 16-27 60-51 9-35-26-63 24-37-39-48-10 5-54-38-30 20-52-11-51 41-32 33 8 34-39Z"
+              fill="#176a58"
+              opacity=".96"
+            />
+            <path
+              d="M125 263c66-30 139-43 217-37 56 4 104 19 144 43"
+              fill="none"
+              stroke="#ffd04d"
+              strokeWidth="8"
+              strokeLinecap="round"
+            />
+            <circle cx="302" cy="235" r="13" fill="#ffb511" />
+            <circle
+              cx="302"
+              cy="235"
+              r="28"
+              fill="none"
+              stroke="#ffb511"
+              strokeWidth="4"
+              opacity=".55"
+            />
+          </svg>
+          <div className="map-tooltip">
+            <span>Iași</span>
+            <strong>1.240 kWh/kWp</strong>
+            <small>producție anuală estimată</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Trust() {
+  const points = [
+    "RaportSolar nu vinde panouri.",
+    "Nu primești recomandarea unui instalator care încearcă să îți vândă propriul sistem.",
+    "Vezi pe ce date se bazează estimarea și ce informații pot schimba rezultatul.",
+    "Pentru proiectarea finală este necesară verificarea acoperișului și a instalației electrice.",
+  ];
+  return (
+    <section className="home-v2-trust">
+      <div className="home-v2-shell" data-reveal>
+        <img src="/brand/raportsolar-mark-512.png" width="110" height="110" alt="" />
+        <div>
+          <p className="home-v2-section-number">06</p>
+          <h2>Un reper pentru tine, nu o ofertă mascată</h2>
+        </div>
+        <ul>
+          {points.map((point) => (
+            <li key={point}>
+              <Check aria-hidden="true" />
+              {point}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+const guideGroups = [
+  { title: "Înainte să ceri oferte", categories: ["incepe"] },
+  { title: "Cum alegi puterea sistemului", categories: ["dimensionare"] },
+  { title: "Panouri, invertor și baterie", categories: ["echipamente", "baterii"] },
+  { title: "Costuri și recuperarea investiției", categories: ["costuri", "productie"] },
+  { title: "Prosumator și documente", categories: ["prosumator"] },
+  { title: "Cum verifici o ofertă", categories: ["oferte"] },
+] as const;
+
+function Guides() {
+  return (
+    <section className="home-v2-guides" aria-labelledby="guides-title">
+      <div className="home-v2-shell" data-reveal>
+        <p className="home-v2-section-number">07</p>
+        <div className="guides-heading">
+          <h2 id="guides-title">
+            Ghiduri care te ajută să compari ofertele cu mai multă încredere
+          </h2>
+          <p>
+            De la primele calcule până la garanții și dosarul de prosumator, găsești explicațiile de
+            care ai nevoie înainte să semnezi.
+          </p>
+        </div>
+        <div className="guide-groups">
+          {guideGroups.map((group) => {
+            const pages = editorialPages
+              .filter((page) => (group.categories as readonly string[]).includes(page.category))
+              .slice(0, 3);
+            return (
+              <article key={group.title}>
+                <h3>{group.title}</h3>
+                <ul>
+                  {pages.map((page) => (
+                    <li key={page.slug}>
+                      <Link
+                        data-home-guide-slug={page.slug}
+                        to="/$slug"
+                        params={{ slug: page.slug }}
+                        onClick={() =>
+                          trackAnalytics("homepage_guide_opened", {
+                            session: "unknown",
+                            guideSlug: page.slug,
+                            editorialCategory: page.category,
+                            editorialPlacement: "homepage",
+                          })
+                        }
+                      >
+                        {page.title}
+                        <ArrowRight aria-hidden="true" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+        <Link to="/ghid-panouri-fotovoltaice" className="guides-all">
+          Vezi toate ghidurile despre panouri fotovoltaice <ArrowRight aria-hidden="true" />
+        </Link>
+      </div>
+    </section>
+  );
+}
+
+function Closing() {
+  return (
+    <section className="home-v2-closing">
+      <div className="home-v2-shell home-v2-closing__inner" data-reveal>
+        <img src="/brand/raportsolar-mark-512.png" width="132" height="132" alt="" />
+        <div>
+          <h2>Începe cu datele casei tale, nu cu oferta unui instalator.</h2>
+          <p>În câteva minute poți avea un reper clar pentru discuția cu instalatorii.</p>
+        </div>
+        <div className="home-v2-actions">
+          <TrackedLink
+            to="/recomandare-sistem"
+            event="homepage_primary_cta_clicked"
+            destination="recommendation"
+            primary
+          >
+            Calculează sistemul potrivit <ArrowRight aria-hidden="true" />
+          </TrackedLink>
+          <TrackedLink
+            to="/upload-oferta"
+            event="homepage_secondary_cta_clicked"
+            destination="offer_analysis"
+          >
+            Am deja o ofertă
+          </TrackedLink>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SolarCurve() {
+  return (
+    <svg
+      className="solar-curve"
+      viewBox="0 0 1440 120"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <path d="M0 88C338 145 809-10 1440 72v48H0Z" fill="#fffdf8" />
+      <path
+        d="M0 88C338 145 809-10 1440 72"
+        fill="none"
+        stroke="#ffbd28"
+        strokeWidth="3"
+        strokeDasharray="12 16"
+      />
+    </svg>
+  );
+}
+
+function TrackedLink({
+  to,
+  event,
+  destination,
+  primary = false,
+  children,
 }: {
-  icon: typeof PanelTop;
-  label: string;
-  value: string;
+  to: "/recomandare-sistem" | "/upload-oferta" | "/harta-solara-romania" | "/exemplu-raport";
+  event: "homepage_primary_cta_clicked" | "homepage_secondary_cta_clicked" | "homepage_tool_opened";
+  destination: "recommendation" | "offer_analysis" | "solar_map";
+  primary?: boolean;
+  children: ReactNode;
 }) {
   return (
-    <div className="min-w-0 rounded-2xl border border-border bg-[#fafbf9] p-3.5">
-      <Icon className="h-4 w-4 text-brand-green" aria-hidden="true" />
-      <div className="mt-3 text-[10px] font-bold uppercase tracking-[0.12em] text-muted-foreground">
-        {label}
-      </div>
-      <div className="mt-1 text-sm font-bold leading-5">{value}</div>
-    </div>
+    <Link
+      to={to}
+      onClick={() => trackAnalytics(event, { session: "unknown", destinationTool: destination })}
+      className={primary ? "home-v2-button home-v2-button--primary" : "home-v2-button"}
+    >
+      {children}
+    </Link>
   );
 }
