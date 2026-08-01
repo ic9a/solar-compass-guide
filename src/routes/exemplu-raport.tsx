@@ -29,13 +29,20 @@ function Page() {
   return (
     <SiteLayout>
       <PageHero
-        className="report-page-hero"
+        className="report-page-hero core-tool-hero"
         eyebrow="Exemplu de analiză"
         title="Vezi cum este explicată o ofertă, de la preț până la garanții."
         description="Acest exemplu arată structura concluziilor oferite de raportsolar.ro și felul în care informațiile tehnice sunt transformate în întrebări și acțiuni concrete."
       />
       <Section className="!py-10 md:!py-16">
         <div className="max-w-6xl mx-auto">
+          <div className="example-report-notice" role="note">
+            <strong>Exemplu demonstrativ</strong>
+            <span>
+              Datele, furnizorul și concluziile sunt fictive. Nu reprezintă rezultatul unui
+              utilizator real.
+            </span>
+          </div>
           <PaidReport />
         </div>
       </Section>

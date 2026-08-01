@@ -15,6 +15,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { initOfferUpload, finalizeOfferUpload } from "@/lib/offers.functions";
 import { useAuthSessionContext, ensureAuthAccessToken } from "@/lib/auth/AuthSessionProvider";
 import { trackAnalytics } from "@/lib/analytics";
+import { OfferDocumentVisual } from "@/components/core-tool-visuals";
 
 export const Route = createFileRoute("/upload-oferta")({
   head: () => ({
@@ -86,7 +87,10 @@ function Page() {
       return;
     }
     if (!ALLOWED_EXTENSIONS.has(extension)) {
-      setStage({ kind: "error", message: "Format neacceptat. Extensii acceptate: PDF, PNG, JPG, JPEG sau WEBP." });
+      setStage({
+        kind: "error",
+        message: "Format neacceptat. Extensii acceptate: PDF, PNG, JPG, JPEG sau WEBP.",
+      });
       return;
     }
     if (!ALLOWED_MIMES.has(file.type)) {
@@ -180,12 +184,13 @@ function Page() {
   return (
     <SiteLayout>
       <PageHero
-        className="upload-page-hero"
+        className="upload-page-hero core-tool-hero"
         eyebrow="Verificarea ofertei"
         title="Încarcă oferta fotovoltaică"
         description="Primești o analiză clară a prețului, echipamentelor, instalării și garanțiilor."
         aside={
-          <div className="rounded-[1.75rem] border border-white/80 bg-white/75 p-5 shadow-soft backdrop-blur-xl">
+          <div className="upload-hero-story">
+            <OfferDocumentVisual />
             <div className="flex items-start gap-3">
               <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-green-soft text-brand-green">
                 <CheckCircle2 className="h-5 w-5" />
@@ -272,6 +277,10 @@ function Page() {
 
               <p className="mt-2 text-center text-xs text-muted-foreground">
                 PDF, PNG, JPG sau WEBP · maximum 20 MB
+              </p>
+              <p className="upload-privacy-note">
+                <CheckCircle2 aria-hidden="true" /> Documentul rămâne privat și este accesibil numai
+                în sesiunea sau contul tău.
               </p>
 
               {(stage.kind === "picked" || stage.kind === "uploading") && (
