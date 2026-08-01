@@ -21,10 +21,11 @@ for (const [path, heading] of publicRoutes) {
 
 test("FAQ accordion exposes its answer accessibly", async ({ page }) => {
   await page.goto("/intrebari-frecvente", { waitUntil: "domcontentloaded" });
-  const question = page.getByRole("button", { name: "Ce primesc după analiza unei oferte?" });
-  await expect(question).toHaveAttribute("aria-expanded", "false");
+  const question = page.getByText("Ce primesc după analiza unei oferte?", { exact: true });
+  const item = page.locator("details").filter({ has: question });
+  await expect(item).not.toHaveAttribute("open", "");
   await question.click();
-  await expect(question).toHaveAttribute("aria-expanded", "true");
+  await expect(item).toHaveAttribute("open", "");
   await expect(page.getByText(/Primești o încadrare orientativă/)).toBeVisible();
 });
 
@@ -50,7 +51,7 @@ for (const [name, path] of visualReviewRoutes) {
       "Representative visual-review viewports only",
     );
     await page.goto(path, { waitUntil: "networkidle" });
-    await expect(page.locator("main")).toBeVisible();
+    await expect(page.locator("#continut-principal")).toBeVisible();
     await page.screenshot({
       path: testInfo.outputPath(`${name}-full.png`),
       fullPage: true,

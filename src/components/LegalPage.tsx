@@ -22,7 +22,7 @@ export function LegalPage({
   return (
     <>
       <MarketingPageHero eyebrow={eyebrow} title={title} description={description} />
-      <main className="brand-section brand-section--paper">
+      <div className="brand-section brand-section--paper">
         <div className="brand-shell legal-shell">
           <nav className="legal-nav" aria-label="Documente legale">
             <p className="home-v2-eyebrow">Documente</p>
@@ -34,7 +34,7 @@ export function LegalPage({
           </nav>
           <article className="legal-document prose prose-slate max-w-none">{children}</article>
         </div>
-      </main>
+      </div>
     </>
   );
 }

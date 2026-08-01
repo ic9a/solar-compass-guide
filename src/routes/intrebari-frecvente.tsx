@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { MarketingPageHero, SectionIntro } from "@/components/brand-system";
@@ -83,7 +82,7 @@ function Page() {
         title="Răspunsuri directe, înainte să începi."
         description="Află ce primești, ce date sunt necesare și unde se oprește o estimare realizată online."
       />
-      <main className="brand-section brand-section--paper">
+      <div className="brand-section brand-section--paper">
         <div className="brand-shell grid gap-12 lg:grid-cols-[.65fr_1.35fr]">
           <div>
             <SectionIntro
@@ -109,22 +108,19 @@ function Page() {
             ))}
           </div>
         </div>
-      </main>
+      </div>
     </SiteLayout>
   );
 }
 
 function Item({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
   return (
-    <div className="faq-item">
-      <button className="" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
+    <details className="faq-item">
+      <summary>
         <span className="font-semibold text-foreground">{q}</span>
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-      {open && <div className="faq-item__answer">{a}</div>}
-    </div>
+        <ChevronDown className="h-5 w-5 shrink-0 text-muted-foreground transition-transform" />
+      </summary>
+      <div className="faq-item__answer">{a}</div>
+    </details>
   );
 }

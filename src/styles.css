@@ -2072,7 +2072,7 @@
   border-radius: 1.25rem;
   background: white;
 }
-.faq-item button {
+.faq-item summary {
   display: flex;
   width: 100%;
   min-height: 4rem;
@@ -2082,6 +2082,14 @@
   padding: 1rem 1.25rem;
   text-align: left;
   font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item[open] summary svg {
+  transform: rotate(180deg);
 }
 .faq-item__answer {
   padding: 0 1.25rem 1.25rem;

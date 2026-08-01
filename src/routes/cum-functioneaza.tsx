@@ -6,7 +6,7 @@ import { JourneyScene, MarketingPageHero, SectionIntro } from "@/components/bran
 export const Route = createFileRoute("/cum-functioneaza")({
   head: () => ({
     meta: [
-      { title: "Cum funcționează RaportSolar | Recomandare și verificare ofertă" },
+      { title: "Cum funcționează RaportSolar | raportsolar.ro" },
       {
         name: "description",
         content:
@@ -57,7 +57,7 @@ function Page() {
         description="Folosește RaportSolar înainte să ceri oferte sau după ce ai primit una. În ambele situații, vezi de unde vine rezultatul și ce mai trebuie verificat."
         visual={<JourneyScene kind="recommendation" />}
       />
-      <main>
+      <div>
         <section className="brand-section brand-section--paper">
           <div className="brand-shell">
             <SectionIntro
@@ -109,7 +109,7 @@ function Page() {
             </ul>
           </div>
         </section>
-      </main>
+      </div>
     </SiteLayout>
   );
 }

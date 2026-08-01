@@ -73,7 +73,7 @@ function Page() {
         description="Te putem ajuta cu folosirea aplicației, o analiză care nu se încarcă sau o informație neclară de pe site. Pentru proiectare și verificarea instalației, discută cu un specialist care poate vedea locuința."
         visual={<JourneyScene kind="contact" />}
       />
-      <main className="brand-section brand-section--paper">
+      <div className="brand-section brand-section--paper">
         <div className="brand-shell grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
           <div>
             <SectionIntro
@@ -177,7 +177,7 @@ function Page() {
             )}
           </BrandSurface>
         </div>
-      </main>
+      </div>
     </SiteLayout>
   );
 }
