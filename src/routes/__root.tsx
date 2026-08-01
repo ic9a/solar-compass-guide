@@ -14,23 +14,29 @@ import { AuthSessionProvider } from "@/lib/auth/AuthSessionProvider";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Pagina nu a fost găsită</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
+    <main className="grid min-h-screen place-items-center bg-[#edf8e9] px-4">
+      <div className="brand-surface brand-surface--light max-w-xl text-center">
+        <img
+          src="/brand/raportsolar-mark-512.png"
+          width="72"
+          height="72"
+          alt=""
+          className="mx-auto"
+        />
+        <p className="home-v2-eyebrow mt-5">Eroare 404</p>
+        <h1 className="mt-3 text-4xl font-bold tracking-[-.05em] text-foreground">
+          Pagina nu a fost găsită
+        </h1>
+        <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-muted-foreground">
           Adresa nu există sau pagina a fost mutată.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
+          <Link to="/" className="brand-button brand-button--primary">
             Înapoi la pagina principală
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -39,9 +45,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
+    <main className="grid min-h-screen place-items-center bg-[#fffdf8] px-4">
+      <div className="brand-surface brand-surface--light max-w-xl text-center">
+        <p className="home-v2-eyebrow">Problemă temporară</p>
+        <h1 className="mt-3 text-3xl font-bold tracking-[-.04em] text-foreground">
           Pagina nu s-a încărcat
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
@@ -53,19 +60,16 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="brand-button brand-button--primary"
           >
             Reîncearcă
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
+          <a href="/" className="brand-button brand-button--secondary">
             Pagina principală
           </a>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 

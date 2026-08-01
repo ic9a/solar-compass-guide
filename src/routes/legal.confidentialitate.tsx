@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Card, PageHero, Section } from "@/components/primitives";
+import { LegalPage } from "@/components/LegalPage";
 
 export const Route = createFileRoute("/legal/confidentialitate")({
   head: () => ({
@@ -19,13 +19,11 @@ export const Route = createFileRoute("/legal/confidentialitate")({
 function Page() {
   return (
     <SiteLayout>
-      <PageHero
+      <LegalPage
         eyebrow="Protecția datelor"
         title="Politica de confidențialitate"
         description="Ce date folosește raportsolar.ro, de ce sunt necesare și ce opțiuni ai asupra lor."
-      />
-      <Section className="!py-12 max-w-3xl mx-auto">
-        <Card className="prose prose-slate max-w-none p-7 md:p-10">
+      >
         <p>
           Această politică descrie cum raportsolar.ro („noi") colectează, folosește și protejează
           datele tale personale în calitate de operator de date, conform Regulamentului (UE)
@@ -95,8 +93,7 @@ function Page() {
           Datele de identificare ale operatorului (denumire, CUI, adresă) se completează în Setări
           Admin și vor apărea aici.
         </p>
-        </Card>
-      </Section>
+      </LegalPage>
     </SiteLayout>
   );
 }

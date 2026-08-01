@@ -1,13 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
-import { Card, PageHero, Section } from "@/components/primitives";
+import { JourneyScene, MarketingPageHero, SectionIntro } from "@/components/brand-system";
 
 export const Route = createFileRoute("/cum-functioneaza")({
   head: () => ({
     meta: [
-      { title: "Cum funcționează raportsolar.ro" },
-      { name: "description", content: "Vezi cum raportsolar.ro transformă datele despre consum sau oferta instalatorului în concluzii clare și ușor de folosit." },
+      { title: "Cum funcționează RaportSolar | raportsolar.ro" },
+      {
+        name: "description",
+        content:
+          "Vezi cum obții o recomandare pentru casa ta sau cum verifici o ofertă fotovoltaică, pas cu pas.",
+      },
       { property: "og:url", content: "/cum-functioneaza" },
     ],
     links: [{ rel: "canonical", href: "/cum-functioneaza" }],
@@ -15,40 +19,97 @@ export const Route = createFileRoute("/cum-functioneaza")({
   component: Page,
 });
 
-const STEPS = [
-  { n: "01", title: "Alegi instrumentul potrivit", text: "Poți dimensiona un sistem, estima producția pentru locația ta sau verifica o ofertă primită." },
-  { n: "02", title: "Ne oferi informațiile disponibile", text: "Completezi datele despre consum și locuință sau încarci documentul trimis de instalator." },
-  { n: "03", title: "Datele sunt verificate și puse în context", text: "raportsolar.ro corelează informațiile din ofertă și semnalează lipsurile sau neconcordanțele." },
-  { n: "04", title: "Primești concluzii pe care le poți folosi", text: "Vezi ce este în regulă, ce trebuie clarificat și ce întrebări merită adresate instalatorului." },
+const journeys = [
+  {
+    kind: "recommendation" as const,
+    eyebrow: "Înainte să ceri oferte",
+    title: "Află ce sistem merită să ceri",
+    text: "Pornești de la consumul și locuința ta. Primești un interval orientativ pentru putere, producție, baterie și cost — împreună cu explicațiile care te ajută să discuți concret cu instalatorii.",
+    steps: [
+      "Completezi consumul și datele locuinței",
+      "Comparăm producția și opțiunile potrivite",
+      "Primești recomandarea și vezi ce o poate schimba",
+    ],
+    to: "/recomandare-sistem" as const,
+    cta: "Calculează sistemul potrivit",
+  },
+  {
+    kind: "offer" as const,
+    eyebrow: "După ce ai primit o ofertă",
+    title: "Verifică ce cumperi, nu doar prețul",
+    text: "Încarci documentul primit și vezi dacă puterea, echipamentele, lucrările, bateria și garanțiile sunt explicate suficient. Informațiile neclare rămân vizibile și ușor de discutat.",
+    steps: [
+      "Încarci oferta sau introduci datele manual",
+      "Verificăm informațiile și neconcordanțele",
+      "Primești concluzii și întrebări pentru instalator",
+    ],
+    to: "/upload-oferta" as const,
+    cta: "Verifică oferta primită",
+  },
 ];
 
 function Page() {
   return (
     <SiteLayout>
-      <PageHero
+      <MarketingPageHero
         eyebrow="Cum funcționează"
-        title="De la consum sau ofertă la o alegere mai bine informată."
-        description="raportsolar.ro organizează informațiile tehnice și financiare într-o formă ușor de înțeles, fără afiliere la instalatorul care ți-a trimis oferta."
+        title="Două momente importante. Un proces pe care îl înțelegi."
+        description="Folosește RaportSolar înainte să ceri oferte sau după ce ai primit una. În ambele situații, vezi de unde vine rezultatul și ce mai trebuie verificat."
+        visual={<JourneyScene kind="recommendation" />}
       />
-      <Section>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((s) => (
-            <Card key={s.n} className="group relative overflow-hidden p-6 transition-transform hover:-translate-y-1">
-              <div className="text-5xl font-extrabold text-gradient-brand leading-none">{s.n}</div>
-              <div className="mt-7 text-lg font-bold">{s.title}</div>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">{s.text}</p>
-            </Card>
-          ))}
-        </div>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link to="/recomandare-sistem" className="inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-semibold text-white shadow-glow">
-            Află ce sistem ți se potrivește <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link to="/upload-oferta" className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-5 py-2.5 text-sm font-semibold hover:bg-muted">
-            Verifică o ofertă primită
-          </Link>
-        </div>
-      </Section>
+      <div>
+        <section className="brand-section brand-section--paper">
+          <div className="brand-shell">
+            <SectionIntro
+              number="01"
+              title="Alege traseul care corespunde situației tale"
+              description="Nu trebuie să completezi date care nu te ajută. Fiecare traseu are un scop și o concluzie clară."
+            />
+            <div className="public-journeys">
+              {journeys.map((journey) => (
+                <article className="public-journey" key={journey.kind}>
+                  <JourneyScene kind={journey.kind} />
+                  <div className="public-journey__copy">
+                    <p className="home-v2-eyebrow">{journey.eyebrow}</p>
+                    <h3>{journey.title}</h3>
+                    <p>{journey.text}</p>
+                    <ol className="public-journey__steps">
+                      {journey.steps.map((step, index) => (
+                        <li key={step}>
+                          <b>{index + 1}</b>
+                          <span>{step}</span>
+                        </li>
+                      ))}
+                    </ol>
+                    <Link to={journey.to} className="brand-button brand-button--primary mt-7">
+                      {journey.cta}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section className="brand-section brand-section--dark">
+          <div className="brand-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+            <SectionIntro number="02" title="Ce face și ce nu face RaportSolar" />
+            <ul className="grid gap-4 text-base leading-7 text-white/75">
+              {[
+                "Folosește datele pe care le oferi și arată limitele estimării.",
+                "Te ajută să compari informațiile și să pregătești întrebările potrivite.",
+                "Nu garantează producția și nu înlocuiește proiectarea la fața locului.",
+                "Nu verifică execuția instalației și nu ia decizia în locul tău.",
+              ].map((item) => (
+                <li className="flex gap-3" key={item}>
+                  <Check className="mt-1 h-5 w-5 shrink-0 text-[#ffd05a]" aria-hidden="true" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </div>
     </SiteLayout>
   );
 }
