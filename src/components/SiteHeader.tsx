@@ -7,11 +7,11 @@ import { useAuthSession } from "@/hooks/useAuthSession";
 import { supabase } from "@/integrations/supabase/client";
 
 const NAV = [
-  { to: "/recomandare-sistem", label: "Sistemul potrivit" },
-  { to: "/upload-oferta", label: "Verifică ofertă" },
+  { to: "/recomandare-sistem", label: "Recomandare" },
+  { to: "/upload-oferta", label: "Analiză ofertă" },
   { to: "/harta-solara-romania", label: "Harta solară" },
   { to: "/ghid-panouri-fotovoltaice", label: "Ghiduri" },
-  { to: "/cum-functioneaza", label: "Cum funcționează" },
+  { to: "/exemplu-raport", label: "Exemplu raport" },
 ] as const;
 
 export function SiteHeader() {
