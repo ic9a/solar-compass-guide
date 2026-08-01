@@ -2,6 +2,10 @@ import { z } from "zod";
 
 export const ANALYTICS_EVENTS = [
   "homepage_view",
+  "homepage_primary_cta_clicked",
+  "homepage_secondary_cta_clicked",
+  "homepage_tool_opened",
+  "homepage_guide_opened",
   "upload_page_view",
   "upload_file_selected",
   "upload_started",
@@ -61,7 +65,16 @@ export const AnalyticsPayloadSchema = z
       ])
       .optional(),
     editorialCategory: z
-      .enum(["incepe", "dimensionare", "costuri", "productie", "baterii", "echipamente", "prosumator", "oferte"])
+      .enum([
+        "incepe",
+        "dimensionare",
+        "costuri",
+        "productie",
+        "baterii",
+        "echipamente",
+        "prosumator",
+        "oferte",
+      ])
       .optional(),
     editorialPlacement: z
       .enum(["featured", "beginner_path", "category_directory", "homepage", "related_guides"])

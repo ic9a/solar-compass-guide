@@ -25,7 +25,7 @@ test.describe("shared responsive shell", () => {
     const box = await dialog.boundingBox();
     expect(box?.width).toBeGreaterThan(0);
     expect(box?.height).toBeGreaterThan(0);
-    await expect(page.getByRole("link", { name: "Sistemul potrivit" })).toBeFocused();
+    await expect(dialog.getByRole("link", { name: "Recomandare" })).toBeFocused();
     await expect(page.locator("body")).toHaveCSS("overflow", "hidden");
 
     const links = dialog.getByRole("link");

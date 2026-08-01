@@ -45,7 +45,10 @@ export function SiteFooter() {
           </div>
           <ul className="space-y-3 text-sm text-white/80">
             <li>
-              <Link to="/ghid-panouri-fotovoltaice" className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sun">
+              <Link
+                to="/ghid-panouri-fotovoltaice"
+                className="hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sun"
+              >
                 Ghiduri
               </Link>
             </li>
@@ -64,14 +67,27 @@ export function SiteFooter() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link to="/cont" className="hover:text-white">
+                Cont
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-3 px-4 py-5 text-xs text-white/70 sm:flex-row sm:px-6 lg:px-8">
           <div>© {new Date().getFullYear()} raportsolar.ro</div>
-          <div>
-            Analizele sunt orientative și nu înlocuiesc o verificare tehnică la fața locului.
+          <div className="flex flex-wrap gap-x-4 gap-y-2">
+            <Link to="/legal/confidentialitate" className="hover:text-white">
+              Confidențialitate
+            </Link>
+            <Link to="/legal/termeni" className="hover:text-white">
+              Termeni
+            </Link>
+            <Link to="/legal/cookies" className="hover:text-white">
+              Cookies
+            </Link>
           </div>
         </div>
       </div>

@@ -17,12 +17,14 @@ import { Route as RaportCompletRouteImport } from './routes/raport-complet'
 import { Route as IntroducereManualaRouteImport } from './routes/introducere-manuala'
 import { Route as IntrebariFrecventeRouteImport } from './routes/intrebari-frecvente'
 import { Route as HartaSolaraRomaniaRouteImport } from './routes/harta-solara-romania'
+import { Route as GhidPanouriFotovoltaiceRouteImport } from './routes/ghid-panouri-fotovoltaice'
 import { Route as ExempluRaportRouteImport } from './routes/exemplu-raport'
 import { Route as CumFunctioneazaRouteImport } from './routes/cum-functioneaza'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContRouteImport } from './routes/cont'
 import { Route as AutentificareRouteImport } from './routes/autentificare'
 import { Route as AnalizaRouteImport } from './routes/analiza'
+import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RezultatGratuitAnalysisIdRouteImport } from './routes/rezultat-gratuit.$analysisId'
@@ -86,6 +88,11 @@ const HartaSolaraRomaniaRoute = HartaSolaraRomaniaRouteImport.update({
   path: '/harta-solara-romania',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GhidPanouriFotovoltaiceRoute = GhidPanouriFotovoltaiceRouteImport.update({
+  id: '/ghid-panouri-fotovoltaice',
+  path: '/ghid-panouri-fotovoltaice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExempluRaportRoute = ExempluRaportRouteImport.update({
   id: '/exemplu-raport',
   path: '/exemplu-raport',
@@ -114,6 +121,11 @@ const AutentificareRoute = AutentificareRouteImport.update({
 const AnalizaRoute = AnalizaRouteImport.update({
   id: '/analiza',
   path: '/analiza',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugRoute = SlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -233,12 +245,14 @@ const AuthenticatedAdminAuditRoute = AuthenticatedAdminAuditRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/analiza': typeof AnalizaRouteWithChildren
   '/autentificare': typeof AutentificareRoute
   '/cont': typeof ContRouteWithChildren
   '/contact': typeof ContactRoute
   '/cum-functioneaza': typeof CumFunctioneazaRoute
   '/exemplu-raport': typeof ExempluRaportRoute
+  '/ghid-panouri-fotovoltaice': typeof GhidPanouriFotovoltaiceRoute
   '/harta-solara-romania': typeof HartaSolaraRomaniaRoute
   '/intrebari-frecvente': typeof IntrebariFrecventeRoute
   '/introducere-manuala': typeof IntroducereManualaRoute
@@ -270,12 +284,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugRoute
   '/analiza': typeof AnalizaRouteWithChildren
   '/autentificare': typeof AutentificareRoute
   '/cont': typeof ContRouteWithChildren
   '/contact': typeof ContactRoute
   '/cum-functioneaza': typeof CumFunctioneazaRoute
   '/exemplu-raport': typeof ExempluRaportRoute
+  '/ghid-panouri-fotovoltaice': typeof GhidPanouriFotovoltaiceRoute
   '/harta-solara-romania': typeof HartaSolaraRomaniaRoute
   '/intrebari-frecvente': typeof IntrebariFrecventeRoute
   '/introducere-manuala': typeof IntroducereManualaRoute
@@ -308,12 +324,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/$slug': typeof SlugRoute
   '/analiza': typeof AnalizaRouteWithChildren
   '/autentificare': typeof AutentificareRoute
   '/cont': typeof ContRouteWithChildren
   '/contact': typeof ContactRoute
   '/cum-functioneaza': typeof CumFunctioneazaRoute
   '/exemplu-raport': typeof ExempluRaportRoute
+  '/ghid-panouri-fotovoltaice': typeof GhidPanouriFotovoltaiceRoute
   '/harta-solara-romania': typeof HartaSolaraRomaniaRoute
   '/intrebari-frecvente': typeof IntrebariFrecventeRoute
   '/introducere-manuala': typeof IntroducereManualaRoute
@@ -347,12 +365,14 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug'
     | '/analiza'
     | '/autentificare'
     | '/cont'
     | '/contact'
     | '/cum-functioneaza'
     | '/exemplu-raport'
+    | '/ghid-panouri-fotovoltaice'
     | '/harta-solara-romania'
     | '/intrebari-frecvente'
     | '/introducere-manuala'
@@ -384,12 +404,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$slug'
     | '/analiza'
     | '/autentificare'
     | '/cont'
     | '/contact'
     | '/cum-functioneaza'
     | '/exemplu-raport'
+    | '/ghid-panouri-fotovoltaice'
     | '/harta-solara-romania'
     | '/intrebari-frecvente'
     | '/introducere-manuala'
@@ -421,12 +443,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/$slug'
     | '/analiza'
     | '/autentificare'
     | '/cont'
     | '/contact'
     | '/cum-functioneaza'
     | '/exemplu-raport'
+    | '/ghid-panouri-fotovoltaice'
     | '/harta-solara-romania'
     | '/intrebari-frecvente'
     | '/introducere-manuala'
@@ -460,12 +484,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  SlugRoute: typeof SlugRoute
   AnalizaRoute: typeof AnalizaRouteWithChildren
   AutentificareRoute: typeof AutentificareRoute
   ContRoute: typeof ContRouteWithChildren
   ContactRoute: typeof ContactRoute
   CumFunctioneazaRoute: typeof CumFunctioneazaRoute
   ExempluRaportRoute: typeof ExempluRaportRoute
+  GhidPanouriFotovoltaiceRoute: typeof GhidPanouriFotovoltaiceRoute
   HartaSolaraRomaniaRoute: typeof HartaSolaraRomaniaRoute
   IntrebariFrecventeRoute: typeof IntrebariFrecventeRoute
   IntroducereManualaRoute: typeof IntroducereManualaRoute
@@ -540,6 +566,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof HartaSolaraRomaniaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ghid-panouri-fotovoltaice': {
+      id: '/ghid-panouri-fotovoltaice'
+      path: '/ghid-panouri-fotovoltaice'
+      fullPath: '/ghid-panouri-fotovoltaice'
+      preLoaderRoute: typeof GhidPanouriFotovoltaiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/exemplu-raport': {
       id: '/exemplu-raport'
       path: '/exemplu-raport'
@@ -580,6 +613,13 @@ declare module '@tanstack/react-router' {
       path: '/analiza'
       fullPath: '/analiza'
       preLoaderRoute: typeof AnalizaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug': {
+      id: '/$slug'
+      path: '/$slug'
+      fullPath: '/$slug'
+      preLoaderRoute: typeof SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -825,12 +865,14 @@ const RezultatGratuitRouteWithChildren = RezultatGratuitRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  SlugRoute: SlugRoute,
   AnalizaRoute: AnalizaRouteWithChildren,
   AutentificareRoute: AutentificareRoute,
   ContRoute: ContRouteWithChildren,
   ContactRoute: ContactRoute,
   CumFunctioneazaRoute: CumFunctioneazaRoute,
   ExempluRaportRoute: ExempluRaportRoute,
+  GhidPanouriFotovoltaiceRoute: GhidPanouriFotovoltaiceRoute,
   HartaSolaraRomaniaRoute: HartaSolaraRomaniaRoute,
   IntrebariFrecventeRoute: IntrebariFrecventeRoute,
   IntroducereManualaRoute: IntroducereManualaRoute,
